@@ -4,9 +4,10 @@ import { MongodbLevel } from "mongodb-level";
 import { Octokit } from "@octokit/rest";
 import { Base64 } from "js-base64";
 
-// const isLocal = process.env.TINA_IS_LOCAL === "true";
-const isLocal = false;
-console.log("isLocal", isLocal);
+const isLocal = process.env.TINA_IS_LOCAL === "true";
+
+if (isLocal) console.log("Running TinaCMS in local mode.");
+else console.log("Running TinaCMS in production mode.");
 
 const owner = process.env.GITHUB_OWNER as string;
 const repo = process.env.GITHUB_REPO as string;
