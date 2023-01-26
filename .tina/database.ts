@@ -1,9 +1,9 @@
-import { createDatabase } from "@tinacms/graphql";
-import { TinaLevelClient } from "@tinacms/cli";
+import { createDatabase, TinaLevelClient } from "@tinacms/graphql";
 import { MongodbLevel } from "mongodb-level";
 import { Octokit } from "@octokit/rest";
 import { Base64 } from "js-base64";
 
+// Manage this flag in your CI/CD pipeline and make sure it is set to false in production
 const isLocal = process.env.TINA_IS_LOCAL === "true";
 
 if (isLocal) console.log("Running TinaCMS in local mode.");
@@ -19,12 +19,12 @@ const octokit = new Octokit({
 });
 
 const localLevelStore = new TinaLevelClient();
-const mongodbLevelStore = new MongodbLevel({
-  collectionName: "tinacmsSelfHostedTest",
+const mongodbLevelStore = new MongodbLevel<string, Record<string, any>>({
+  collectionName: "tinacms",
   dbName: "tinacms",
   mongoUri: process.env.MONGODB_URI as string,
 });
-// localLevelStore.openConnection();
+if (isLocal) localLevelStore.openConnection();
 
 const githubOnPut = async (key, value) => {
   let sha;
