@@ -30,6 +30,7 @@ const githubOnPut = async (key, value) => {
   let sha;
   try {
     const {
+      // @ts-ignore
       data: { sha: existingSha },
     } = await octokit.repos.getContent({
       owner,
@@ -55,6 +56,7 @@ const githubOnDelete = async (key) => {
   let sha;
   try {
     const {
+      // @ts-ignore
       data: { sha: existingSha },
     } = await octokit.repos.getContent({
       owner,
