@@ -6,14 +6,44 @@ import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { ColorPickerInput } from "../components/fields/color";
 import { iconSchema } from "../components/util/icon";
 
+const LOCAL_KEY = "tina-local";
+
 const config = defineStaticConfig({
   contentApiUrlOverride: "/api/gql",
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID! || "asfd",
+  admin: {
+    auth: {
+      customAuth: true,
+      authenticate: async () => {
+        // Add your authentication logic here
+        localStorage.setItem(LOCAL_KEY, "some-token");
+      },
+      getToken: async () => {
+        // Add your own getting token
+        const token = localStorage.getItem(LOCAL_KEY);
+        if (!token) {
+          return { id_token: "" };
+        }
+        return { id_token: token };
+      },
+      getUser: async () => {
+        // Add your own getting user
+        // if this function returns a truthy value, the user is logged in and if it rutnrs
+        if (localStorage.getItem(LOCAL_KEY)) {
+          return true;
+        }
+        return false;
+      },
+      logout: async () => {
+        // add your own logout logic
+        localStorage.removeItem(LOCAL_KEY);
+      },
+    },
+  },
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
   branch:
     process.env.NEXT_PUBLIC_TINA_BRANCH! || // custom branch env override
     process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF! || // Vercel branch env
-    process.env.HEAD! ||
-    "main", // Netlify branch env
+    process.env.HEAD!, // Netlify branch env
   token: process.env.TINA_TOKEN! || "foo",
   media: {
     // If you wanted cloudinary do this
