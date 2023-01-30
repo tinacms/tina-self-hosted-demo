@@ -2,6 +2,8 @@ import { createDatabase, TinaLevelClient } from "@tinacms/graphql";
 import { MongodbLevel } from "mongodb-level";
 import { Octokit } from "@octokit/rest";
 import { Base64 } from "js-base64";
+import path from "path";
+import fs from "fs";
 
 // Manage this flag in your CI/CD pipeline and make sure it is set to false in production
 const isLocal = process.env.TINA_IS_LOCAL === "true";
@@ -51,6 +53,10 @@ const githubOnPut = async (key, value) => {
     sha,
   });
 };
+const localOnPut = async (key, value) => {
+  const currentPath = path.join(process.cwd(), key);
+  fs.writeFileSync(currentPath, value);
+};
 
 const githubOnDelete = async (key) => {
   let sha;
@@ -80,9 +86,13 @@ const githubOnDelete = async (key) => {
     console.log("data", data);
   }
 };
+const localOnDelete = async (key) => {
+  const currentPath = path.join(process.cwd(), key);
+  fs.rmSync(currentPath);
+};
 
 export default createDatabase({
   level: isLocal ? localLevelStore : mongodbLevelStore,
-  onPut: isLocal ? undefined : githubOnPut,
-  onDelete: isLocal ? undefined : githubOnDelete,
+  onPut: isLocal ? localOnPut : githubOnPut,
+  onDelete: isLocal ? localOnDelete : githubOnDelete,
 });
