@@ -3133,10 +3133,10 @@
     traverse "^0.6.6"
     unified "^6.1.6"
 
-"@tinacms/app@0.0.0-20230127194740":
-  version "0.0.0-20230127194740"
-  resolved "https://registry.yarnpkg.com/@tinacms/app/-/app-0.0.0-20230127194740.tgz#0754d4529b12908f44549186680ff7178df3de65"
-  integrity sha512-xctKHAAvdPlfeF07HrsqPjTbppKe3QzrZ1nrNCS8nAHYPxpeJyj+LOp7e60rp8AUfpi/XowM2RUhzbpVT6gdCw==
+"@tinacms/app@1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@tinacms/app/-/app-1.0.5.tgz#d98fb32db0fde884710fb2018867798dc3964171"
+  integrity sha512-f0/EywBHBgdeuOJmcHdSofsdupfDGLsY7SJ/AmNWRSGVJQ49AjGbR2zmQQAArRk/8XE3ph6A8M3KI5cnw86ceQ==
   dependencies:
     "@headlessui/react" "1.6.6"
     "@heroicons/react" "1.0.6"
@@ -3171,10 +3171,10 @@
   dependencies:
     fetch-ponyfill "^7.1.0"
 
-"@tinacms/cli@^0.0.0-20230127194740":
-  version "0.0.0-20230127194740"
-  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-0.0.0-20230127194740.tgz#0c53b88bd33cea516779827cc85faeec6c08d917"
-  integrity sha512-lKkwNnT9+Ds7Q/80s/Odpm0nyO/Cc/Y0ndqIG1sx97fsPP9TZRO3lmg5pfd8okQ+BJbsFPLMoSTJqg71qB+KCQ==
+"@tinacms/cli@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-1.0.7.tgz#e8a9e13c9708f4d2fc100e5301001527ab33b089"
+  integrity sha512-Y91U1ImSj4uKlpqf9MInSdnK+3S+mQC/xUztcfB2/AtwX5ZflBL4M/Bxy04/uTP8Ew7KF9wjP1Dw8o3ehAEx7g==
   dependencies:
     "@graphql-codegen/core" "^2.1.0"
     "@graphql-codegen/plugin-helpers" latest
@@ -3184,11 +3184,11 @@
     "@graphql-codegen/visitor-plugin-common" "^2.4.0"
     "@graphql-tools/graphql-file-loader" "^7.2.0"
     "@graphql-tools/load" "^7.3.2"
-    "@tinacms/app" "0.0.0-20230127194740"
-    "@tinacms/datalayer" "0.0.0-20230127194740"
-    "@tinacms/graphql" "0.0.0-20230127194740"
-    "@tinacms/metrics" "0.0.0-20230127194740"
-    "@tinacms/schema-tools" "0.0.0-20230127194740"
+    "@tinacms/app" "1.0.5"
+    "@tinacms/datalayer" "1.0.1"
+    "@tinacms/graphql" "1.1.0"
+    "@tinacms/metrics" "1.0.1"
+    "@tinacms/schema-tools" "1.2.1"
     ajv "^6.12.3"
     altair-express-middleware "4.0.6"
     auto-bind "^4.0.0"
@@ -3210,15 +3210,12 @@
     lodash "^4.17.19"
     lodash.get "^4.4.2"
     log4js "^6.4.0"
-    many-level "^2.0.0"
-    memory-level "^1.0.0"
     minimatch "^5.1.2"
     multer "1.4.5-lts.1"
     normalize-path "^3.0.0"
     prettier "^2.2.1"
     progress "^2.0.3"
     prompts "^2.4.1"
-    readable-stream "^4.3.0"
     url-pattern "^1.0.3"
     yarn "^1.22.17"
     yup "^0.32.9"
@@ -3245,7 +3242,84 @@
     prettier "^2.2.1"
     yup "^0.32.9"
 
-"@tinacms/graphql@0.0.0-20230127194740", "@tinacms/graphql@^0.0.0-20230127194740":
+"@tinacms/datalayer@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@tinacms/datalayer/-/datalayer-1.0.1.tgz#5b8a957939741f417c91767f555e7f9a16fda58e"
+  integrity sha512-zQ2ZkdGSbNxHhOHbEaDLuCUbR467DjoUkIAXuRoqqy0Jc44dr5F1YKZ6J4+5o1UhSWmJNHk+vA0wu00dAvmdtg==
+  dependencies:
+    "@octokit/auth-app" "^2.6.0"
+    "@octokit/graphql" "^4.5.6"
+    "@octokit/rest" "18.0.6"
+    encoding-down "^7.1.0"
+    fast-glob "^3.2.5"
+    fs-extra "^9.0.1"
+    glob-parent "^6.0.2"
+    graphql "15.8.0"
+    gray-matter "^4.0.2"
+    isomorphic-git "^1.10.3"
+    js-yaml "^3.14.0"
+    jsonpath-plus "^6.0.1"
+    level "^7.0.1"
+    leveldown "^6.1.0"
+    levelup "^5.1.1"
+    lodash "^4.17.20"
+    memdown "^6.1.1"
+    normalize-path "^3.0.0"
+    prettier "^2.2.1"
+    yup "^0.32.9"
+
+"@tinacms/graphql@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-1.1.0.tgz#0cfa9c19413f5030f678de02527c5aaf7454c11f"
+  integrity sha512-98u9TnIbYUZizsYy9XeM9AzcxY1LHfUMCOD2aCaHDur8KKc8PxRmGGbO/m0gbFuNCJhNNSMurLw1eZ8uGaHOyA==
+  dependencies:
+    "@graphql-tools/relay-operation-optimizer" "^6.4.1"
+    "@iarna/toml" "^2.2.5"
+    "@tinacms/datalayer" "1.0.1"
+    "@tinacms/mdx" "1.1.1"
+    "@tinacms/schema-tools" "1.2.1"
+    body-parser "^1.19.0"
+    cors "^2.8.5"
+    dataloader "^2.0.0"
+    date-fns "^2.21.1"
+    encoding-down "^7.1.0"
+    esbuild "^0.12.25"
+    esbuild-jest "^0.5.0"
+    estree-walker "^3.0.0"
+    fast-glob "^3.2.5"
+    flat "^5.0.2"
+    fs-extra "^9.0.1"
+    graphql "15.8.0"
+    graphql-type-json "^0.3.2"
+    gray-matter "^4.0.2"
+    js-yaml "^3.14.1"
+    leveldown "^6.1.0"
+    lodash "^4.17.20"
+    mdast "^3.0.0"
+    mdast-util-from-markdown "^1.0.0"
+    mdast-util-mdx "^1.1.0"
+    mdast-util-mdx-expression "^1.1.0"
+    mdast-util-to-markdown "^1.2.1"
+    micromark-extension-mdxjs "^1.0.0"
+    normalize-path "^3.0.0"
+    prettier "^2.2.1"
+    rehype-format "^3.1.0"
+    rehype-stringify "^8.0.0"
+    remark "^13.0.0"
+    remark-frontmatter "^3.0.0"
+    remark-mdx next
+    remark-parse "^10.0.0"
+    remark-rehype "^8.0.0"
+    remark-slate "^1.8.0"
+    remark-stringify "^8.1.1"
+    unified "^10.1.0"
+    unist-util-remove-position "^3.0.0"
+    unist-util-visit "^4.0.0"
+    vfile "^4.2.0"
+    ws "^7.3.1"
+    yup "^0.32.9"
+
+"@tinacms/graphql@^0.0.0-20230127194740":
   version "0.0.0-20230127194740"
   resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-0.0.0-20230127194740.tgz#ec2bcfe1dbba38fa1d72991130d6572a63ea5767"
   integrity sha512-jfo9hEl68yY+7+//+Z7qJYUt3QFFfY3l/542QopNqDb+af7XRDP4WrRifr0aI7l/UO/BxjtN2zrKtRfdYmjLcw==
@@ -3319,10 +3393,29 @@
     unist-util-visit "^4.1.0"
     vfile "^4.2.0"
 
-"@tinacms/metrics@0.0.0-20230127194740":
-  version "0.0.0-20230127194740"
-  resolved "https://registry.yarnpkg.com/@tinacms/metrics/-/metrics-0.0.0-20230127194740.tgz#8743cdd95369833d0a7f5bbf482379a76b0334fe"
-  integrity sha512-f1zIt10gaVxFS+lTcd/kSzmiUEPPUGtxyr1TojmaC9F8fBo0SYvC5z4iEhiHjuzMRmmP2j78m/rcsN7cDdQp1w==
+"@tinacms/mdx@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@tinacms/mdx/-/mdx-1.1.1.tgz#4f22f39d99084eb29e0a1568710a52c25accad72"
+  integrity sha512-B60SvoT6Gjop300dVKXw9auAP7C4O4TTxymsjeKnOvLMh1jq+jZOk84vDzGp2OK2G66BJ6+IRHuvsFNXFEEbYg==
+  dependencies:
+    "@tinacms/schema-tools" "1.2.1"
+    acorn "^8.7.1"
+    concat-md "^0.5.0"
+    lodash-es "^4.17.21"
+    mdast-util-mdx-jsx "^2.0.1"
+    mdast-util-to-markdown "^1.3.0"
+    prettier "^2.7.1"
+    remark "^14.0.2"
+    remark-mdx "^2.1.2"
+    typedoc "^0.23.21"
+    typedoc-plugin-markdown "^3.13.6"
+    unist-util-visit "^4.1.0"
+    vfile "^4.2.0"
+
+"@tinacms/metrics@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@tinacms/metrics/-/metrics-1.0.1.tgz#09a01874c07e367a30fb2e7b54d6af3b222d4064"
+  integrity sha512-alOhmTyLFCWTfy4dqDZMW7LhnXjr1oKDVcK62uqyFClY4yr+JtOGG87yW7d0lWGSvKyXpjEOxB3SNrBKypEwhg==
   dependencies:
     isomorphic-fetch "^3.0.0"
 
@@ -3332,6 +3425,13 @@
   integrity sha512-kguBkZiA/4+lKJbVrYHQg2FUzyGrmM7z8p//hp4o+ucnAgsj7jhRHDluGRKztgXah0sGni8voLLNckDHmU+dDg==
   dependencies:
     url-pattern "^1.0.3"
+    zod "^3.14.3"
+
+"@tinacms/schema-tools@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@tinacms/schema-tools/-/schema-tools-1.2.1.tgz#6c94f85f73b03d392cb31ff529e48830d57288f8"
+  integrity sha512-/41AzYgUuGdq6RRc7V2jCKZzfHG7SXkW6ADgYeolh08cks22YC3/vXx1osBrcRjUX5IeGnEZLY6ku/qM+PAnlQ==
+  dependencies:
     zod "^3.14.3"
 
 "@tinacms/sharedctx@0.0.0-20230127194740":
@@ -4093,7 +4193,7 @@ abort-controller@^3.0.0:
   dependencies:
     event-target-shim "^5.0.0"
 
-abstract-level@^1.0.0, abstract-level@^1.0.3:
+abstract-level@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/abstract-level/-/abstract-level-1.0.3.tgz#78a67d3d84da55ee15201486ab44c09560070741"
   integrity sha512-t6jv+xHy+VYwc4xqZMn2Pa9DjcdzvzZmQGRjTFc8spIbRGHgBrEKbPq+rYXc7CCo0lxgYvSgKVg9qZAhpVQSjA==
@@ -5278,6 +5378,14 @@ deepmerge@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.2.2.tgz#44d2ea3679b8f4d4ffba33f03d865fc1e7bf4955"
   integrity sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==
+
+deferred-leveldown@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/deferred-leveldown/-/deferred-leveldown-7.0.0.tgz#39802715fda6ec06d0159a8b28bd1c7e2b1cf0bf"
+  integrity sha512-QKN8NtuS3BC6m0B8vAnBls44tX1WXAFATUsJlruyAYbZpysWV3siH6o/i3g9DCHauzodksO60bdj5NazNbjCmg==
+  dependencies:
+    abstract-leveldown "^7.2.0"
+    inherits "^2.0.3"
 
 define-property@^0.2.5:
   version "0.2.5"
@@ -6622,7 +6730,7 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
-inherits@2, inherits@2.0.4, inherits@^2.0.0, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.3:
+inherits@2, inherits@2.0.4, inherits@^2.0.0, inherits@^2.0.1, inherits@^2.0.3, inherits@^2.0.4, inherits@~2.0.3:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
@@ -7238,10 +7346,37 @@ level-concat-iterator@^3.0.0:
   dependencies:
     catering "^2.1.0"
 
-level-errors@^3.0.0:
+level-errors@^3.0.0, level-errors@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/level-errors/-/level-errors-3.0.1.tgz#4bed48a33108cd83b0e39fdf9bbd84e96fbbef9f"
   integrity sha512-tqTL2DxzPDzpwl0iV5+rBCv65HWbHp6eutluHNcVIftKZlQN//b6GEnZDM2CvGZvzGYMwyPtYppYnydBQd2SMQ==
+
+level-iterator-stream@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/level-iterator-stream/-/level-iterator-stream-5.0.0.tgz#85b3438e1b4c54ce5aa8c0eb973cfb628117df9e"
+  integrity sha512-wnb1+o+CVFUDdiSMR/ZymE2prPs3cjVLlXuDeSq9Zb8o032XrabGEXcTCsBxprAtseO3qvFeGzh6406z9sOTRA==
+  dependencies:
+    inherits "^2.0.4"
+    readable-stream "^3.4.0"
+
+level-js@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/level-js/-/level-js-6.1.0.tgz#982ee9e583fca801aa75689c041995d0e7aab4ef"
+  integrity sha512-i7mPtkZm68aewfv0FnIUWvFUFfoyzIvVKnUmuQGrelEkP72vSPTaA1SGneWWoCV5KZJG4wlzbJLp1WxVNGuc6A==
+  dependencies:
+    abstract-leveldown "^7.2.0"
+    buffer "^6.0.3"
+    inherits "^2.0.3"
+    ltgt "^2.1.2"
+    run-parallel-limit "^1.1.0"
+
+level-packager@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/level-packager/-/level-packager-6.0.1.tgz#46b521e63df7f9728543f6792c0a8fe967e679a0"
+  integrity sha512-8Ezr0XM6hmAwqX9uu8IGzGNkWz/9doyPA8Oo9/D7qcMI6meJC+XhIbNYHukJhIn8OGdlzQs/JPcL9B8lA2F6EQ==
+  dependencies:
+    encoding-down "^7.1.0"
+    levelup "^5.1.1"
 
 level-supports@^2.0.1:
   version "2.1.0"
@@ -7261,6 +7396,15 @@ level-transcoder@^1.0.1:
     buffer "^6.0.3"
     module-error "^1.0.1"
 
+level@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/level/-/level-7.0.1.tgz#05121748d95a4ff7355860d56eb5d0aa36faef2a"
+  integrity sha512-w3E64+ALx2eZf8RV5JL4kIcE0BFAvQscRYd1yU4YVqZN9RGTQxXSvH202xvK15yZwFFxRXe60f13LJjcJ//I4Q==
+  dependencies:
+    level-js "^6.1.0"
+    level-packager "^6.0.1"
+    leveldown "^6.1.0"
+
 leveldown@^6.1.0:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/leveldown/-/leveldown-6.1.1.tgz#0f0e480fa88fd807abf94c33cb7e40966ea4b5ce"
@@ -7269,6 +7413,18 @@ leveldown@^6.1.0:
     abstract-leveldown "^7.2.0"
     napi-macros "~2.0.0"
     node-gyp-build "^4.3.0"
+
+levelup@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/levelup/-/levelup-5.1.1.tgz#9f99699f414ac084a3f8a28fc262a1f49cd7a52c"
+  integrity sha512-0mFCcHcEebOwsQuk00WJwjLI6oCjbBuEYdh/RaRqhjnyVlzqf41T1NnDtCedumZ56qyIh8euLFDqV1KfzTAVhg==
+  dependencies:
+    catering "^2.0.0"
+    deferred-leveldown "^7.0.0"
+    level-errors "^3.0.1"
+    level-iterator-stream "^5.0.0"
+    level-supports "^2.0.1"
+    queue-microtask "^1.2.3"
 
 levn@^0.4.1:
   version "0.4.1"
@@ -7434,6 +7590,11 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+ltgt@^2.1.2, ltgt@^2.2.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/ltgt/-/ltgt-2.2.1.tgz#f35ca91c493f7b73da0e07495304f17b31f87ee5"
+  integrity sha512-AI2r85+4MquTw9ZYqabu4nMwy9Oftlfa/e/52t9IjtfG+mGBbTNdAoZ3RQKLHR6r0wQnwZnPIEh/Ya6XTWAKNA==
 
 lunr@^2.3.9:
   version "2.3.9"
@@ -7698,19 +7859,21 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==
 
+memdown@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/memdown/-/memdown-6.1.1.tgz#ab52fae1a029affb40af60fda9d247a5733e4dc3"
+  integrity sha512-vh2RiuVrn6Vv73088C1KzLwy9+hhRwoZsgddYqIoVuFFrcoc2Rt+lq/KrmkFn6ulko7AtQ0AvqtYid35exb38A==
+  dependencies:
+    abstract-leveldown "^7.2.0"
+    buffer "^6.0.3"
+    functional-red-black-tree "^1.0.1"
+    inherits "^2.0.1"
+    ltgt "^2.2.0"
+
 memoize-one@^5.1.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.2.1.tgz#8337aa3c4335581839ec01c3d594090cebe8f00e"
   integrity sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q==
-
-memory-level@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/memory-level/-/memory-level-1.0.0.tgz#7323c3fd368f9af2f71c3cd76ba403a17ac41692"
-  integrity sha512-UXzwewuWeHBz5krr7EvehKcmLFNoXxGcvuYhC41tRnkrTbJohtS7kVn9akmgirtRygg+f7Yjsfi8Uu5SGSQ4Og==
-  dependencies:
-    abstract-level "^1.0.0"
-    functional-red-black-tree "^1.0.1"
-    module-error "^1.0.1"
 
 memory-pager@^1.0.2:
   version "1.5.0"
@@ -9520,6 +9683,13 @@ rsvp@^4.8.4:
   version "4.8.5"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"
   integrity sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA==
+
+run-parallel-limit@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/run-parallel-limit/-/run-parallel-limit-1.1.0.tgz#be80e936f5768623a38a963262d6bef8ff11e7ba"
+  integrity sha512-jJA7irRNM91jaKc3Hcl1npHsFLOXOoTkPCUL1JEa1R82O2miplXXRaGdjW/KM/98YQWDhJLiSs793CnXfblJUw==
+  dependencies:
+    queue-microtask "^1.2.2"
 
 run-parallel@^1.1.9:
   version "1.2.0"
