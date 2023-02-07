@@ -2,7 +2,7 @@
 title: Tina Cloud Starter
 blocks:
   - tagline: This is a new tagline!
-    headline: This is a headline!
+    headline: This is a new headline!!!!!
     text: >
       This project is set up to show you the basics of working with Tina. You're
       looking at the landing page, which pulls content from
@@ -51,6 +51,7 @@ blocks:
     color: tint
     _template: features
 ---
+
 
 
 
