@@ -22,7 +22,7 @@ GITHUB_OWNER=***
 GITHUB_REPO=***
 GITHUB_BRANCH=***
 GITHUB_PERSONAL_ACCESS_TOKEN=***
-TINA_IS_LOCAL=true
+TINA_PUBLIC_IS_LOCAL=true
 
 # _optionally_ Use Tina Cloud for user authentication
 NEXT_PUBLIC_TINA_CLIENT_ID=***
@@ -39,7 +39,7 @@ NEXT_PUBLIC_TINA_CLIENT_ID=***
 
 `GITHUB_PERSONAL_ACCESS_TOKEN` is a [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with `repo` access.
 
-`TINA_IS_LOCAL` is a flag that tells Tina to use the local filesystem as the backend.
+`TINA_PUBLIC_IS_LOCAL` is a flag that tells Tina to use the local filesystem as the backend.
 
 `NEXT_PUBLIC_TINA_CLIENT_ID` (_optionally_ use Tina Cloud for auth) is the client id for your Tina Cloud application. You can create a Tina Cloud application [here](https://app.tina.io/projects/choose).
 

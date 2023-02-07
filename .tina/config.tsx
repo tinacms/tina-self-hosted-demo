@@ -1,4 +1,4 @@
-import { defineStaticConfig } from "tinacms";
+import { defineConfig } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
 import { featureBlockSchema } from "../components/blocks/features";
 import { heroBlockSchema } from "../components/blocks/hero";
@@ -6,13 +6,11 @@ import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { ColorPickerInput } from "../components/fields/color";
 import { iconSchema } from "../components/util/icon";
 
-console.log("Tina is local", process.env.TINA_IS_LOCAL);
-
-const config = defineStaticConfig({
+const config = defineConfig({
   contentApiUrlOverride: "/api/gql",
   admin: {
     auth: {
-      useLocalAuth: process.env.TINA_IS_LOCAL === "true",
+      useLocalAuth: process.env.TINA_PUBLIC_IS_LOCAL === "true",
 
       // Uncomment this to use custom auth
       // customAuth: true,

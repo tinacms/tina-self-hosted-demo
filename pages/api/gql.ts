@@ -13,7 +13,9 @@ const nextApiHandler: NextApiHandler = async (req, res) => {
   });
 
   const isAuthorized =
-    process.env.TINA_IS_LOCAL === "true" || tinaCloudUser?.verified || false;
+    process.env.TINA_PUBLIC_IS_LOCAL === "true" ||
+    tinaCloudUser?.verified ||
+    false;
 
   if (isAuthorized) {
     const { query, variables } = req.body;
