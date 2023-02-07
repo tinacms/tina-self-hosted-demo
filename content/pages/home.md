@@ -11,7 +11,7 @@ blocks:
       .tina/schema.ts.
     actions:
       - label: Test
-        type: link
+        type: button
         icon: true
         link: /posts
       - label: Read Blog
