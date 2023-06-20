@@ -1,9 +1,10 @@
 import { createDatabase, TinaLevelClient } from "@tinacms/datalayer";
-import { MongodbLevel } from "mongodb-level";
+import { RedisLevel } from "@kldavis4/upstash-redis-level";
 import { Octokit } from "@octokit/rest";
 import { Base64 } from "js-base64";
 import path from "path";
 import fs from "fs";
+import {Redis} from '@upstash/redis'
 
 // Manage this flag in your CI/CD pipeline and make sure it is set to false in production
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
@@ -21,11 +22,12 @@ const octokit = new Octokit({
 });
 
 const localLevelStore = new TinaLevelClient();
-const mongodbLevelStore = new MongodbLevel<string, Record<string, any>>({
-  collectionName: "tinacms",
-  dbName: "tinacms",
-  mongoUri: process.env.MONGODB_URI as string,
-});
+const redisLevelStore = new RedisLevel<string,Record<string,any>>({
+  redis: new Redis({
+    url: process.env.REDIS_UPSTASH_URL as string || 'http://localhost:8079',
+    token: process.env.REDIS_UPSTASH_TOKEN as string || 'example_token',
+  }),
+})
 if (isLocal) localLevelStore.openConnection();
 
 const githubOnPut = async (key, value) => {
@@ -92,7 +94,7 @@ const localOnDelete = async (key) => {
 };
 
 export default createDatabase({
-  level: isLocal ? localLevelStore : mongodbLevelStore,
+  level: isLocal ? localLevelStore : redisLevelStore,
   onPut: isLocal ? localOnPut : githubOnPut,
   onDelete: isLocal ? localOnDelete : githubOnDelete,
 });
