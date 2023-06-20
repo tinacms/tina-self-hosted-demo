@@ -2259,10 +2259,10 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@kldavis4/upstash-redis-level@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@kldavis4/upstash-redis-level/-/upstash-redis-level-1.0.1.tgz#4863e9afd5ad6766e8a82ef7f00de22e52fbf118"
-  integrity sha512-bx31AxQd4NIs73eNo4mkcjvCDU3DsWRGCdKevt/qqsSQ9WZrix6vx7vpE08oEu51fO13uVHo6LxhNUKBx1tSvg==
+"@kldavis4/upstash-redis-level@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@kldavis4/upstash-redis-level/-/upstash-redis-level-1.0.2.tgz#c4061060eba4d09b19874e560c0c54c171ecffbf"
+  integrity sha512-hX4fbodqzem+QsiySObgoLX8OzyFgql/4OZXsPEbxjAhBBjWNl1QJagKxV5XaOCOYVhZlHjZGg8StO64pO1nYg==
   dependencies:
     "@upstash/redis" "^1.21.0"
     abstract-level "^1.0.3"

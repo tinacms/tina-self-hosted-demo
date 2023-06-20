@@ -27,6 +27,7 @@ const redisLevelStore = new RedisLevel<string,Record<string,any>>({
     url: process.env.REDIS_UPSTASH_URL as string || 'http://localhost:8079',
     token: process.env.REDIS_UPSTASH_TOKEN as string || 'example_token',
   }),
+  debug: process.env.DEBUG === 'true' || false,
 })
 if (isLocal) localLevelStore.openConnection();
 
