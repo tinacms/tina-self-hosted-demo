@@ -5,8 +5,10 @@ import { Section } from "../util/section";
 import { useTheme } from "../layout";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import type { TinaTemplate } from "tinacms";
+import { PageBlocksHero } from "../../tina/__generated__/types";
+import { tinaField } from "tinacms/dist/react";
 
-export const Hero = ({ data, parentField }) => {
+export const Hero = ({ data }: { data: PageBlocksHero }) => {
   const theme = useTheme();
   const headlineColorClasses = {
     blue: "from-blue-400 to-blue-600",
@@ -23,12 +25,12 @@ export const Hero = ({ data, parentField }) => {
     <Section color={data.color}>
       <Container
         size="large"
-        className="grid grid-cols-1 lg:grid-cols-5 gap-14 items-center justify-center"
+        className="grid grid-cols-1 md:grid-cols-5 gap-14 items-center justify-center"
       >
-        <div className="row-start-2 lg:row-start-1 lg:col-span-3 text-center lg:text-left">
+        <div className="row-start-2 md:row-start-1 md:col-span-3 text-center md:text-left">
           {data.tagline && (
             <h2
-              data-tinafield={`${parentField}.tagline`}
+              data-tina-field={tinaField(data, "tagline")}
               className="relative inline-block px-3 py-1 mb-8 text-md font-bold tracking-wide title-font z-20"
             >
               {data.tagline}
@@ -37,7 +39,7 @@ export const Hero = ({ data, parentField }) => {
           )}
           {data.headline && (
             <h3
-              data-tinafield={`${parentField}.headline`}
+              data-tina-field={tinaField(data, "headline")}
               className={`w-full relative	mb-10 text-5xl font-extrabold tracking-normal leading-tight title-font`}
             >
               <span
@@ -53,8 +55,8 @@ export const Hero = ({ data, parentField }) => {
           )}
           {data.text && (
             <div
-              data-tinafield={`${parentField}.text`}
-              className={`prose prose-lg mx-auto lg:mx-0 mb-10 ${
+              data-tina-field={tinaField(data, "text")}
+              className={`prose prose-lg mx-auto md:mx-0 mb-10 ${
                 data.color === "primary" ? `prose-primary` : `dark:prose-dark`
               }`}
             >
@@ -63,8 +65,7 @@ export const Hero = ({ data, parentField }) => {
           )}
           {data.actions && (
             <Actions
-              parentField={`${parentField}.actions`}
-              className="justify-center lg:justify-start py-2"
+              className="justify-center md:justify-start py-2"
               parentColor={data.color}
               actions={data.actions}
             />
@@ -72,16 +73,16 @@ export const Hero = ({ data, parentField }) => {
         </div>
         {data.image && (
           <div
-            data-tinafield={`${parentField}.image`}
-            className="relative row-start-1 lg:col-span-2 flex justify-center"
+            data-tina-field={tinaField(data.image, "src")}
+            className="relative row-start-1 md:col-span-2 flex justify-center"
           >
             <img
-              className="absolute w-full rounded-lg max-w-xs lg:max-w-none h-auto blur-2xl brightness-150 contrast-[0.9] dark:brightness-150 saturate-200 opacity-50 dark:opacity-30 mix-blend-multiply dark:mix-blend-hard-light"
+              className="absolute w-full rounded-lg max-w-xs md:max-w-none h-auto blur-2xl brightness-150 contrast-[0.9] dark:brightness-150 saturate-200 opacity-50 dark:opacity-30 mix-blend-multiply dark:mix-blend-hard-light"
               src={data.image.src}
               aria-hidden="true"
             />
             <img
-              className="relative z-10 w-full max-w-xs rounded-lg lg:max-w-none h-auto"
+              className="relative z-10 w-full max-w-xs rounded-lg md:max-w-none h-auto"
               alt={data.image.alt}
               src={data.image.src}
             />

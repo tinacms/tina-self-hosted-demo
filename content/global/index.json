@@ -31,7 +31,7 @@
     }
   },
   "theme": {
-    "color": "pink",
+    "color": "blue",
     "font": "sans",
     "darkMode": "system"
   }
