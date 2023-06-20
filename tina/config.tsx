@@ -191,6 +191,7 @@ const config = defineConfig({
             type: "object",
             label: "Header",
             name: "header",
+            // @ts-ignore
             fields: [
               iconSchema,
               {
