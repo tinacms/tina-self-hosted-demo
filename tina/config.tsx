@@ -5,39 +5,43 @@ import { heroBlockSchema } from "../components/blocks/hero";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { ColorPickerInput } from "./fields/color";
 import { iconSchema } from "../components/util/icon";
+import { getSession } from "next-auth/react";
 
 const config = defineConfig({
   contentApiUrlOverride: "/api/gql",
   admin: {
     auth: {
-      useLocalAuth: process.env.TINA_PUBLIC_IS_LOCAL === "true",
+      // useLocalAuth: process.env.TINA_PUBLIC_IS_LOCAL === "true",
 
-      // Uncomment this to use custom auth
-      // customAuth: true,
-      // authenticate: async () => {
-      //   // Add your authentication logic here
-      //   localStorage.setItem(LOCAL_KEY, "some-token");
-      // },
-      // getToken: async () => {
-      //   // Add your own getting token
-      //   const token = localStorage.getItem(LOCAL_KEY);
-      //   if (!token) {
-      //     return { id_token: "" };
-      //   }
-      //   return { id_token: token };
-      // },
-      // getUser: async () => {
-      //   // Add your own getting user
-      //   // if this function returns a truthy value, the user is logged in and if it rutnrs
-      //   if (localStorage.getItem(LOCAL_KEY)) {
-      //     return true;
-      //   }
-      //   return false;
-      // },
-      // logout: async () => {
-      //   // add your own logout logic
-      //   localStorage.removeItem(LOCAL_KEY);
-      // },
+      customAuth: true,
+      authenticate: async () => {
+        // Add your authentication logic here
+        // localStorage.setItem(LOCAL_KEY, "some-token");
+        window.location.href = "/api/auth/signin"
+      },
+      getToken: async () => {
+        // // Add your own getting token
+        // const token = localStorage.getItem(LOCAL_KEY);
+        // if (!token) {
+        //   return { id_token: "" };
+        // }
+        return { id_token: '' };
+      },
+      getUser: async () => {
+        const session = await getSession()
+        console.log(session)
+        // Add your own getting user
+        // if this function returns a truthy value, the user is logged in and if it rutnrs
+        if (session) {
+          return true
+        }
+        return false
+      },
+      logout: async () => {
+        // add your own logout logic
+        // localStorage.removeItem(LOCAL_KEY);
+        window.location.href = "/api/auth/signout"
+      },
     },
   },
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
