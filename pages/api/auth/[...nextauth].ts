@@ -28,7 +28,7 @@ export const authOptions = {
         console.log({user})
         // const user = await kv.hget<string>(process.env.NEXT_AUTH, credentials.username)
         if (user) {
-          return user
+          return user[0]
         }
       } catch (e) {
         console.error(e)
