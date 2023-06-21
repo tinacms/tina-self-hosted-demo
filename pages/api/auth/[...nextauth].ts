@@ -1,6 +1,6 @@
 import NextAuth from "next-auth"
-import { createClient } from '@vercel/kv'
 import CredentialsProvider from "next-auth/providers/credentials"
+import {Redis} from '@upstash/redis'
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -18,13 +18,14 @@ export const authOptions = {
     },
     async authorize(credentials, req) {
       console.log(req.query)
-      const kv = createClient({
+      const kv = new Redis({
         url: process.env.REDIS_UPSTASH_URL,
         token: process.env.REDIS_UPSTASH_TOKEN,
       })
 
       try {
         const user = await kv.json.get(process.env.NEXT_AUTH_USERS, `$.${credentials.username}`)
+        console.log({user})
         // const user = await kv.hget<string>(process.env.NEXT_AUTH, credentials.username)
         if (user) {
           return user
