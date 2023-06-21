@@ -1,8 +1,12 @@
 import { NextApiHandler } from "next";
 import { isUserAuthorized } from "@tinacms/auth";
 import { databaseRequest } from "../../lib/databaseConnection";
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "./auth/[...nextauth]"
 
 const nextApiHandler: NextApiHandler = async (req, res) => {
+    const session = await getServerSession(req, res, authOptions)
+    console.log(session)
   // Use your own authentication logic here
   // const isAuthorized = headers.authorization === "Bearer some-token"
 
