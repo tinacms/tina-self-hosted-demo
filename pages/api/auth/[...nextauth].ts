@@ -17,7 +17,6 @@ export const authOptions = {
       password: { label: "Password", type: "password" }
     },
     async authorize(credentials, req) {
-      console.log(req.query)
       const kv = new Redis({
         url: process.env.REDIS_UPSTASH_URL,
         token: process.env.REDIS_UPSTASH_TOKEN,
@@ -50,6 +49,7 @@ export const authOptions = {
     }
   })
   ],
+
 }
 
 export default NextAuth(authOptions)

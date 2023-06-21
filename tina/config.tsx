@@ -17,7 +17,7 @@ const config = defineConfig({
       authenticate: async () => {
         // Add your authentication logic here
         // localStorage.setItem(LOCAL_KEY, "some-token");
-        window.location.href = "/api/auth/signin"
+        window.location.href = "/api/auth/signin?callbackUrl=/admin/index.html"
       },
       getToken: async () => {
         // // Add your own getting token
@@ -40,7 +40,7 @@ const config = defineConfig({
       logout: async () => {
         // add your own logout logic
         // localStorage.removeItem(LOCAL_KEY);
-        window.location.href = "/api/auth/signout"
+        window.location.href = "/api/auth/signout?callbackUrl=/admin/index.html"
       },
     },
   },
