@@ -42,6 +42,7 @@ const githubOnPut = async (key, value) => {
       repo,
       path: key,
       branch,
+      ref: branch,
     });
     sha = existingSha;
   } catch (e) {}
@@ -54,6 +55,7 @@ const githubOnPut = async (key, value) => {
     message: "commit from self-hosted tina",
     content: Base64.encode(value),
     branch,
+    ref: branch,
     sha,
   });
 };
