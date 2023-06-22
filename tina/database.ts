@@ -52,7 +52,7 @@ const githubOnPut = async (key, value) => {
     path: key,
     message: "commit from self-hosted tina",
     content: Base64.encode(value),
-    ref: branch,
+    branch,
     sha,
   });
 };
@@ -82,7 +82,7 @@ const githubOnDelete = async (key) => {
       repo,
       path: key,
       message: "commit from self-hosted tina",
-      ref: branch,
+      branch,
       sha,
     });
   } else {
