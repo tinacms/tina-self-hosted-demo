@@ -1,6 +1,7 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import {Redis} from '@upstash/redis'
+import bcrypt from 'bcryptjs'
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -21,12 +22,15 @@ export const authOptions = {
         url: process.env.REDIS_UPSTASH_URL,
         token: process.env.REDIS_UPSTASH_TOKEN,
       })
-
+      // bcrypt.genSalt(10).then(salt => { return bcrypt.hash('foobar', salt) }).then(hash => console.log(hash))
       try {
         const user = await kv.json.get(process.env.NEXT_AUTH_USERS, `$.${credentials.username}`)
-        console.log({user})
         // const user = await kv.hget<string>(process.env.NEXT_AUTH, credentials.username)
         if (user) {
+          const match = await bcrypt.compare(credentials.password, user[0].password)
+          if (!match) {
+            return null
+          }
           return user[0]
         }
       } catch (e) {
