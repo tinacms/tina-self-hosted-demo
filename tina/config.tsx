@@ -11,37 +11,22 @@ const config = defineConfig({
   contentApiUrlOverride: "/api/gql",
   admin: {
     auth: {
-      // useLocalAuth: process.env.TINA_PUBLIC_IS_LOCAL === "true",
-
-      customAuth: true,
+      useLocalAuth: process.env.LOCAL_MODE === "true",
+      customAuth: process.env.LOCAL_MODE !== "true",
       authenticate: async () => {
-        // Add your authentication logic here
-        // localStorage.setItem(LOCAL_KEY, "some-token");
-        // window.location.href = "/api/auth/signin?callbackUrl=/admin/index.html"
         return signIn('Credentials', { callbackUrl: '/admin/index.html' })
       },
       getToken: async () => {
-        // // Add your own getting token
-        // const token = localStorage.getItem(LOCAL_KEY);
-        // if (!token) {
-        //   return { id_token: "" };
-        // }
         return { id_token: '' };
       },
       getUser: async () => {
         const session = await getSession()
-        console.log(session)
-        // Add your own getting user
-        // if this function returns a truthy value, the user is logged in and if it rutnrs
         if (session) {
           return true
         }
         return false
       },
       logout: async () => {
-        // add your own logout logic
-        // localStorage.removeItem(LOCAL_KEY);
-        // window.location.href = "/api/auth/signout?callbackUrl=/admin/index.html"
         return signOut({ callbackUrl: '/admin/index.html' })
       },
     },

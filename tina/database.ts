@@ -7,7 +7,7 @@ import fs from "fs";
 import {Redis} from '@upstash/redis'
 
 // Manage this flag in your CI/CD pipeline and make sure it is set to false in production
-const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
+const isLocal = process.env.LOCAL_MODE === "true";
 
 if (isLocal) console.log("Running TinaCMS in local mode.");
 else console.log("Running TinaCMS in production mode.");
@@ -24,8 +24,8 @@ const octokit = new Octokit({
 const localLevelStore = new TinaLevelClient();
 const redisLevelStore = new RedisLevel<string,Record<string,any>>({
   redis: new Redis({
-    url: process.env.REDIS_UPSTASH_URL as string || 'http://localhost:8079',
-    token: process.env.REDIS_UPSTASH_TOKEN as string || 'example_token',
+    url: process.env.KV_REST_API_URL as string || 'http://localhost:8079',
+    token: process.env.KV_REST_API_TOKEN as string || 'example_token',
   }),
   debug: process.env.DEBUG === 'true' || false,
 })
