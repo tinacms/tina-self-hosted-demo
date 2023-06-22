@@ -5,7 +5,7 @@ import { heroBlockSchema } from "../components/blocks/hero";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { ColorPickerInput } from "./fields/color";
 import { iconSchema } from "../components/util/icon";
-import { getSession } from "next-auth/react";
+import { getSession, signIn, signOut } from "next-auth/react";
 
 const config = defineConfig({
   contentApiUrlOverride: "/api/gql",
@@ -17,7 +17,8 @@ const config = defineConfig({
       authenticate: async () => {
         // Add your authentication logic here
         // localStorage.setItem(LOCAL_KEY, "some-token");
-        window.location.href = "/api/auth/signin?callbackUrl=/admin/index.html"
+        // window.location.href = "/api/auth/signin?callbackUrl=/admin/index.html"
+        return signIn('Credentials', { callbackUrl: '/admin/index.html' })
       },
       getToken: async () => {
         // // Add your own getting token
@@ -40,7 +41,8 @@ const config = defineConfig({
       logout: async () => {
         // add your own logout logic
         // localStorage.removeItem(LOCAL_KEY);
-        window.location.href = "/api/auth/signout?callbackUrl=/admin/index.html"
+        // window.location.href = "/api/auth/signout?callbackUrl=/admin/index.html"
+        return signOut({ callbackUrl: '/admin/index.html' })
       },
     },
   },
