@@ -45,8 +45,9 @@ const githubOnPut = async (key, value) => {
     });
     sha = existingSha;
   } catch (e) {}
+  console.log({branch, key, sha})
 
-  const { data } = await octokit.repos.createOrUpdateFileContents({
+  await octokit.repos.createOrUpdateFileContents({
     owner,
     repo,
     path: key,
