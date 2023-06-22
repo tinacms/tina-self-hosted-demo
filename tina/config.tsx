@@ -21,10 +21,8 @@ const config = defineConfig({
       },
       getUser: async () => {
         const session = await getSession()
-        if (session) {
-          return true
-        }
-        return false
+        return !!session;
+
       },
       logout: async () => {
         return signOut({ callbackUrl: '/admin/index.html' })

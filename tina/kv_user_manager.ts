@@ -1,20 +1,19 @@
-import 'isomorphic-fetch'
-import bcrypt from 'bcryptjs'
-import chalk from 'chalk'
-import dotenv from 'dotenv'
-import fs from 'fs'
-import inquirer from 'inquirer'
+import "isomorphic-fetch";
+import bcrypt from "bcryptjs";
+import chalk from "chalk";
+import dotenv from "dotenv";
+import fs from "fs";
+import inquirer from "inquirer";
 import { Redis } from "@upstash/redis";
 
 
 async function hashPassword(password) {
   const salt = await bcrypt.genSalt(10);
-  const hash = await bcrypt.hash(password, salt);
-  return hash;
+  return await bcrypt.hash(password, salt);
 }
 
 (async () => {
-  await fs.promises.stat('.env').catch(err => {
+  await fs.promises.stat('.env').catch(_ => {
     fs.copyFileSync('.env.example', '.env')
   })
   dotenv.config()
