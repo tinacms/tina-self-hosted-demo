@@ -41,12 +41,10 @@ const githubOnPut = async (key, value) => {
       owner,
       repo,
       path: key,
-      branch,
       ref: branch,
     });
     sha = existingSha;
   } catch (e) {}
-  console.log({branch, key, sha})
 
   await octokit.repos.createOrUpdateFileContents({
     owner,
@@ -54,7 +52,6 @@ const githubOnPut = async (key, value) => {
     path: key,
     message: "commit from self-hosted tina",
     content: Base64.encode(value),
-    branch,
     ref: branch,
     sha,
   });
@@ -74,22 +71,22 @@ const githubOnDelete = async (key) => {
       owner,
       repo,
       path: key,
-      branch,
+      ref: branch,
     });
     sha = existingSha;
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
+
   if (sha) {
-    const { data } = await octokit.repos.deleteFile({
+    await octokit.repos.deleteFile({
       owner,
       repo,
       path: key,
       message: "commit from self-hosted tina",
-      branch,
+      ref: branch,
       sha,
     });
-    console.log("data", data);
+  } else {
+    throw new Error(`Could not find file ${key} in repo ${owner}/${repo}`);
   }
 };
 const localOnDelete = async (key) => {
