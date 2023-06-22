@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "tinacms dev -c \"next dev\"",
+    "dev": "LOCAL_MODE=true tinacms dev -c \"next dev\"",
     "build": "tinacms build && next build",
     "start": "tinacms build && next start",
     "export": "npm run build && next export",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint . --ext .ts,.tsx",
+    "setup:users": "tsx tina/kv_user_manager.ts"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.3.1",
@@ -19,10 +20,15 @@
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "autoprefixer": "^10.4.0",
+    "chalk": "^5.2.0",
+    "dotenv": "^16.3.1",
     "eslint": "^8.13.0",
+    "inquirer": "^9.2.7",
+    "isomorphic-fetch": "^3.0.0",
     "postcss": "^8.3.11",
     "postcss-import": "^14.0.2",
-    "postcss-nesting": "^10.1.0"
+    "postcss-nesting": "^10.1.0",
+    "tsx": "^3.12.7"
   },
   "dependencies": {
     "@headlessui/react": "1.7.5",
