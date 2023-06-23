@@ -18,7 +18,7 @@ async function hashPassword(password) {
   })
   dotenv.config()
 
-  console.log(chalk.green('Welcome to Tina Cloud!'))
+  console.log(chalk.green('Welcome to TinaCMS!'))
 
   if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
     // Prompt user for KV store url and token
