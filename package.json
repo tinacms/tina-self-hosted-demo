@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^6.3.1",
-    "@tinacms/cli": "0.0.0-20230628131052",
+    "@tinacms/cli": "0.0.0-20230628180924",
     "@types/js-cookie": "^3.0.0",
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.35",
@@ -35,7 +35,7 @@
     "@octokit/rest": "^19.0.7",
     "@tailwindcss/typography": "^0.5.8",
     "@tinacms/auth": "^1.0.3",
-    "@tinacms/datalayer": "0.0.0-20230628131052",
+    "@tinacms/datalayer": "0.0.0-20230628180924",
     "bcryptjs": "^2.4.3",
     "date-fns": "^2.23.0",
     "js-base64": "^3.7.4",
@@ -48,7 +48,7 @@
     "styled-components": "^5.1.3",
     "styled-jsx": "^3.2.5",
     "tailwindcss": "^3.2.4",
-    "tinacms": "0.0.0-20230628131052",
+    "tinacms": "0.0.0-20230628180924",
     "typescript": "^4.5.2",
     "upstash-redis-level": "1.0.0"
   },
