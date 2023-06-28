@@ -7,7 +7,7 @@ export default function SignIn({ csrfToken }: InferGetServerSidePropsType<typeof
         className="grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium"
       >
         <div className="flex flex-col items-center justify-center gap-4">
-          <img src="tina.svg" alt="TinaCMS Logo" height={100} width={72}/>
+          <img src="../tina.svg" alt="TinaCMS Logo" height={100} width={72}/>
         </div>
 
         <div className="w-full max-w-sm rounded-lg bg-slate-700/30 shadow">
