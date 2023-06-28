@@ -32,29 +32,33 @@ const redisLevelStore = new RedisLevel<string,Record<string,any>>({
 if (isLocal) localLevelStore.openConnection()
 
 const githubOnPut = async (key, value) => {
-  let sha
   try {
-    const {
-      // @ts-ignore
-      data: { sha: existingSha },
-    } = await octokit.repos.getContent({
+    let sha
+    try {
+      const {
+        // @ts-ignore
+        data: { sha: existingSha },
+      } = await octokit.repos.getContent({
+        owner,
+        repo,
+        path: key,
+        ref: branch,
+      })
+      sha = existingSha
+    } catch (e) {}
+
+    await octokit.repos.createOrUpdateFileContents({
       owner,
       repo,
       path: key,
-      ref: branch,
+      message: 'commit from self-hosted tina',
+      content: Base64.encode(value),
+      branch,
+      sha,
     })
-    sha = existingSha
-  } catch (e) {}
-
-  await octokit.repos.createOrUpdateFileContents({
-    owner,
-    repo,
-    path: key,
-    message: 'commit from self-hosted tina',
-    content: Base64.encode(value),
-    branch,
-    sha,
-  })
+  } catch (e) {
+    console.log(process.env)
+  }
 }
 const localOnPut = async (key, value) => {
   const currentPath = path.join(process.cwd(), key)
