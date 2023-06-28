@@ -1,5 +1,5 @@
 import { createDatabase, TinaLevelClient } from "@tinacms/datalayer";
-import { RedisLevel } from "@kldavis4/upstash-redis-level";
+import { RedisLevel } from "upstash-redis-level";
 import { Octokit } from "@octokit/rest";
 import { Base64 } from "js-base64";
 import path from "path";
@@ -7,7 +7,7 @@ import fs from "fs";
 import {Redis} from '@upstash/redis'
 
 // Manage this flag in your CI/CD pipeline and make sure it is set to false in production
-const isLocal = process.env.LOCAL_MODE === "true";
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 
 if (isLocal) console.log("Running TinaCMS in local mode.");
 else console.log("Running TinaCMS in production mode.");
