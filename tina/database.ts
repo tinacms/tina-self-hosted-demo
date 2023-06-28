@@ -15,7 +15,7 @@ else console.log('Running TinaCMS in production mode.')
 const token = process.env.GITHUB_PERSONAL_ACCESS_TOKEN as string
 const owner = (process.env.GITHUB_OWNER || process.env.VERCEL_GIT_REPO_OWNER) as string
 const repo = (process.env.GITHUB_REPO || process.env.VERCEL_GIT_REPO_SLUG) as string
-const branch = (process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF) as string
+const branch = (process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || 'main') as string
 
 const octokit = new Octokit({
   auth: token,
@@ -32,33 +32,29 @@ const redisLevelStore = new RedisLevel<string,Record<string,any>>({
 if (isLocal) localLevelStore.openConnection()
 
 const githubOnPut = async (key, value) => {
+  let sha
   try {
-    let sha
-    try {
-      const {
-        // @ts-ignore
-        data: { sha: existingSha },
-      } = await octokit.repos.getContent({
-        owner,
-        repo,
-        path: key,
-        ref: branch,
-      })
-      sha = existingSha
-    } catch (e) {}
-
-    await octokit.repos.createOrUpdateFileContents({
+    const {
+      // @ts-ignore
+      data: { sha: existingSha },
+    } = await octokit.repos.getContent({
       owner,
       repo,
       path: key,
-      message: 'commit from self-hosted tina',
-      content: Base64.encode(value),
-      branch,
-      sha,
+      ref: branch,
     })
-  } catch (e) {
-    console.log(process.env)
-  }
+    sha = existingSha
+  } catch (e) {}
+
+  await octokit.repos.createOrUpdateFileContents({
+    owner,
+    repo,
+    path: key,
+    message: 'commit from self-hosted tina',
+    content: Base64.encode(value),
+    branch,
+    sha,
+  })
 }
 const localOnPut = async (key, value) => {
   const currentPath = path.join(process.cwd(), key)
