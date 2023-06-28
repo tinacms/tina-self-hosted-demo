@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs'
 
 export const authOptions = {
   pages: {
+    error: '/auth/signin', // Error code passed in query string as ?error=
     signIn: '/auth/signin',
   },
   secret: process.env.NEXTAUTH_SECRET,
