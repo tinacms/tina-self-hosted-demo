@@ -1,21 +1,18 @@
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getCsrfToken } from "next-auth/react"
-import tinaLogo from '../../public/tina.svg'
-import Image from "next/image";
 
 export default function SignIn({ csrfToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <form method="post" action="/api/auth/callback/credentials">
-      <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
       <div
         className="grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium"
       >
         <div className="flex flex-col items-center justify-center gap-4">
-          <Image src={tinaLogo} alt="TinaCMS Logo" height={40}/>
+          <img src="tina.svg" alt="TinaCMS Logo" height={100} width={72}/>
         </div>
 
         <div className="w-full max-w-sm rounded-lg bg-slate-700/30 shadow">
-          <form className="p-4 md:p-5 lg:p-6">
+          <form className="p-4 md:p-5 lg:p-6" method="post" action="/api/auth/callback/credentials">
+            <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
             <div className="grid gap-y-3">
               <input
                 name="username"
@@ -52,7 +49,6 @@ export default function SignIn({ csrfToken }: InferGetServerSidePropsType<typeof
           </form>
         </div>
       </div>
-    </form>
   )
 }
 
