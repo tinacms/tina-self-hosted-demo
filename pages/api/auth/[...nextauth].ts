@@ -4,6 +4,9 @@ import {Redis} from '@upstash/redis'
 import bcrypt from 'bcryptjs'
 
 export const authOptions = {
+  pages: {
+    signIn: '/auth/signin',
+  },
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
