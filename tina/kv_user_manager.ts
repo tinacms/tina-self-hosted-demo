@@ -36,8 +36,8 @@ async function hashPassword(password) {
       {
         type: 'input',
         name: 'credentials_key',
-        message: `Enter your Credentials key (default: 'users'):`,
-        default: 'users',
+        message: `Enter your Credentials key (default: 'tinacms_users'):`,
+        default: 'tinacms_users',
       }
     ])
 
