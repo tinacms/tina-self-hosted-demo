@@ -1,6 +1,6 @@
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getCsrfToken } from "next-auth/react"
-import tinaLogo from '../../public/tina-logo.svg'
+import tinaLogo from '../../public/tina.svg'
 import Image from "next/image";
 
 export default function SignIn({ csrfToken }: InferGetServerSidePropsType<typeof getServerSideProps>) {
