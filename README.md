@@ -1,7 +1,6 @@
 # Tina Self Hosted Demo 🦙
 
-
-Please checkout [this Github discussion](#) for more information about this demo.
+Please check out [this Github discussion](#) for more information about this demo.
 
 ## Requirements
 
@@ -9,7 +8,7 @@ Please checkout [this Github discussion](#) for more information about this demo
 
 ## Local Development
 
-Setup the .env file:
+Set up the .env file:
 
 ```
 cp .env.example .env
