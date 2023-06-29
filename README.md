@@ -92,6 +92,8 @@ NextAuth providers can be used, as well other auth solutions.
 3. Click Deploy and wait for the project to build.
 4. Visit the project URL and navigate to `/admin/index.html` to log in. Use the username and password you created in the previous step.
 
+![Animation showing deployment to Vercel](public/deploy-vercel.gif?raw=true "Deploying to Vercel")
+
 # Using Tina Cloud for Authorization
 
 Tina Cloud can be used to manage users and authorization for your TinaCMS application. To use Tina Cloud for auth, you will need to create a new project in the Tina Cloud [dashboard](https://app.tina.io/projects). You will be required to specify a repository, but since the data layer is managed by Vercel KV, you can use any repository. 
