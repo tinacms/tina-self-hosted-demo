@@ -41,12 +41,10 @@ export default function SignIn({ csrfToken, error }: InferGetServerSidePropsType
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  console.log(context)
-  console.log(context.params)
   return {
     props: {
       csrfToken: await getCsrfToken(context),
-      error: context.params?.error || ''
+      error: context.query?.error || ''
     },
   }
 }
