@@ -4,9 +4,9 @@ Please check out [this](https://github.com/tinacms/tinacms/discussions/3589) Git
 
 # Vercel Quick Start
 
-Use the following link to directly deploy this demo to Vercel. You will need a Vercel account and a Vercel KV Database and a GitHub personal access token (PAT) with access to the repository.
+Use the following link to directly deploy this demo to Vercel. You will need a Vercel account, a Vercel KV Database and a GitHub personal access token (PAT) with access to the repository (once it has been created).
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET,KV_REST_API_URL,KV_REST_API_TOKEN,NEXTAUTH_CREDENTIALS_KEY&envDescription=See%20the%20self-hosted%20demo%20README%20for%20more%20information&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md&project-name=tina-self-hosted-demo&repository-name=tina-self-hosted-demo)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo&env=GITHUB_PERSONAL_ACCESS_TOKEN,GITHUB_BRANCH,NEXTAUTH_SECRET,KV_REST_API_URL,KV_REST_API_TOKEN,NEXTAUTH_CREDENTIALS_KEY&envDescription=See%20the%20self-hosted%20demo%20README%20for%20more%20information&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md&project-name=tina-self-hosted-demo&repository-name=tina-self-hosted-demo)
 
 # Local Development
 
@@ -45,15 +45,16 @@ yarn dev
 
 # Environment Variables
 
-| Variable | Description                                                                                                                                |
-| -------- |--------------------------------------------------------------------------------------------------------------------------------------------|
-| `GITHUB_OWNER` | The owner of the repository you want to use for your content.                                                                              |
-| `GITHUB_REPO` | The name of the repository you want to use for your content.                                                                               |
-| `GITHUB_BRANCH` | The branch of the repository you want to use for your content.                                                                             |
+| Variable | Description                                                                                                                                                      |
+| -------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `GITHUB_OWNER` | The owner of the repository you want to use for your content. Required in local development. Defaults to VERCEL_GIT_REPO_OWNER in Vercel.                  |
+| `GITHUB_REPO` | The name of the repository you want to use for your content. Required in local development. Defaults to VERCEL_GIT_REPO_SLUG in Vercel.                     |
+| `GITHUB_BRANCH` | The branch of the repository you want to use for your content. Defaults to `main` if not specified.                                                       |
 | `GITHUB_PERSONAL_ACCESS_TOKEN` | A [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with `repo` access. |
-| `NEXTAUTH_SECRET` | A secret used by NextAuth.js to encrypt the NextAuth.js JWT.                                                                               |
-| `KV_REST_API_URL` | The URL of the Vercel KV database.                                                                                                         |
-| `KV_REST_API_TOKEN` | The token for authenticating to the Vercel KV database.                                                                                    |
+| `NEXTAUTH_SECRET` | A secret used by NextAuth.js to encrypt the NextAuth.js JWT.                                                                                            |
+| `KV_REST_API_URL` | The URL of the Vercel KV database.                                                                                                                      |
+| `KV_REST_API_TOKEN` | The token for authenticating to the Vercel KV database.                                                                                               |
+| `NEXT_PUBLIC_TINA_CLIENT_ID` | The client id for your Tina Cloud application. Only required for Tina Cloud authorization. |
 
 # Deploying to Vercel
 
@@ -80,11 +81,91 @@ NextAuth providers can be used as well other auth solutions.
 3. Click Deploy and wait for the project to build.
 4. Visit the project URL and navigate to `/admin/index.html` to log in. Use the username and password you created in the previous step.
 
+# Using Tina Cloud for Authorization
+
+Tina Cloud can be used to manage users and authorization for your TinaCMS application. To use Tina Cloud for auth, you will need to create a new project in the Tina Cloud [dashboard](https://app.tina.io/projects). You will be required to specify a repository, but since the data layer is managed by Vercel KV, you can use any repository. 
+
+## Configuration
+
+Once you have created an application, you will need to add the following environment variable to your project:
+
 ```env
-
-`MONGODB_URI` is the connection string to your MongoDB database. You can use [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) to get a free database.
-`TINA_PUBLIC_IS_LOCAL` is a flag that tells Tina to use the local filesystem as the backend.
-`NEXT_PUBLIC_TINA_CLIENT_ID` (_optional_ for using Tina Cloud for auth) is the client id for your Tina Cloud application. You can create a Tina Cloud application [here](https://app.tina.io/projects/choose).
-
-# _optionally_ Use Tina Cloud for user authentication
 NEXT_PUBLIC_TINA_CLIENT_ID=***
+```
+The value for `NEXT_PUBLIC_TINA_CLIENT_ID` can be found in the Tina Cloud dashboard on the "Overview" page for your project.
+
+In your tina configuration, first remove or comment out the following properties:
+
+- `admin.auth.customAuth`
+- `admin.auth.authenticate`
+- `admin.auth.getToken`
+- `admin.auth.getUser`
+- `admin.auth.logout`
+
+Then add the following property:
+ 
+    ```js
+    {
+    ...
+    clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+    }
+    ```
+## Updating the GraphQL endpoint
+
+The GraphQL endpoint is configured to use NextAuth by default. To use Tina Cloud, you will need to update the endpoint in `pages/api/gql.ts` to use Tina Cloud's auth. 
+
+The updated file should look like this:
+
+```js
+import { NextApiHandler } from "next";
+import { isUserAuthorized } from "@tinacms/auth";
+import { databaseRequest } from "../../lib/databaseConnection";
+
+const nextApiHandler: NextApiHandler = async (req, res) => {
+  // Example if using TinaCloud for auth
+  const tinaCloudUser = await isUserAuthorized({
+    clientID: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+    token: req.headers.authorization,
+  });
+
+  const isAuthorized =
+    process.env.TINA_PUBLIC_IS_LOCAL === "true" ||
+    tinaCloudUser?.verified ||
+    false;
+
+  if (isAuthorized) {
+    const { query, variables } = req.body;
+    const result = await databaseRequest({ query, variables });
+    return res.json(result);
+  } else {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+};
+
+export default nextApiHandler;
+```
+
+# Using MongoDB for the datalayer
+
+It's possible to use MongoDB as the data layer for your TinaCMS application instead of Vercel KV. To do this, you will need to add the following environment variables to your project:
+
+```env
+`MONGODB_URI` is the connection string to your MongoDB database. You can use [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) to get a free database.
+```
+Next you will need to update the `tina/database.ts` to use the MongoDB level implementation instead of the Redis level implementation.
+
+```ts
+import { MongodbLevel } from "mongodb-level"
+...
+const mongodbLevelStore = new MongodbLevel<string, Record<string, any>>({
+  collectionName: "tinacms",
+  dbName: "tinacms",
+  mongoUri: process.env.MONGODB_URI as string,
+})
+...
+export default createDatabase({
+  level: isLocal ? localLevelStore : mongodbLevelStore,
+  onPut: isLocal ? localOnPut : githubOnPut,
+  onDelete: isLocal ? localOnDelete : githubOnDelete,
+})
+```
