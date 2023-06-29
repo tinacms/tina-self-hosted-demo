@@ -59,7 +59,7 @@ yarn dev
 # Deploying to Vercel
 
 This demo is configured to use NextAuth for authentication. A Credentials provider using [Vercel KV](https://vercel.com/docs/storage/vercel-kv) is provided by default, but other
-NextAuth providers can be used as well other auth solutions.
+NextAuth providers can be used, as well other auth solutions.
 
 ### Setting up Vercel KV
 
@@ -67,6 +67,8 @@ NextAuth providers can be used as well other auth solutions.
 2. Click Create and select the KV (Durable Redis) option.
 3. Give the KV database a name, select the nearest region and click Create.
 4. In Quickstart, click `.env.local` and Copy Snippet to get the connection details (save these for later).
+
+![Animation showing how to setup Vercel KV](public/setup-kv-store.gif?raw=true "Setting up Vercel KV")
 
 ### Creating a new authorized user
 
