@@ -44,7 +44,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   return {
     props: {
       csrfToken: await getCsrfToken(context),
-      error: context.params.error || ''
+      error: context.params?.error || ''
     },
   }
 }
