@@ -78,6 +78,13 @@ NextAuth providers can be used, as well other auth solutions.
 
 ![Animation showing how to create a new user](public/create-user.gif?raw=true "Creating a new user")
 
+### Create a GitHub personal access token
+
+1. Create a [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with `repo` access. (Note the expiration date of the token.)
+2. Add the token to the `.env` file (`GITHUB_PERSONAL_ACCESS_TOKEN`)
+
+![Animation showing how to create a personal access token](public/create-token.gif?raw=true "Creating a personal access token")
+
 ### Deploying the project in Vercel
 
 1. Create a new project in Vercel and select this Git repository.
