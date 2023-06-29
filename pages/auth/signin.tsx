@@ -11,7 +11,7 @@ export default function SignIn({ csrfToken, error }: InferGetServerSidePropsType
             <img src="../tina.svg" alt="TinaCMS Logo" height={100} width={72}/>
             {error && (
               <div className="bg-red-500 text-white rounded-md p-3">
-                {error}
+                Sign In Failed [{error}]
               </div>
             )}
           </div>
