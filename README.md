@@ -76,6 +76,8 @@ NextAuth providers can be used, as well other auth solutions.
 2. Once the connection information is complete, the script will query for existing users and print "No users found!" if this is the first time running the script. Next you will be prompted to enter the username, email and password for the user.
 3. If successful, the script will print out a message confirming user creation.
 
+![Animation showing how to create a new user](public/create-user.gif?raw=true "Creating a new user")
+
 ### Deploying the project in Vercel
 
 1. Create a new project in Vercel and select this Git repository.
