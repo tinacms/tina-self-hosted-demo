@@ -27,6 +27,9 @@ jobs:
           SRH_CONNECTION_STRING: redis://redis:6379
 
     steps:
+      - name: install git
+        run: apt-get update && apt-get install -y git
+
       - uses: actions/checkout@v3
         name: Checkout
 
@@ -35,7 +38,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - run: git --version && npm install -g yarn && yarn install
+      - run: npm install -g yarn && yarn install
         name: install
 
       - run: yarn build
