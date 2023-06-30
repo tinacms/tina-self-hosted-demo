@@ -37,12 +37,10 @@ jobs:
 
       - run: yarn install
         name: install
-        env:
-          UPSTASH_REDIS_REST_URL: http://srh:80
-          UPSTASH_REDIS_REST_TOKEN: ${{ env.SRH_TOKEN }}
 
       - run: yarn build
         name: build
         env:
-          UPSTASH_REDIS_REST_URL: http://srh:80
-          UPSTASH_REDIS_REST_TOKEN: ${{ env.SRH_TOKEN }}
+          GITHUB_BRANCH: ${{ github.head_ref }}
+          KV_REST_API_URL: http://srh:80
+          KV_REST_API_TOKEN: ${{ env.SRH_TOKEN }}
