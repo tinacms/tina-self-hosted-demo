@@ -28,6 +28,7 @@ const redisLevelStore = new RedisLevel<string,Record<string,any>>({
     token: process.env.KV_REST_API_TOKEN as string || 'example_token',
   }),
   debug: process.env.DEBUG === 'true' || false,
+  namespace: process.env.GITHUB_BRANCH || 'main'
 })
 if (isLocal) localLevelStore.openConnection()
 
