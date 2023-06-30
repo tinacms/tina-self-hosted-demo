@@ -29,7 +29,7 @@
     "@octokit/rest": "^19.0.7",
     "@tailwindcss/typography": "^0.5.8",
     "@tinacms/auth": "^1.0.3",
-    "@tinacms/datalayer": "^1.1.0",
+    "@tinacms/datalayer": "^1.2.19",
     "date-fns": "^2.23.0",
     "js-base64": "^3.7.4",
     "mongodb-level": "^0.0.2",
