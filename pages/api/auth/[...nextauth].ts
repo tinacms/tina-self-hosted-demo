@@ -24,7 +24,7 @@ export const authOptions = {
 
       try {
         const keys = await kv.json.objkeys(process.env.NEXTAUTH_CREDENTIALS_KEY, `$.${credentials.username}`)
-        if (keys.length > 0) {
+        if (keys && keys.length > 0) {
           const user = await kv.json.get(process.env.NEXTAUTH_CREDENTIALS_KEY, `$.${credentials.username}`)
           if (user) {
             const match = await bcrypt.compare(credentials.password, user[0].password)
