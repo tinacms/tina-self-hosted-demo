@@ -96,7 +96,7 @@ NextAuth providers can be used, as well other auth solutions.
 ### Creating a new authorized user
 
 1. Run `yarn setup:users` to start creating a new user. The user will be stored in the KV database. The first time this command is run, it will prompt for the KV connection details from the previous step (`KV_REST_API_URL` and `KV_REST_API_TOKEN`). It will also prompt for the Credentials key in Redis where user information is stored. The default value is `tinacms_users`.
-2. Once the connection information is complete, the script will query for existing users and print "No users found!" if this is the first time running the script. Next you will be prompted to enter the username, email and password for the user.
+2. Once the connection information is complete, the script will query for existing users and print "No users found!" if this is the first time running the script. Next you will be prompted to enter the username and password for the user.
 3. If successful, the script will print out a message confirming user creation.
 
 ![Animation showing how to create a new user](public/create-user.gif?raw=true "Creating a new user")
