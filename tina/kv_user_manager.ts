@@ -68,7 +68,6 @@ async function hashPassword(password) {
     console.table(Object.keys(users).map(username => {
       return {
         name: username,
-        email: users[username].email,
       }
     }))
   }
@@ -94,14 +93,8 @@ async function hashPassword(password) {
     {
       type: 'input',
       name: 'name',
-      message: `Enter a user name:`,
+      message: `Enter a username:`,
       when: (answers) => answers.addUser || answers.updatePassword || answers.deleteUser,
-    },
-    {
-      type: 'input',
-      name: 'email',
-      message: `Enter a user email:`,
-      when: (answers) => answers.addUser,
     },
     {
       type: 'password',
@@ -118,14 +111,13 @@ async function hashPassword(password) {
     ])
 
   if (answers.addUser) {
-    const { name, email, password, passwordConfirm } = answers
+    const { name, password, passwordConfirm } = answers
     if (password !== passwordConfirm) {
       console.log(chalk.red('Passwords do not match!'))
       process.exit(1)
     }
     const user = {
-      name,
-      email,
+      username: name,
       password: await hashPassword(password),
     }
     if (!users) {

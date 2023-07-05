@@ -21,7 +21,7 @@ export default function SignIn({ csrfToken, error }: InferGetServerSidePropsType
               <input
                 name="username"
                 className="focus:border-purple-400 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-200 outline-none transition placeholder:text-slate-400"
-                placeholder="email@example.com"
+                placeholder="jsmith"
               />
               <input
                 name="password"
