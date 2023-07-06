@@ -13,7 +13,7 @@ async function createUser(username, password, res) {
   })
   const users = await kv.json.get(process.env.NEXTAUTH_CREDENTIALS_KEY)
   if (!users || Object.keys(users).length === 0) {
-    const output = await kv.json.set(process.env.NEXTAUTH_CREDENTIALS_KEY, '$', { username: { username, password: await hashPassword(password) } })
+    const output = await kv.json.set(process.env.NEXTAUTH_CREDENTIALS_KEY, '$', { [username]: { username, password: await hashPassword(password) } })
     if (output === 'OK') {
       res.status(200).json({ message: 'User added' })
     } else {
