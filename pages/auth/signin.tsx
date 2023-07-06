@@ -10,7 +10,7 @@ export default function SignIn({ csrfToken, error, userSetupRequired }: InferGet
     }
   }, [userSetupRequired])
 
-  if (!userSetupRequired) {
+  if (userSetupRequired) {
     return (
       <div
         className="grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium">
