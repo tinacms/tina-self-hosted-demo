@@ -5,26 +5,61 @@ export default function Register() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [error, setError] = useState<string | null>(null)
+  const [message, setMessage] = useState<string | null>(null)
+  const [status, setStatus] = useState<'initial' | 'loading' | 'success' | 'error'>('initial')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setMessage('')
     if (password !== confirmPassword) {
-      alert('Passwords do not match')
+      setMessage('Password mismatch')
+      setStatus('error')
       return
     }
+    setMessage('Creating user...')
+    setStatus('loading')
     const res = await fetch('/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password })
     })
     if (res.ok) {
+      setStatus('success')
+      setMessage('User created')
       await signIn()
     } else {
       const { message } = await res.json()
-      setError(message)
+      setMessage(message)
+      setStatus('error')
     }
   }
+
+  if (status === 'error') {
+    return (
+      <div
+        className="grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium"
+      >
+        {message}
+      </div>
+    )
+  } else if (status === 'success') {
+     return (
+        <div
+          className="grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium"
+        >
+          {message}
+        </div>
+      )
+  } else if (status === 'loading') {
+    return (
+      <div
+        className="grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium"
+      >
+        {message}
+      </div>
+    )
+  }
+
 
   return (
     <div
@@ -33,9 +68,9 @@ export default function Register() {
       <div className="w-full max-w-sm rounded-lg bg-slate-700/30 shadow">
         <div className="flex flex-col items-center justify-center gap-4">
           <img src="../tina.svg" alt="TinaCMS Logo" height={100} width={72}/>
-          {error && (
+          {message && (
             <div className="bg-red-500 text-white rounded-md p-3">
-              Create User Failed [{error}]
+              Create User Failed [{message}]
             </div>
           )}
         </div>

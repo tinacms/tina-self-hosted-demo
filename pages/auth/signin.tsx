@@ -5,7 +5,7 @@ import { useEffect } from "react"
 
 export default function SignIn({ csrfToken, error, userSetupRequired }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   useEffect(() => {
-    if (userSetupRequired) {
+    if (userSetupRequired === true) {
       (window as any).location.replace('/auth/register')
     }
   }, [userSetupRequired])
@@ -17,9 +17,7 @@ export default function SignIn({ csrfToken, error, userSetupRequired }: InferGet
         <div className="w-full max-w-sm rounded-lg bg-slate-700/30 shadow">
           <div className="flex flex-col items-center justify-center gap-4">
             <img src="../tina.svg" alt="TinaCMS Logo" height={100} width={72}/>
-            <div className="bg-red-500 text-white rounded-md p-3">
-              User Setup Required
-            </div>
+            User Setup Required. Redirecting...
           </div>
         </div>
       </div>
@@ -71,6 +69,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       token: process.env.KV_REST_API_TOKEN,
     })
     const users = await kv.json.get(process.env.NEXTAUTH_CREDENTIALS_KEY)
+    console.log(users)
     if (!users || Object.keys(users).length === 0) {
       userSetupRequired = true
     }
