@@ -10,6 +10,21 @@ export default function SignIn({ csrfToken, error, userSetupRequired }: InferGet
     }
   }, [userSetupRequired])
 
+  if (!userSetupRequired) {
+    return (
+      <div
+        className="grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium">
+        <div className="w-full max-w-sm rounded-lg bg-slate-700/30 shadow">
+          <div className="flex flex-col items-center justify-center gap-4">
+            <img src="../tina.svg" alt="TinaCMS Logo" height={100} width={72}/>
+            <div className="bg-red-500 text-white rounded-md p-3">
+              User Setup Required
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
   return (
       <div
         className="grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium"
