@@ -10,16 +10,16 @@ Use the following link to directly deploy this demo to Vercel. You will need a V
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo&env=GITHUB_PERSONAL_ACCESS_TOKEN,GITHUB_BRANCH,NEXTAUTH_SECRET,NEXTAUTH_CREDENTIALS_KEY&envDescription=See%20the%20self-hosted%20demo%20README%20for%20more%20information&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md&project-name=tina-self-hosted-demo&repository-name=tina-self-hosted-demo&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D&)
 
+[TODO insert youtube video here]
+
 ### Environment Variable Setup
 After the repository is created, you will need to do the following steps to get the environment variables setup:
 
 1. Create a new personal access token (PAT) with content access to the new repository and copy the token as the value for the `GITHUB_PERSONAL_ACCESS_TOKEN` environment variable.
-2. Create a new KV database and copy the URL and token as the values for the `KV_REST_API_URL` and `KV_REST_API_TOKEN` environment variables.
+2. Create a new KV database (if one was not created during the initial deployment) and copy the URL and token as the values for the `KV_REST_API_URL` and `KV_REST_API_TOKEN` environment variables.
 3. Fill out the `GITHUB_BRANCH` environment variable with the branch you want to enable TinaCMS for (i.e. `main`).'
 3. Fill out the `NEXTAUTH_SECRET` environment variable with a random string.
 4. Fill out the `NEXTAUTH_CREDENTIALS_KEY` environment variable with the key you want to use for storing user credentials in the KV database (i.e. `tinacms_users`). 
-
-![Animation showing how to deploy repo in Vercel](public/deploy-vercel-button.gif?raw=true "Deploying repository to Vercel")
 
 ### Clone repository and set up a user
 
@@ -28,8 +28,6 @@ After the project is deployed, you will need to set up a user in order to log in
 1. Clone the repository to your local machine.
 2. Run `yarn install` in the checked out repository
 3. Run `yarn setup:users` to create a user in the KV database. When prompted, provide the values for `KV_REST_API_URL`, `KV_REST_API_TOKEN`, and `NEXTAUTH_CREDENTIALS_KEY` that you used when deploying the project to Vercel.
-
-![Animation showing how to setup user](public/deploy-vercel-button-setup-user.gif?raw=true "Set up user for CMS")
 
 # Local Development
 
