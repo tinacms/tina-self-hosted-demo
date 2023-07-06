@@ -1,10 +1,11 @@
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getCsrfToken } from "next-auth/react"
 import { Redis } from "@upstash/redis";
+import { redirect } from 'next/navigation'
 
 export default function SignIn({ csrfToken, error, userSetupRequired }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   if (userSetupRequired) {
-    window.location.href = '/auth/register'
+    redirect('/auth/register')
   }
   return (
       <div
@@ -46,13 +47,15 @@ export default function SignIn({ csrfToken, error, userSetupRequired }: InferGet
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   let userSetupRequired = false
-  const kv = new Redis({
-    url: process.env.KV_REST_API_URL,
-    token: process.env.KV_REST_API_TOKEN,
-  })
-  const users = await kv.json.get(process.env.NEXTAUTH_CREDENTIALS_KEY)
-  if (!users || Object.keys(users).length === 0) {
-    userSetupRequired = true
+  if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN && process.env.NEXTAUTH_CREDENTIALS_KEY) {
+    const kv = new Redis({
+      url: process.env.KV_REST_API_URL,
+      token: process.env.KV_REST_API_TOKEN,
+    })
+    const users = await kv.json.get(process.env.NEXTAUTH_CREDENTIALS_KEY)
+    if (!users || Object.keys(users).length === 0) {
+      userSetupRequired = true
+    }
   }
   return {
     props: {
