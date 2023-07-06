@@ -1,11 +1,15 @@
-import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next"
 import { getCsrfToken } from "next-auth/react"
-import { Redis } from "@upstash/redis";
+import { Redis } from "@upstash/redis"
+import { useEffect } from "react"
 
 export default function SignIn({ csrfToken, error, userSetupRequired }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  if (userSetupRequired) {
-    (window as any).location.replace('/auth/register')
-  }
+  useEffect(() => {
+    if (userSetupRequired) {
+      (window as any).location.replace('/auth/register')
+    }
+  }, [userSetupRequired])
+
   return (
       <div
         className="grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium"
