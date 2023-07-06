@@ -1,11 +1,10 @@
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getCsrfToken } from "next-auth/react"
 import { Redis } from "@upstash/redis";
-import { redirect } from 'next/navigation'
 
 export default function SignIn({ csrfToken, error, userSetupRequired }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   if (userSetupRequired) {
-    redirect('/auth/register')
+    (window as any).location.replace('/auth/register')
   }
   return (
       <div

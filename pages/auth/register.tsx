@@ -44,13 +44,14 @@ export default function Register() {
             <input
               name="username"
               className="focus:border-purple-400 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-200 outline-none transition placeholder:text-slate-400"
-              placeholder="jsmith"
+              placeholder="Enter username"
               value={username}
               onChange={e => setUsername(e.target.value)}
             />
             <input
               name="password"
               className="focus:border-purple-400 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-200 outline-none transition placeholder:text-slate-400"
+              placeholder="Enter password"
               type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
@@ -58,6 +59,7 @@ export default function Register() {
             <input
               name="confirmPassword"
               className="focus:border-purple-400 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-200 outline-none transition placeholder:text-slate-400"
+              placeholder="Confirm password"
               type="confirmPassword"
               value={confirmPassword}
               onChange={e => setConfirmPassword(e.target.value)}
