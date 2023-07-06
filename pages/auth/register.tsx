@@ -42,14 +42,14 @@ export default function Register() {
         <form className="p-4 md:p-5 lg:p-6" onSubmit={handleSubmit}>
           <div className="grid gap-y-3">
             <input
-              name="username"
+              name="new_username"
               className="focus:border-purple-400 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-200 outline-none transition placeholder:text-slate-400"
               placeholder="Enter username"
               value={username}
               onChange={e => setUsername(e.target.value)}
             />
             <input
-              name="password"
+              name="new_password"
               className="focus:border-purple-400 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-200 outline-none transition placeholder:text-slate-400"
               placeholder="Enter password"
               type="password"
@@ -57,10 +57,10 @@ export default function Register() {
               onChange={e => setPassword(e.target.value)}
             />
             <input
-              name="confirmPassword"
+              name="new_confirmPassword"
               className="focus:border-purple-400 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-200 outline-none transition placeholder:text-slate-400"
               placeholder="Confirm password"
-              type="confirmPassword"
+              type="password"
               value={confirmPassword}
               onChange={e => setConfirmPassword(e.target.value)}
             />
