@@ -66,6 +66,7 @@ export default function Register() {
             />
             <button
               className="flex items-center justify-center gap-x-2 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-300 transition hover:text-purple-400"
+              disabled={!username || !password || !confirmPassword}
             >
               Create User
             </button>
