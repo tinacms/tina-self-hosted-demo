@@ -1,15 +1,8 @@
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next"
 import { getCsrfToken } from "next-auth/react"
 import { Redis } from "@upstash/redis"
-import { useEffect } from "react"
 
 export default function SignIn({ csrfToken, error, userSetupRequired }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  // useEffect(() => {
-  //   if (userSetupRequired === true) {
-  //     (window as any).location.replace('/auth/register')
-  //   }
-  // }, [userSetupRequired])
-
   if (userSetupRequired) {
     return (
       <div
@@ -17,7 +10,7 @@ export default function SignIn({ csrfToken, error, userSetupRequired }: InferGet
         <div className="w-full max-w-sm rounded-lg bg-slate-700/30 shadow">
           <div className="flex flex-col items-center justify-center gap-4">
             <img src="../tina.svg" alt="TinaCMS Logo" height={100} width={72}/>
-            User Setup Required. Redirecting...
+            User setup required. Click <a href={'/auth/register'}>here</a> to add your first user.
           </div>
         </div>
       </div>
@@ -69,7 +62,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       token: process.env.KV_REST_API_TOKEN,
     })
     const users = await kv.json.get(process.env.NEXTAUTH_CREDENTIALS_KEY)
-    console.log(users)
     if (!users || Object.keys(users).length === 0) {
       userSetupRequired = true
     }
