@@ -19,6 +19,8 @@ async function createUser(username, password, res) {
     } else {
       res.status(500).json({ message: 'Error adding user' })
     }
+  } else {
+    res.status(400).json({ message: 'User setup already completed' })
   }
 }
 
