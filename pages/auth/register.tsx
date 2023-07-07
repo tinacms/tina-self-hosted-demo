@@ -1,12 +1,19 @@
 import { useState } from 'react'
 import { signIn } from "next-auth/react";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { Redis } from "@upstash/redis";
 
-export default function Register() {
+export default function Register({ userSetupRequired }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState<string | null>(null)
   const [status, setStatus] = useState<'initial' | 'loading' | 'success' | 'error'>('initial')
+
+  if (!userSetupRequired) {
+    setStatus('error')
+    setMessage('User setup already completed')
+  }
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -82,7 +89,7 @@ export default function Register() {
             />
             <button
               className="flex items-center justify-center gap-x-2 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-300 transition hover:text-purple-400"
-              disabled={!username || !password || !confirmPassword}
+              disabled={!username || !password || !confirmPassword || !userSetupRequired}
               onClick={handleSubmit}
             >
               Setup
@@ -92,4 +99,23 @@ export default function Register() {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  let userSetupRequired = false
+  if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN && process.env.NEXTAUTH_CREDENTIALS_KEY) {
+    const kv = new Redis({
+      url: process.env.KV_REST_API_URL,
+      token: process.env.KV_REST_API_TOKEN,
+    })
+    const users = await kv.json.get(process.env.NEXTAUTH_CREDENTIALS_KEY)
+    if (!users || Object.keys(users).length === 0) {
+      userSetupRequired = true
+    }
+  }
+  return {
+    props: {
+      userSetupRequired
+    },
+  }
 }
