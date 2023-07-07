@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { Redis } from "@upstash/redis";
@@ -10,10 +10,12 @@ export default function Register({ userSetupRequired }: InferGetServerSidePropsT
   const [message, setMessage] = useState<string | null>(null)
   const [status, setStatus] = useState<'initial' | 'loading' | 'success' | 'error'>('initial')
 
-  if (!userSetupRequired) {
-    setStatus('error')
-    setMessage('User setup already completed')
-  }
+  useEffect(() => {
+    if (!userSetupRequired) {
+      setStatus('error')
+      setMessage('User setup already completed')
+    }
+  }, [userSetupRequired])
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
