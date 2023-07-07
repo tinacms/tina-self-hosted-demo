@@ -30,7 +30,7 @@ export default function handler(req, res) {
     if (!username || !password) {
       res.status(400).json({ message: 'Missing username or password' })
     } else {
-      createUser(username, password, res)
+      return createUser(username, password, res)
     }
   } else {
     res.status(400).json({ message: 'Invalid request' })
