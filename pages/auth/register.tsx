@@ -34,10 +34,10 @@ export default function Register() {
     }
   }
 
-  if (message && status !== 'initial') {
+  if (message && status !== 'initial' && status !== 'error') {
     return (
       <div
-        className={`grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium ${status === 'error' ? 'text-red-500' : ''}`}
+        className={`grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium`}
       >
         {message}
       </div>
@@ -54,7 +54,7 @@ export default function Register() {
           <img src="../tina.svg" alt="TinaCMS Logo" height={100} width={72}/>
           {message && (
             <div className="bg-red-500 text-white rounded-md p-3">
-              Setup Failed [{message}]
+              Error: {message}
             </div>
           )}
         </div>
