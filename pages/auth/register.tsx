@@ -35,7 +35,7 @@ export default function Register({ userSetupRequired }: InferGetServerSidePropsT
     if (res.ok) {
       setStatus('success')
       setMessage('User created')
-      await signIn()
+      await signIn('Credentials', { callbackUrl: '/admin/index.html' })
     } else {
       const { message } = await res.json()
       setMessage(message)
