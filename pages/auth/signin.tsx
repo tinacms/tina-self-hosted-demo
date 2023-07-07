@@ -4,11 +4,11 @@ import { Redis } from "@upstash/redis"
 import { useEffect } from "react"
 
 export default function SignIn({ csrfToken, error, userSetupRequired }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  useEffect(() => {
-    if (userSetupRequired === true) {
-      (window as any).location.replace('/auth/register')
-    }
-  }, [userSetupRequired])
+  // useEffect(() => {
+  //   if (userSetupRequired === true) {
+  //     (window as any).location.replace('/auth/register')
+  //   }
+  // }, [userSetupRequired])
 
   if (userSetupRequired) {
     return (
