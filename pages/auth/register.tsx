@@ -27,7 +27,7 @@ export default function Register({ userSetupRequired }: InferGetServerSidePropsT
     }
     setMessage('Creating user...')
     setStatus('loading')
-    const res = await fetch('/api/auth/register', {
+    const res = await fetch('/api/credentials/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password })
