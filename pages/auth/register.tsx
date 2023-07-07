@@ -53,6 +53,7 @@ export default function Register({ userSetupRequired }: InferGetServerSidePropsT
     )
   }
 
+  const disabled = !username || !password || !confirmPassword || !userSetupRequired
 
   return (
     <div
@@ -90,8 +91,8 @@ export default function Register({ userSetupRequired }: InferGetServerSidePropsT
               onChange={e => setConfirmPassword(e.target.value)}
             />
             <button
-              className="flex items-center justify-center gap-x-2 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-300 transition hover:text-purple-400"
-              disabled={!username || !password || !confirmPassword || !userSetupRequired}
+              className={`flex items-center justify-center gap-x-2 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-300 transition hover:text-purple-400 ${disabled ? 'opacity-50 cursor-not-allowed' : 'hover:border-purple-400'}}`}
+              disabled={disabled}
               onClick={handleSubmit}
             >
               Setup
