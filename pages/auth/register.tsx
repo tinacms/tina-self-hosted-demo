@@ -8,7 +8,7 @@ export default function Register() {
   const [message, setMessage] = useState<string | null>(null)
   const [status, setStatus] = useState<'initial' | 'loading' | 'success' | 'error'>('initial')
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     setMessage('')
     if (password !== confirmPassword) {
@@ -34,26 +34,10 @@ export default function Register() {
     }
   }
 
-  if (status === 'error') {
+  if (message && status !== 'initial') {
     return (
       <div
-        className="grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium"
-      >
-        {message}
-      </div>
-    )
-  } else if (status === 'success') {
-     return (
-        <div
-          className="grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium"
-        >
-          {message}
-        </div>
-      )
-  } else if (status === 'loading') {
-    return (
-      <div
-        className="grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium"
+        className={`grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium ${status === 'error' ? 'text-red-500' : ''}`}
       >
         {message}
       </div>
@@ -70,21 +54,19 @@ export default function Register() {
           <img src="../tina.svg" alt="TinaCMS Logo" height={100} width={72}/>
           {message && (
             <div className="bg-red-500 text-white rounded-md p-3">
-              Create User Failed [{message}]
+              Setup Failed [{message}]
             </div>
           )}
         </div>
-        <form className="p-4 md:p-5 lg:p-6" onSubmit={handleSubmit}>
+        <div className="p-4 md:p-5 lg:p-6">
           <div className="grid gap-y-3">
             <input
-              name="new_username"
               className="focus:border-purple-400 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-200 outline-none transition placeholder:text-slate-400"
               placeholder="Enter username"
               value={username}
               onChange={e => setUsername(e.target.value)}
             />
             <input
-              name="new_password"
               className="focus:border-purple-400 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-200 outline-none transition placeholder:text-slate-400"
               placeholder="Enter password"
               type="password"
@@ -92,7 +74,6 @@ export default function Register() {
               onChange={e => setPassword(e.target.value)}
             />
             <input
-              name="new_confirmPassword"
               className="focus:border-purple-400 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-200 outline-none transition placeholder:text-slate-400"
               placeholder="Confirm password"
               type="password"
@@ -102,11 +83,12 @@ export default function Register() {
             <button
               className="flex items-center justify-center gap-x-2 rounded-md border border-slate-600 bg-slate-700 py-3 px-4 text-slate-300 transition hover:text-purple-400"
               disabled={!username || !password || !confirmPassword}
+              onClick={handleSubmit}
             >
-              Create User
+              Setup
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   )
