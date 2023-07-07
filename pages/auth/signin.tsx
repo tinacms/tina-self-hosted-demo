@@ -8,9 +8,9 @@ export default function SignIn({ csrfToken, error, userSetupRequired }: InferGet
       <div
         className="grid h-screen w-screen place-items-center bg-slate-800 px-4 text-sm font-medium">
         <div className="w-full max-w-sm rounded-lg bg-slate-700/30 shadow">
-          <div className="flex flex-col items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-4 p-16">
             <img src="../tina.svg" alt="TinaCMS Logo" height={100} width={72}/>
-            User setup required. Click <a href={'/auth/register'}>here</a> to add your first user.
+            <div>User setup required. Click <a href={'/auth/register'} className={"text-blue"}>here</a> to add your first user.</div>
           </div>
         </div>
       </div>
