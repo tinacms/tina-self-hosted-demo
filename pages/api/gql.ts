@@ -5,7 +5,7 @@ import { authOptions } from "./auth/[...nextauth]"
 
 const nextApiHandler: NextApiHandler = async (req, res) => {
   const session = await getServerSession(req, res, authOptions)
-
+  console.log({session, user: session?.user, name: session?.user?.name})
   const isAuthorized =
     process.env.TINA_PUBLIC_IS_LOCAL === "true" ||
     session?.user?.name ||
