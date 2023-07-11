@@ -15,7 +15,7 @@ else console.log('Running TinaCMS in production mode.')
 const token = process.env.GITHUB_PERSONAL_ACCESS_TOKEN as string
 const owner = (process.env.GITHUB_OWNER || process.env.VERCEL_GIT_REPO_OWNER) as string
 const repo = (process.env.GITHUB_REPO || process.env.VERCEL_GIT_REPO_SLUG) as string
-const branch = (process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || 'main') as string
+const branch = (process.env.GITHUB_BRANCH || process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF || 'main') as string
 
 if(!branch){
   throw new Error('No branch found. Make sure that you have set the GITHUB_BRANCH or process.env.VERCEL_GIT_COMMIT_REF environment variable.')
