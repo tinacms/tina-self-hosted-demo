@@ -8,7 +8,7 @@ Please check out [this](https://github.com/tinacms/tinacms/discussions/3589) Git
 
 Use the following link to directly deploy this demo to Vercel. You will need a Vercel account and a GitHub personal access token (PAT) with access to the repository (once it has been created).
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo&env=GITHUB_PERSONAL_ACCESS_TOKEN,GITHUB_BRANCH,NEXTAUTH_SECRET,NEXTAUTH_CREDENTIALS_KEY&envDescription=See%20the%20self-hosted%20demo%20README%20for%20more%20information&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md&project-name=tina-self-hosted-demo&repository-name=tina-self-hosted-demo&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D&)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET,NEXTAUTH_CREDENTIALS_KEY&envDescription=See%20the%20self-hosted%20demo%20README%20for%20more%20information&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md&project-name=tina-self-hosted-demo&repository-name=tina-self-hosted-demo&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D&)
 
 <!-- [TODO insert youtube video here] -->
 
@@ -16,9 +16,8 @@ Use the following link to directly deploy this demo to Vercel. You will need a V
 After the repository is created, you will need to do the following steps to get the environment variables setup:
 
 1. Create a new personal access token (PAT) with content access to the new repository and copy the token as the value for the `GITHUB_PERSONAL_ACCESS_TOKEN` environment variable.
-2. Fill out the `GITHUB_BRANCH` environment variable with the branch you want to enable TinaCMS for (i.e. `main`).'
-3. Fill out the `NEXTAUTH_SECRET` environment variable with a random string.
-4. Fill out the `NEXTAUTH_CREDENTIALS_KEY` environment variable with the key you want to use for storing user credentials in the KV database (i.e. `tinacms_users`). 
+2. Fill out the `NEXTAUTH_SECRET` environment variable with a random string.
+3. Fill out the `NEXTAUTH_CREDENTIALS_KEY` environment variable with the key you want to use for storing user credentials in the KV database (i.e. `tinacms_users`).
 
 # Local Development
 
@@ -59,16 +58,16 @@ yarn dev
 
 ## Environment Variables
 
-| Variable | Description                                                                                                                                                      |
-| -------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `GITHUB_OWNER` | The owner of the repository you want to use for your content. Required in local development. Defaults to VERCEL_GIT_REPO_OWNER in Vercel.                  |
-| `GITHUB_REPO` | The name of the repository you want to use for your content. Required in local development. Defaults to VERCEL_GIT_REPO_SLUG in Vercel.                     |
-| `GITHUB_BRANCH` | The branch of the repository you want to use for your content. Defaults to `main` if not specified.                                                       |
+| Variable | Description                                                                                                                                |
+| -------- |--------------------------------------------------------------------------------------------------------------------------------------------|
+| `GITHUB_OWNER` | The owner of the repository you want to use for your content. Required in local development. Defaults to VERCEL_GIT_REPO_OWNER in Vercel.  |
+| `GITHUB_REPO` | The name of the repository you want to use for your content. Required in local development. Defaults to VERCEL_GIT_REPO_SLUG in Vercel.    |
+| `GITHUB_BRANCH` | The branch of the repository you want to use for your content. Defaults to `VERCEL_GIT_COMMIT_REF` or `main` if not specified.              |
 | `GITHUB_PERSONAL_ACCESS_TOKEN` | A [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with `repo` access. |
-| `NEXTAUTH_SECRET` | A secret used by NextAuth.js to encrypt the NextAuth.js JWT.                                                                                            |
-| `KV_REST_API_URL` | The URL of the Vercel KV database.                                                                                                                      |
-| `KV_REST_API_TOKEN` | The token for authenticating to the Vercel KV database.                                                                                               |
-| `NEXT_PUBLIC_TINA_CLIENT_ID` | The client id for your Tina Cloud application. Only required for Tina Cloud authorization. |
+| `NEXTAUTH_SECRET` | A secret used by NextAuth.js to encrypt the NextAuth.js JWT.                                                                               |
+| `KV_REST_API_URL` | The URL of the Vercel KV database.                                                                                                         |
+| `KV_REST_API_TOKEN` | The token for authenticating to the Vercel KV database.                                                                                    |
+| `NEXT_PUBLIC_TINA_CLIENT_ID` | The client id for your Tina Cloud application. Only required for Tina Cloud authorization.                                                 |
 
 ## Deploying to Vercel
 
