@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
+    "dev:prod": "TINA_PUBLIC_IS_LOCAL=false tinacms dev -c \"next dev\"",
     "build": "tinacms build --partial-reindex && next build",
-    "start": "tinacms build && next start",
-    "export": "npm run build && next export",
+    "start": "next start",
+    "export": "next export",
     "lint": "eslint . --ext .ts,.tsx",
     "setup:users": "tsx tina/kv_user_manager.ts"
   },
