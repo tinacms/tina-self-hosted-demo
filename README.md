@@ -43,6 +43,8 @@ cp .env.example .env
 
 Fill in the .env file with your own values.
 
+> Hint: NEXTAUTH_SECRET can be generated with `openssl rand -base64 32`
+
 ```env
 GITHUB_OWNER=***
 GITHUB_REPO=***
