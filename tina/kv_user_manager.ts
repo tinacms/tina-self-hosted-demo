@@ -117,6 +117,7 @@ async function hashPassword(password) {
       process.exit(1)
     }
     const user = {
+      name,
       username: name,
       password: await hashPassword(password),
     }

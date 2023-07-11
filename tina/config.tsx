@@ -6,7 +6,7 @@ import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { ColorPickerInput } from "./fields/color";
 import { iconSchema } from "../components/util/icon";
 import { getSession, signIn, signOut } from "next-auth/react";
-console.log('config.branch',    process.env.NEXT_PUBLIC_TINA_BRANCH! || process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF! || process.env.HEAD! )
+
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true"
 const config = defineConfig({
   contentApiUrlOverride: "/api/gql",
