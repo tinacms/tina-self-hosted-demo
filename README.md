@@ -57,7 +57,7 @@ Run the project locally:
 yarn dev
 ```
 
-# Environment Variables
+## Environment Variables
 
 | Variable | Description                                                                                                                                                      |
 | -------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------|
