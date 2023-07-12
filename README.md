@@ -15,7 +15,7 @@ Use the following link to directly deploy this demo to Vercel. You will need a V
 ### Environment Variable Setup
 After the repository is created, you will need to do the following steps to get the environment variables setup:
 
-1. Create a new personal access token (PAT) with content access to the new repository and copy the token as the value for the `GITHUB_PERSONAL_ACCESS_TOKEN` environment variable.
+1. Create a new [GitHub personal access token (PAT)](https://github.com/settings/personal-access-tokens/new) with content access to the new repository and copy the token as the value for the `GITHUB_PERSONAL_ACCESS_TOKEN` environment variable.
 2. Fill out the `NEXTAUTH_SECRET` environment variable with a random string.
 3. Fill out the `NEXTAUTH_CREDENTIALS_KEY` environment variable with the key you want to use for storing user credentials in the KV database (i.e. `tinacms_users`).
 
