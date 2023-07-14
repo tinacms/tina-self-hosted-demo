@@ -3267,10 +3267,48 @@
   dependencies:
     "@tinacms/graphql" "1.4.20"
 
+"@tinacms/datalayer@1.2.21":
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/@tinacms/datalayer/-/datalayer-1.2.21.tgz#c0f398f5f2d7afae4ece3b6940edd74081878604"
+  integrity sha512-skpK4WWQe4V8ThrL2BUCPgt4afuR3vL3t8JS6wQuCz/HBBh/G1UXWNXp8ZNXijoUp4KnCVYK9mVl5gB4B0UNaA==
+  dependencies:
+    "@tinacms/graphql" "1.4.21"
+
 "@tinacms/graphql@1.4.20":
   version "1.4.20"
   resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-1.4.20.tgz#b4242c57cdde09c9bc41d864ca36c6677256c757"
   integrity sha512-Bl4wLGxIDhc1wmo7QCYWNugg+Cs0k1uwPZl8foAwiRQ356F4wtQkTMOyqrhiF1N4aQTlWsdQqd48r3EbBPzBuQ==
+  dependencies:
+    "@iarna/toml" "^2.2.5"
+    "@tinacms/mdx" "1.3.14"
+    "@tinacms/schema-tools" "1.4.8"
+    abstract-level "^1.0.3"
+    body-parser "^1.19.0"
+    cors "^2.8.5"
+    dataloader "^2.0.0"
+    date-fns "^2.21.1"
+    encoding-down "^7.1.0"
+    estree-walker "^3.0.0"
+    fast-glob "^3.2.5"
+    fs-extra "^9.0.1"
+    glob-parent "^6.0.2"
+    graphql "15.8.0"
+    gray-matter "^4.0.2"
+    isomorphic-git "^1.21.0"
+    js-sha1 "^0.6.0"
+    js-yaml "^3.14.1"
+    jsonpath-plus "^6.0.1"
+    lodash "^4.17.20"
+    many-level "^2.0.0"
+    micromatch "4.0.5"
+    normalize-path "^3.0.0"
+    readable-stream "^4.3.0"
+    yup "^0.32.9"
+
+"@tinacms/graphql@1.4.21":
+  version "1.4.21"
+  resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-1.4.21.tgz#81025c01a0063c52257f4e68d41a96a60f46e285"
+  integrity sha512-UM7CA2sYVc5vsFux7a4p6SbDHIfCN0yFmzwCGRpbzwDEoYGUYNkFdXVZwwDyTsXBbgiA6QMIMxylL9SNJ1woNw==
   dependencies:
     "@iarna/toml" "^2.2.5"
     "@tinacms/mdx" "1.3.14"
