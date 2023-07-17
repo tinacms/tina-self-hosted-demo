@@ -3,20 +3,38 @@ import { databaseRequest } from "../../lib/databaseConnection";
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "./auth/[...nextauth]"
 
-const nextApiHandler: NextApiHandler = async (req, res) => {
-  const session = await getServerSession(req, res, authOptions)
-  const isAuthorized =
-    process.env.TINA_PUBLIC_IS_LOCAL === "true" ||
-    session?.user?.name ||
-    false;
+const withNextAuthApiRoute = (handler: NextApiHandler, opts?: { isLocalDevelopment: boolean }) => {
+  return async (req, res) => {
+    if (opts?.isLocalDevelopment) {
+      Object.defineProperty(req, "session", {
+        value: {
+          user: {
+            name: "local",
+          }
+        },
+        writable: false,
+      })
+    }
+    const session = await getServerSession(req, res, authOptions)
+    Object.defineProperty(req, "session", {
+      value: session,
+      writable: false,
+    })
 
-  if (isAuthorized) {
-    const { query, variables } = req.body;
-    const result = await databaseRequest({ query, variables });
-    return res.json(result);
-  } else {
-    return res.status(401).json({ error: "Unauthorized" });
+    if (!session?.user?.name) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    return handler(req, res)
   }
+}
+
+const nextApiHandler: NextApiHandler = async (req, res) => {
+  const { query, variables } = req.body;
+  const result = await databaseRequest({ query, variables });
+  return res.json(result);
 };
 
-export default nextApiHandler;
+export default withNextAuthApiRoute(
+  nextApiHandler, { isLocalDevelopment: process.env.TINA_PUBLIC_IS_LOCAL === "true" }
+);
