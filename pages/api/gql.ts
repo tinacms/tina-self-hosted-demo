@@ -1,6 +1,6 @@
 import { NextApiHandler } from "next";
 import { databaseRequest } from "../../lib/databaseConnection";
-import { withNextAuthApiRoute } from "next-auth-tinacms";
+import { withNextAuthApiRoute } from "next-auth-tinacms/dist/index";
 import { authOptions } from "../../tina/nextauth";
 
 const nextApiHandler: NextApiHandler = async (req, res) => {
