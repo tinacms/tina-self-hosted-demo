@@ -1,4 +1,4 @@
-import { RedisUserStore, TinaCredentialsProvider } from "next-auth-tinacms";
+import { RedisUserStore, TinaCredentialsProvider } from "next-auth-tinacms/dist/index";
 
 const userStore = new RedisUserStore(process.env.NEXTAUTH_CREDENTIALS_KEY, {
   url: process.env.KV_REST_API_URL,
