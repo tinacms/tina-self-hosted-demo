@@ -7711,10 +7711,10 @@ negotiator@0.6.3:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.3.tgz#58e323a72fedc0d6f9cd4d31fe49f51479590ccd"
   integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
 
-next-auth-tinacms@0.0.0-20230718185444:
-  version "0.0.0-20230718185444"
-  resolved "https://registry.yarnpkg.com/next-auth-tinacms/-/next-auth-tinacms-0.0.0-20230718185444.tgz#a31938f52c8014b3d2f52b6b4738a52c03eac854"
-  integrity sha512-3rl8YeoSfYlKKKHohdSo8oy9HtN4EgS7ANQ2Ip0DyAzWCQhLJ7JbDx/0mXi06jNwlpP/7UsDI9Bb5psILd9zUQ==
+next-auth-tinacms@0.0.0-20230718195536:
+  version "0.0.0-20230718195536"
+  resolved "https://registry.yarnpkg.com/next-auth-tinacms/-/next-auth-tinacms-0.0.0-20230718195536.tgz#ed0aab83f53b241cd01d1f568f750a3096effa31"
+  integrity sha512-fRdDnpcf93n4k9ZQLhmFTACEVyBoE0eJILcnrrneRDX7e14WdxItHjpde7qDpXZtfim6Tl+waheOvLXJYRM04Q==
   dependencies:
     "@upstash/redis" "^1.22.0"
     bcryptjs "^2.4.3"
