@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { userStore } from '../../tina/nextauth'
 
 export default function Register({ userSetupRequired }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [username, setUsername] = useState('')
@@ -105,6 +104,7 @@ export default function Register({ userSetupRequired }: InferGetServerSidePropsT
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { userStore } = await import("../../tina/nextauth");
   return {
     props: {
       userSetupRequired: await userStore.isInitialized()

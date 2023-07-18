@@ -1,6 +1,5 @@
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next"
 import { getCsrfToken } from "next-auth/react"
-import { userStore } from "../../tina/nextauth";
 
 export default function SignIn({ csrfToken, error, userSetupRequired }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   if (userSetupRequired) {
@@ -55,6 +54,7 @@ export default function SignIn({ csrfToken, error, userSetupRequired }: InferGet
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { userStore } = await import("../../tina/nextauth");
   return {
     props: {
       csrfToken: await getCsrfToken(context),
