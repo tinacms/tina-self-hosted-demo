@@ -14,7 +14,7 @@ export default async function handler(req, res) {
           res.status(400).json({ message: 'User already exists' })
         }
       } catch (e) {
-        console.log(e)
+        console.error(e)
         res.status(500).json({ message: 'Internal server error' })
       }
     }
