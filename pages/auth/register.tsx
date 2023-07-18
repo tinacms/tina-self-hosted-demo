@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { RedisUserStore } from "next-auth-tinacms";
 import { userStore } from '../../tina/nextauth'
 
 export default function Register({ userSetupRequired }: InferGetServerSidePropsType<typeof getServerSideProps>) {

@@ -5,7 +5,7 @@ import { heroBlockSchema } from "../components/blocks/hero";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { ColorPickerInput } from "./fields/color";
 import { iconSchema } from "../components/util/icon";
-import { createTinaNextAuthHandler } from "next-auth-tinacms";
+import { createTinaNextAuthHandler } from "next-auth-tinacms/dist/index";
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true"
 const config = defineConfig({
