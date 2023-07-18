@@ -107,7 +107,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { userStore } = await import("../../tina/nextauth");
   return {
     props: {
-      userSetupRequired: await userStore.isInitialized()
+      userSetupRequired: !(await userStore.isInitialized())
     },
   }
 }

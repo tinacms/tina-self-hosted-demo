@@ -59,7 +59,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     props: {
       csrfToken: await getCsrfToken(context),
       error: context.query?.error || '',
-      userSetupRequired: await userStore.isInitialized()
+      userSetupRequired: !(await userStore.isInitialized())
     },
   }
 }
