@@ -1,6 +1,6 @@
 import { userStore } from "../../../tina/nextauth";
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   console.log('register handler')
   const { username, password } = req.body
   console.log({username, password})
@@ -10,7 +10,7 @@ export default function handler(req, res) {
     } else {
       console.log('calling addUser')
       try {
-        const success = userStore.addUser(username, password)
+        const success = await userStore.addUser(username, password)
         if (success) {
           res.status(200).json({ message: 'User added' })
         } else {
