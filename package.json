@@ -9,7 +9,7 @@
     "start": "next start",
     "export": "next export",
     "lint": "eslint . --ext .ts,.tsx",
-    "setup:users": "tsx tina/kv_user_manager.ts"
+    "setup:users": "tinacms-next-auth setup"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.3.1",
@@ -21,10 +21,7 @@
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "autoprefixer": "^10.4.0",
-    "chalk": "^5.2.0",
-    "dotenv": "^16.3.1",
     "eslint": "^8.13.0",
-    "inquirer": "^9.2.7",
     "isomorphic-fetch": "^3.0.0",
     "postcss": "^8.3.11",
     "postcss-import": "^14.0.2",
@@ -37,11 +34,11 @@
     "@tailwindcss/typography": "^0.5.8",
     "@tinacms/auth": "^1.0.3",
     "@tinacms/datalayer": "1.2.20",
-    "bcryptjs": "^2.4.3",
     "date-fns": "^2.23.0",
     "js-base64": "^3.7.4",
     "next": "^13.3.1",
     "next-auth": "^4.22.1",
+    "next-auth-tinacms": "0.0.0-20230718173636",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.2.0",
