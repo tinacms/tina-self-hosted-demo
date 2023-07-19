@@ -3,7 +3,7 @@ import { Section } from "../components/util/section";
 import { Posts } from "../components/posts";
 import { Layout } from "../components/layout";
 import { InferGetStaticPropsType } from "next";
-import { dbConnection } from "../lib/databaseConnection";
+import backendClient from "../tina/__generated__/backendClient";
 
 export default function HomePage(
   props: InferGetStaticPropsType<typeof getStaticProps>
@@ -22,7 +22,7 @@ export default function HomePage(
 }
 
 export const getStaticProps = async () => {
-  const tinaProps = await dbConnection.queries.pageQuery();
+  const tinaProps = await backendClient.queries.pageQuery();
   return {
     props: {
       ...tinaProps,
