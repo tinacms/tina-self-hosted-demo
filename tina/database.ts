@@ -1,8 +1,5 @@
-import {
-  createDatabase,
-  createLocalDatabase,
-  GitHubProvider,
-} from "@tinacms/datalayer";
+import { createDatabase, createLocalDatabase } from "@tinacms/datalayer";
+import { GitHubProvider } from "tinacms-gitprovider-github";
 import { Redis } from "@upstash/redis";
 import { RedisLevel } from "upstash-redis-level";
 
