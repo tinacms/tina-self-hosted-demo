@@ -173,7 +173,7 @@ The updated file should look like this:
 
 ```js
 import { NextApiHandler } from "next";
-import backendClient from "../../tina/__generated__/backendClient";
+import databaseClient from "../../tina/__generated__/databaseClient";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "./auth/[...nextauth]";
 
@@ -184,7 +184,7 @@ const nextApiHandler: NextApiHandler = async (req, res) => {
 
   if (isAuthorized) {
     const { query, variables } = req.body;
-    const result = await backendClient.request({ query, variables });
+    const result = await databaseClient.request({ query, variables });
     return res.json(result);
   } else {
     return res.status(401).json({ error: "Unauthorized" });
