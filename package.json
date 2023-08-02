@@ -32,6 +32,8 @@
     "tsx": "^3.12.7"
   },
   "dependencies": {
+    "@clerk/backend": "^0.27.0",
+    "@clerk/clerk-js": "^4.55.0",
     "@headlessui/react": "1.7.5",
     "@octokit/rest": "^19.0.7",
     "@tailwindcss/typography": "^0.5.8",
