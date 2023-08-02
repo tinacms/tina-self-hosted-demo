@@ -1,16 +1,35 @@
-import { NextApiHandler } from "next";
+import { NextApiHandler, NextApiRequest } from "next";
 import { databaseRequest } from "../../lib/databaseConnection";
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "./auth/[...nextauth]"
+import { Clerk } from "@clerk/backend";
+import { isUserAllowed } from "../../tina/config";
+
+const secretKey = process.env.CLERK_SECRET;
+const clerk = Clerk({
+  secretKey,
+});
+
+const isAuthorized = async (req: NextApiRequest) => {
+  if (process.env.TINA_PUBLIC_IS_LOCAL === "true") {
+    return true;
+  }
+
+  const requestState = await clerk.authenticateRequest({
+    headerToken: req.headers["authorization"],
+  });
+  if (requestState.status === "signed-in") {
+    const user = await clerk.users.getUser(requestState.toAuth().userId);
+    const primaryEmail = user.emailAddresses.find(
+      ({ id }) => id === user.primaryEmailAddressId
+    );
+    if (primaryEmail && isUserAllowed(primaryEmail.emailAddress)) {
+      return true;
+    }
+  }
+  return false;
+};
 
 const nextApiHandler: NextApiHandler = async (req, res) => {
-  const session = await getServerSession(req, res, authOptions)
-  const isAuthorized =
-    process.env.TINA_PUBLIC_IS_LOCAL === "true" ||
-    session?.user?.name ||
-    false;
-
-  if (isAuthorized) {
+  if (await isAuthorized(req)) {
     const { query, variables } = req.body;
     const result = await databaseRequest({ query, variables });
     return res.json(result);

@@ -5,36 +5,61 @@ import { heroBlockSchema } from "../components/blocks/hero";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { ColorPickerInput } from "./fields/color";
 import { iconSchema } from "../components/util/icon";
-import { getSession, signIn, signOut } from "next-auth/react";
+import Clerk from "@clerk/clerk-js";
 
-const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true"
+const clerkPubKey = process.env.TINA_PUBLIC_CLERK_PUBLIC_KEY;
+const clerk = new Clerk(clerkPubKey);
+
+/**
+ * For premium Clerk users, you can use restrictions
+ * https://clerk.com/docs/authentication/allowlist
+ */
+export const isUserAllowed = (emailAddress: string) => {
+  const allowList = ["jeffsee.55@gmail.com"];
+  if (allowList.includes(emailAddress)) {
+    return true;
+  }
+  return false;
+};
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 const config = defineConfig({
   contentApiUrlOverride: "/api/gql",
   admin: {
     auth: {
       useLocalAuth: isLocal,
       customAuth: !isLocal,
-      authenticate: async () => {
-        if (isLocal) {
-          return true
-        }
-        return signIn('Credentials', { callbackUrl: '/admin/index.html' })
-      },
       getToken: async () => {
-        return { id_token: '' };
-      },
-      getUser: async () => {
-        if (isLocal) {
-          return true
+        await clerk.load();
+        if (clerk.session) {
+          return { id_token: await clerk.session.getToken() };
         }
-        const session = await getSession()
-        return !!session;
       },
       logout: async () => {
-        if (isLocal) {
-          return
+        await clerk.load();
+        await clerk.session.remove();
+      },
+      authenticate: async () => {
+        clerk.openSignIn({
+          redirectUrl: "/admin/index.html", // This should be the Tina admin path
+          appearance: {
+            elements: {
+              // Tina's sign in modal is in the way without this
+              modalBackdrop: { zIndex: 20000 },
+            },
+          },
+        });
+      },
+      getUser: async () => {
+        await clerk.load();
+        if (clerk.user) {
+          if (isUserAllowed(clerk.user.primaryEmailAddress.emailAddress)) {
+            return true;
+          }
+          // Handle when a user is logged in outside of the org
+          clerk.session.end();
         }
-        return signOut({ callbackUrl: '/admin/index.html' })
+        return false;
       },
     },
   },
