@@ -4,7 +4,7 @@ import {
 } from "tinacms-next-auth/dist/index";
 
 const {
-  NEXTAUTH_CREDENTIALS_KEY: authCollectionName,
+  NEXTAUTH_CREDENTIALS_KEY: authCollectionName = "tinacms_users",
   NEXTAUTH_SECRET: secret,
   KV_REST_API_URL: url,
   KV_REST_API_TOKEN: token,
