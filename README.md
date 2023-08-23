@@ -8,11 +8,12 @@ Please check out [this](https://github.com/tinacms/tinacms/discussions/3589) Git
 
 Use the following link to directly deploy this demo to Vercel. You will need a Vercel account and a GitHub personal access token (PAT) with access to the repository (once it has been created).
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET,NEXTAUTH_CREDENTIALS_KEY&envDescription=Create%20a%20new%20GitHub%20PAT%20at%20https%3A%2F%2Fgithub.com%2Fsettings%2Fpersonal-access-tokens%2Fnew%20with%20content-access.%20See%20the%20self-hosted%20demo%20README%20for%20more%20information&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md&project-name=tina-self-hosted-demo&repository-name=tina-self-hosted-demo&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D&)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET&envDescription=Create%20a%20new%20GitHub%20PAT%20at%20https%3A%2F%2Fgithub.com%2Fsettings%2Fpersonal-access-tokens%2Fnew%20with%20content-access.%20See%20the%20self-hosted%20demo%20README%20for%20more%20information&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md&project-name=tina-self-hosted-demo&repository-name=tina-self-hosted-demo&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D&)
 
 <!-- [TODO insert youtube video here] -->
 
 ### Environment Variable Setup
+
 After the repository is created, you will need to do the following steps to get the environment variables setup:
 
 1. Create a new [GitHub personal access token (PAT)](https://github.com/settings/personal-access-tokens/new) with content access to the new repository and copy the token as the value for the `GITHUB_PERSONAL_ACCESS_TOKEN` environment variable.
@@ -84,16 +85,16 @@ yarn dev:prod
 
 ## Environment Variables
 
-| Variable | Description                                                                                                                                |
-| -------- |--------------------------------------------------------------------------------------------------------------------------------------------|
-| `GITHUB_OWNER` | The owner of the repository you want to use for your content. Required in local development. Defaults to VERCEL_GIT_REPO_OWNER in Vercel.  |
-| `GITHUB_REPO` | The name of the repository you want to use for your content. Required in local development. Defaults to VERCEL_GIT_REPO_SLUG in Vercel.    |
-| `GITHUB_BRANCH` | The branch of the repository you want to use for your content. Defaults to `VERCEL_GIT_COMMIT_REF` or `main` if not specified.              |
+| Variable                       | Description                                                                                                                                |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `GITHUB_OWNER`                 | The owner of the repository you want to use for your content. Required in local development. Defaults to VERCEL_GIT_REPO_OWNER in Vercel.  |
+| `GITHUB_REPO`                  | The name of the repository you want to use for your content. Required in local development. Defaults to VERCEL_GIT_REPO_SLUG in Vercel.    |
+| `GITHUB_BRANCH`                | The branch of the repository you want to use for your content. Defaults to `VERCEL_GIT_COMMIT_REF` or `main` if not specified.             |
 | `GITHUB_PERSONAL_ACCESS_TOKEN` | A [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with `repo` access. |
-| `NEXTAUTH_SECRET` | A secret used by NextAuth.js to encrypt the NextAuth.js JWT.                                                                               |
-| `KV_REST_API_URL` | The URL of the Vercel KV database.                                                                                                         |
-| `KV_REST_API_TOKEN` | The token for authenticating to the Vercel KV database.                                                                                    |
-| `NEXT_PUBLIC_TINA_CLIENT_ID` | The client id for your Tina Cloud application. Only required for Tina Cloud authorization.                                                 |
+| `NEXTAUTH_SECRET`              | A secret used by NextAuth.js to encrypt the NextAuth.js JWT.                                                                               |
+| `KV_REST_API_URL`              | The URL of the Vercel KV database.                                                                                                         |
+| `KV_REST_API_TOKEN`            | The token for authenticating to the Vercel KV database.                                                                                    |
+| `NEXT_PUBLIC_TINA_CLIENT_ID`   | The client id for your Tina Cloud application. Only required for Tina Cloud authorization.                                                 |
 
 ## Deploying to Vercel
 
@@ -135,7 +136,7 @@ NextAuth providers can be used, as well other auth solutions.
 
 # Using Tina Cloud for Authorization
 
-Tina Cloud can be used to manage users and authorization for your TinaCMS application. To use Tina Cloud for auth, you will need to create a new project in the Tina Cloud [dashboard](https://app.tina.io/projects). You will be required to specify a repository, but since the data layer is managed by Vercel KV, you can use any repository. 
+Tina Cloud can be used to manage users and authorization for your TinaCMS application. To use Tina Cloud for auth, you will need to create a new project in the Tina Cloud [dashboard](https://app.tina.io/projects). You will be required to specify a repository, but since the data layer is managed by Vercel KV, you can use any repository.
 
 ## Configuration
 
@@ -144,6 +145,7 @@ Once you have created an application, you will need to add the following environ
 ```env
 NEXT_PUBLIC_TINA_CLIENT_ID=***
 ```
+
 The value for `NEXT_PUBLIC_TINA_CLIENT_ID` can be found in the Tina Cloud dashboard on the "Overview" page for your project.
 
 In your tina configuration, first remove or comment out the following properties:
@@ -155,23 +157,24 @@ In your tina configuration, first remove or comment out the following properties
 - `admin.auth.logout`
 
 Then add the following property:
- 
+
     ```js
     {
     ...
     clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
     }
     ```
+
 ## Updating the GraphQL endpoint
 
-The GraphQL endpoint is configured to use NextAuth by default. To use Tina Cloud, you will need to update the endpoint in `pages/api/gql.ts` to use Tina Cloud's auth. 
+The GraphQL endpoint is configured to use NextAuth by default. To use Tina Cloud, you will need to update the endpoint in `pages/api/gql.ts` to use Tina Cloud's auth.
 
 The updated file should look like this:
 
 ```js
 import { NextApiHandler } from "next";
 import { isUserAuthorized } from "@tinacms/auth";
-import { databaseRequest } from "../../lib/databaseConnection";
+import databaseClient from "../../tina/__generated__/databaseClient";
 
 const nextApiHandler: NextApiHandler = async (req, res) => {
   // Example if using TinaCloud for auth
@@ -187,7 +190,7 @@ const nextApiHandler: NextApiHandler = async (req, res) => {
 
   if (isAuthorized) {
     const { query, variables } = req.body;
-    const result = await databaseRequest({ query, variables });
+    const result = await databaseClient.request({ query, variables });
     return res.json(result);
   } else {
     return res.status(401).json({ error: "Unauthorized" });
@@ -204,6 +207,7 @@ It's possible to use MongoDB as the data layer for your TinaCMS application inst
 ```env
 `MONGODB_URI` is the connection string to your MongoDB database. You can use [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) to get a free database.
 ```
+
 Next you will need to update the `tina/database.ts` to use the MongoDB level implementation instead of the Redis level implementation.
 
 ```ts

@@ -1,6 +1,5 @@
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next"
 import { getCsrfToken } from "next-auth/react"
-import { Redis } from "@upstash/redis"
 
 export default function SignIn({ csrfToken, error, userSetupRequired }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   if (userSetupRequired) {
@@ -55,22 +54,12 @@ export default function SignIn({ csrfToken, error, userSetupRequired }: InferGet
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  let userSetupRequired = false
-  if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN && process.env.NEXTAUTH_CREDENTIALS_KEY) {
-    const kv = new Redis({
-      url: process.env.KV_REST_API_URL,
-      token: process.env.KV_REST_API_TOKEN,
-    })
-    const users = await kv.json.get(process.env.NEXTAUTH_CREDENTIALS_KEY)
-    if (!users || Object.keys(users).length === 0) {
-      userSetupRequired = true
-    }
-  }
+  const { userStore } = await import("../../tina/nextauth");
   return {
     props: {
       csrfToken: await getCsrfToken(context),
       error: context.query?.error || '',
-      userSetupRequired
+      userSetupRequired: !(await userStore.isInitialized())
     },
   }
 }

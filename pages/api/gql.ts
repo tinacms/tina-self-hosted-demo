@@ -1,22 +1,15 @@
 import { NextApiHandler } from "next";
-import { databaseRequest } from "../../lib/databaseConnection";
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "./auth/[...nextauth]"
+import databaseClient from '../../tina/__generated__/databaseClient';
+import { withNextAuthApiRoute } from "tinacms-next-auth/dist/index";
+import { authOptions } from "../../tina/nextauth";
 
 const nextApiHandler: NextApiHandler = async (req, res) => {
-  const session = await getServerSession(req, res, authOptions)
-  const isAuthorized =
-    process.env.TINA_PUBLIC_IS_LOCAL === "true" ||
-    session?.user?.name ||
-    false;
-
-  if (isAuthorized) {
-    const { query, variables } = req.body;
-    const result = await databaseRequest({ query, variables });
-    return res.json(result);
-  } else {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
+  const { query, variables } = req.body;
+  const result = await databaseClient.request({ query, variables });
+  return res.json(result);
 };
 
-export default nextApiHandler;
+export default withNextAuthApiRoute(nextApiHandler, {
+  authOptions,
+  isLocalDevelopment: process.env.TINA_PUBLIC_IS_LOCAL === "true",
+});

@@ -5,37 +5,20 @@ import { heroBlockSchema } from "../components/blocks/hero";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { ColorPickerInput } from "./fields/color";
 import { iconSchema } from "../components/util/icon";
-import { getSession, signIn, signOut } from "next-auth/react";
+import { createTinaNextAuthHandler } from "tinacms-next-auth/dist/tinacms";
 
-const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true"
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 const config = defineConfig({
   contentApiUrlOverride: "/api/gql",
   admin: {
     auth: {
       useLocalAuth: isLocal,
       customAuth: !isLocal,
-      authenticate: async () => {
-        if (isLocal) {
-          return true
-        }
-        return signIn('Credentials', { callbackUrl: '/admin/index.html' })
-      },
-      getToken: async () => {
-        return { id_token: '' };
-      },
-      getUser: async () => {
-        if (isLocal) {
-          return true
-        }
-        const session = await getSession()
-        return !!session;
-      },
-      logout: async () => {
-        if (isLocal) {
-          return
-        }
-        return signOut({ callbackUrl: '/admin/index.html' })
-      },
+      ...createTinaNextAuthHandler({
+        callbackUrl: "/admin/index.html",
+        isLocalDevelopment: isLocal,
+        name: "Credentials",
+      }),
     },
   },
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,

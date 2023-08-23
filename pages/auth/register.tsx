@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { Redis } from "@upstash/redis";
 
 export default function Register({ userSetupRequired }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [username, setUsername] = useState('')
@@ -105,20 +104,10 @@ export default function Register({ userSetupRequired }: InferGetServerSidePropsT
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  let userSetupRequired = false
-  if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN && process.env.NEXTAUTH_CREDENTIALS_KEY) {
-    const kv = new Redis({
-      url: process.env.KV_REST_API_URL,
-      token: process.env.KV_REST_API_TOKEN,
-    })
-    const users = await kv.json.get(process.env.NEXTAUTH_CREDENTIALS_KEY)
-    if (!users || Object.keys(users).length === 0) {
-      userSetupRequired = true
-    }
-  }
+  const { userStore } = await import("../../tina/nextauth");
   return {
     props: {
-      userSetupRequired
+      userSetupRequired: !(await userStore.isInitialized())
     },
   }
 }
