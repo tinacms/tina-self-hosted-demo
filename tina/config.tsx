@@ -5,9 +5,9 @@ import { heroBlockSchema } from "../components/blocks/hero";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { ColorPickerInput } from "./fields/color";
 import { iconSchema } from "../components/util/icon";
-import { createTinaNextAuthHandler } from "next-auth-tinacms/dist/tinacms"
+import { createTinaNextAuthHandler } from "tinacms-next-auth/dist/tinacms";
 
-const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true"
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 const config = defineConfig({
   contentApiUrlOverride: "/api/gql",
   admin: {
@@ -18,7 +18,7 @@ const config = defineConfig({
         callbackUrl: "/admin/index.html",
         isLocalDevelopment: isLocal,
         name: "Credentials",
-      })
+      }),
     },
   },
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,

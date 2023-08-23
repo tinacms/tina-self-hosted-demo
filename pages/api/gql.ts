@@ -1,6 +1,6 @@
 import { NextApiHandler } from "next";
 import { databaseRequest } from "../../lib/databaseConnection";
-import { withNextAuthApiRoute } from "next-auth-tinacms/dist/index";
+import { withNextAuthApiRoute } from "tinacms-next-auth/dist/index";
 import { authOptions } from "../../tina/nextauth";
 
 const nextApiHandler: NextApiHandler = async (req, res) => {
@@ -9,6 +9,7 @@ const nextApiHandler: NextApiHandler = async (req, res) => {
   return res.json(result);
 };
 
-export default withNextAuthApiRoute(
-  nextApiHandler, { authOptions, isLocalDevelopment: process.env.TINA_PUBLIC_IS_LOCAL === "true" }
-);
+export default withNextAuthApiRoute(nextApiHandler, {
+  authOptions,
+  isLocalDevelopment: process.env.TINA_PUBLIC_IS_LOCAL === "true",
+});
