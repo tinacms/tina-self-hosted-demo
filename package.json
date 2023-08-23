@@ -9,11 +9,11 @@
     "start": "next start",
     "export": "next export",
     "lint": "eslint . --ext .ts,.tsx",
-    "setup:users": "tsx tina/kv_user_manager.ts"
+    "setup:users": "tinacms-next-auth setup"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.3.1",
-    "@tinacms/cli": "1.5.24",
+    "@tinacms/cli": "1.5.29",
     "@types/js-cookie": "^3.0.0",
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.35",
@@ -32,11 +32,12 @@
     "tsx": "^3.12.7"
   },
   "dependencies": {
+    "tinacms-gitprovider-github": "^0.0.0-20230725144115",
     "@headlessui/react": "1.7.5",
     "@octokit/rest": "^19.0.7",
     "@tailwindcss/typography": "^0.5.8",
     "@tinacms/auth": "^1.0.3",
-    "@tinacms/datalayer": "1.2.20",
+    "@tinacms/datalayer": "^0.0.0-20230823171846",
     "bcryptjs": "^2.4.3",
     "date-fns": "^2.23.0",
     "js-base64": "^3.7.4",
@@ -49,9 +50,10 @@
     "styled-components": "^5.1.3",
     "styled-jsx": "^3.2.5",
     "tailwindcss": "^3.2.4",
-    "tinacms": "1.5.15",
+    "tinacms": "1.5.20",
     "typescript": "^4.5.2",
-    "upstash-redis-level": "1.0.0"
+    "upstash-redis-level": "1.0.0",
+    "tinacms-next-auth": "^0.0.0-20230724150132"
   },
   "resolutions": {
     "final-form": "4.20.1"
