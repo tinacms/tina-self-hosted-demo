@@ -9593,6 +9593,14 @@ through@^2.3.6:
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
   integrity sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==
 
+tinacms-gitprovider-github@^0.0.0-20230725144115:
+  version "0.0.0-20230725144115"
+  resolved "https://registry.yarnpkg.com/tinacms-gitprovider-github/-/tinacms-gitprovider-github-0.0.0-20230725144115.tgz#6235e689c331356d3b94b6349afa4b1af66a3418"
+  integrity sha512-dlabZ48EficYdSqcD17eRtJjorfq3i3esy8zx+InL0beA8jrT/EhhCb2wTEVBUHOROWvp1huNnTyeV2XfOg33w==
+  dependencies:
+    "@octokit/rest" "^19.0.7"
+    js-base64 "^3.7.4"
+
 tinacms-next-auth@^0.0.0-20230718153151:
   version "0.0.0-20230724150132"
   resolved "https://registry.yarnpkg.com/tinacms-next-auth/-/tinacms-next-auth-0.0.0-20230724150132.tgz#49bc9165790cab1f8dbc5d93941878694b74918f"
