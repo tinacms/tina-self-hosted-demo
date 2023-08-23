@@ -171,7 +171,7 @@ The updated file should look like this:
 ```js
 import { NextApiHandler } from "next";
 import { isUserAuthorized } from "@tinacms/auth";
-import { databaseRequest } from "../../lib/databaseConnection";
+import databaseClient from "../../tina/__generated__/databaseClient";
 
 const nextApiHandler: NextApiHandler = async (req, res) => {
   // Example if using TinaCloud for auth
@@ -187,7 +187,7 @@ const nextApiHandler: NextApiHandler = async (req, res) => {
 
   if (isAuthorized) {
     const { query, variables } = req.body;
-    const result = await databaseRequest({ query, variables });
+    const result = await databaseClient.request({ query, variables });
     return res.json(result);
   } else {
     return res.status(401).json({ error: "Unauthorized" });
