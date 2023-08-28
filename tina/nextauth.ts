@@ -13,10 +13,6 @@ const {
 
 const userStore = new RedisUserStore(authCollectionName, { url, token });
 const authOptions = {
-  pages: {
-    error: "/auth/signin", // Error code passed in query string as ?error=
-    signIn: "/auth/signin",
-  },
   secret,
   providers: [
     // TinaCredentialsProvider({ name: "Credentials", userStore }),
