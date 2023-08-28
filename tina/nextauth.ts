@@ -2,6 +2,7 @@ import {
   RedisUserStore,
   TinaCredentialsProvider,
 } from "tinacms-next-auth/dist/index";
+import DiscordProvider from 'next-auth/providers/discord'
 
 const {
   NEXTAUTH_CREDENTIALS_KEY: authCollectionName = "tinacms_users",
@@ -17,7 +18,13 @@ const authOptions = {
     signIn: "/auth/signin",
   },
   secret,
-  providers: [TinaCredentialsProvider({ name: "Credentials", userStore })],
+  providers: [
+    // TinaCredentialsProvider({ name: "Credentials", userStore }),
+    DiscordProvider({
+      clientId: process.env.DISCORD_CLIENT_ID,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET,
+    })
+  ],
 };
 
 export { authOptions, userStore };
