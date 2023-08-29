@@ -1,8 +1,6 @@
-import {
-  RedisUserStore,
-  TinaCredentialsProvider,
-} from "tinacms-next-auth/dist/index";
 import DiscordProvider from 'next-auth/providers/discord'
+import { AuthOptions } from "next-auth";
+import { Redis } from '@upstash/redis'
 
 const {
   NEXTAUTH_CREDENTIALS_KEY: authCollectionName = "tinacms_users",
@@ -11,8 +9,51 @@ const {
   KV_REST_API_TOKEN: token,
 } = process.env;
 
-const userStore = new RedisUserStore(authCollectionName, { url, token });
-const authOptions = {
+const redis = new Redis({ url, token })
+
+const authOptions : AuthOptions = {
+  callbacks: {
+    jwt: async ({ token, account, profile}) => {
+      if (account) { // first time logging in
+        try {
+          const username = token.email
+          // if user store is empty then we add the user as an admin
+          const users = await redis.json.get(authCollectionName)
+          if (!users || Object.keys(users).length === 0) {
+            await redis.json.set(authCollectionName, '$', {})
+            await redis.json.set(authCollectionName, `$.["${username}"]`, {
+              name: username,
+              username,
+              role: 'admin'
+            })
+            token.role = 'admin'
+          } else {
+            const keys = await redis.json.objkeys(authCollectionName, `$.["${username}"]`)
+            if (keys && keys.length > 0) {
+              const user = await redis.json.get(authCollectionName, `$.["${username}"]`)
+              if (user) {
+                token.role = user[0].role
+              }
+            }
+          }
+        } catch (error) {
+          console.log(error)
+        }
+        if (token.role === undefined) {
+          token.role = 'guest'
+        }
+      }
+      return token
+    },
+    session: async ({ session, token, user }) => {
+      // forward the role to the session
+      (session.user as any).role = token.role
+      return session
+    }
+  },
+  session: {
+    strategy: "jwt"
+  },
   secret,
   providers: [
     // TinaCredentialsProvider({ name: "Credentials", userStore }),
@@ -23,4 +64,4 @@ const authOptions = {
   ],
 };
 
-export { authOptions, userStore };
+export { authOptions };

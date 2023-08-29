@@ -6,6 +6,7 @@ import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { ColorPickerInput } from "./fields/color";
 import { iconSchema } from "../components/util/icon";
 import { createTinaNextAuthHandler } from "tinacms-next-auth/dist/tinacms";
+import { getSession } from 'next-auth/react'
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 const config = defineConfig({
@@ -14,6 +15,11 @@ const config = defineConfig({
     auth: {
       useLocalAuth: isLocal,
       customAuth: !isLocal,
+      authorize: async (context: any) => {
+        const session = await getSession(context)
+        const role = (session?.user as any).role || 'guest'
+        return (role === 'admin' || role === 'editor') ? role : undefined
+      },
       ...createTinaNextAuthHandler({
         callbackUrl: "/admin/index.html",
         isLocalDevelopment: isLocal,
