@@ -33,6 +33,13 @@ const authOptions : AuthOptions = {
               const user = await redis.json.get(authCollectionName, `$.["${username}"]`)
               if (user) {
                 token.role = user[0].role
+              } else {
+                // if user is not found in the store then we add the user as a guest
+                // so that they can be updated by an admin
+                await redis.json.set(authCollectionName, `$.["${username}"]`, {
+                  username,
+                  role: 'guest'
+                })
               }
             }
           }
