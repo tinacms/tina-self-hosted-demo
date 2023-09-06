@@ -5,22 +5,21 @@ import { heroBlockSchema } from "../components/blocks/hero";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { ColorPickerInput } from "./fields/color";
 import { iconSchema } from "../components/util/icon";
-import { createTinaNextAuthHandler } from "tinacms-next-auth/dist/tinacms";
+import { NextAuthProvider } from "tinacms-next-auth/dist/tinacms";
+import { getSession } from 'next-auth/react'
+
+class MyNextAuthProvider extends NextAuthProvider {
+  async authorize(context?: any): Promise<any> {
+    const session = await getSession(context)
+    return (session?.user as any).role === 'user'
+  }
+}
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 const config = defineConfig({
   contentApiUrlOverride: "/api/gql",
-  admin: {
-    auth: {
-      useLocalAuth: isLocal,
-      customAuth: !isLocal,
-      ...createTinaNextAuthHandler({
-        callbackUrl: "/admin/index.html",
-        isLocalDevelopment: isLocal,
-        name: "Credentials",
-      }),
-    },
-  },
+  // @ts-ignore
+  authProvider: !isLocal && new MyNextAuthProvider({ name: "Credentials", callbackUrl: "/admin/index.html" }),
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
   branch:
     process.env.NEXT_PUBLIC_TINA_BRANCH! || // custom branch env override
