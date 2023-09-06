@@ -1,17 +1,7 @@
 import { GetServerSidePropsContext } from "next";
-import { Redis } from "@upstash/redis";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../tina/nextauth";
 import React from "react";
 import { useRouter } from "next/router";
-
-const {
-  NEXTAUTH_CREDENTIALS_KEY = "tinacms_users",
-  KV_REST_API_URL: url,
-  KV_REST_API_TOKEN: token,
-} = process.env
-
-const redis = new Redis({ url, token })
+import { authManager, userManager } from "../../tina/auth";
 
 export default function UserPage(props: { users }) {
   const router = useRouter();
@@ -68,18 +58,12 @@ export default function UserPage(props: { users }) {
 
   const handleUsernameUpdated = (event) => {
     setUser({
-      username: event.target.value,
-      role: user.role,
-    })
-  }
-  const handleRoleUpdated = (event) => {
-    setUser({
-      username: user.username,
-      role: event.target.value,
+      email: event.target.value,
+      id: user.id,
     })
   }
 
-  const [user, setUser] = React.useState({ username: '', role: 'editor' })
+  const [user, setUser] = React.useState({ email: '', id: '' })
   const [status, setStatus] = React.useState<'idle' | 'add' | 'delete' | 'edit' | 'error'>('idle')
   if (status === 'add' || status === 'edit') {
     return (
@@ -89,16 +73,7 @@ export default function UserPage(props: { users }) {
           <label>
             Username:
             <div style={{border: '1px solid black', padding: '1px', margin: '1px'}}>
-              <input type="text" name="username" onChange={handleUsernameUpdated} value={user.username}/>
-            </div>
-          </label>
-          <label>
-            Role
-            <div style={{border: '1px solid black', padding: '1px', margin: '1px'}}>
-              <select name="role" onChange={handleRoleUpdated} value={user.role}>
-                <option value="admin">Admin</option>
-                <option value="editor">Editor</option>
-              </select>
+              <input type="text" name="username" onChange={handleUsernameUpdated} value={user.email}/>
             </div>
           </label>
           <button onClick={(e) => status === 'add' ? handleAddUser(e) : handleEditUser(e)}>Save</button>
@@ -127,41 +102,32 @@ export default function UserPage(props: { users }) {
       <h1>Users</h1>
       <ul>
         {props.users?.map((user) => (
-          <li key={user.username}>
-            {user.username} | ({user.role}) | <button onClick={(e) => { setUser(user); setStatus('delete') }}>Delete</button> <button onClick={(e) => { setUser(user); setStatus('edit') }}>Edit</button>
+          <li key={user.id}>
+            {user.email} | <button onClick={(e) => { setUser(user); setStatus('delete') }}>Delete</button>
           </li>
         ))}
       </ul>
       <div>
-        <button onClick={() => { setUser({ username: '', role: 'editor' }); setStatus('add')}}>Add User</button>
+        <button onClick={() => { setUser({ email: '', id: '' }); setStatus('add')}}>Add User</button>
       </div>
     </div>
   );
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext)  {
-  const session = await getServerSession(context.req, context.res, authOptions)
-  if (!session?.user) {
+  const authenticated = await authManager.isAuthenticated(context.req, context.res)
+  if (!authenticated) {
     return {
       redirect: {
-        destination: '/api/auth/signin',
+        destination: '/admin/index.html',
         permanent: false
       }
     }
   }
-
-  const users = []
-  if ((session?.user as any).role === 'admin') {
-    const authCollection = await redis.json.get(NEXTAUTH_CREDENTIALS_KEY)
-    if (authCollection) {
-      const usernames = Object.keys(authCollection)
-      for (const username of usernames) {
-        const user = authCollection[username]
-        users.push(user)
-      }
-    }
+  const authorized = await authManager.isAuthorized(context.req, context.res)
+  let users = []
+  if (authorized) {
+    users = await userManager.listUsers()
   }
-  return { props: {
-    users
-  }}
+  return { props: { users }}
 }
