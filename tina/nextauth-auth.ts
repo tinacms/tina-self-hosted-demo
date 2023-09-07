@@ -1,30 +1,24 @@
-import { AuthManager, UserManager, User } from "./auth";
+import { AuthManager } from "./auth";
 import { getServerSession } from "next-auth/next";
 import { AuthOptions } from "next-auth";
-import { UserStore } from "tinacms-next-auth";
-
-export class NextauthUserManager implements UserManager {
-  constructor(private userStore: UserStore, private nextauthOptions: AuthOptions) {}
-
-  async createUser(email: string): Promise<void> {
-    await this.userStore.addUser(email, '')
-  }
-
-  async deleteUser(email: string): Promise<void> {
-    await this.userStore.deleteUser(email)
-  }
-
-  async listUsers(): Promise<User[]> {
-    const users = await this.userStore.getUsers()
-    if (!users) {
-      return []
-    }
-    return users.map(user => ({id: user.username || null, email: user.username || null}))
-  }
-}
+import { GraphQLError } from "graphql";
+import { UsersQuery, UsersQueryVariables } from "./__generated__/types";
 
 export class NextauthAuthManager implements AuthManager {
-  constructor(private nextauthOptions: AuthOptions) {
+  constructor(private nextauthOptions: AuthOptions, private databaseClient: {
+    request: ({ query, variables }: { query: any; variables: any }) => Promise<{
+      variables: any;
+      data: any;
+      query: any;
+      errors: ReadonlyArray<GraphQLError>
+    }>; queries: {
+      users(variables: UsersQueryVariables, options?: { branch?: string }): Promise<{
+        data: UsersQuery;
+        variables: UsersQueryVariables;
+        query: string
+      }>;
+    }
+  }) {
   }
 
   async isAuthenticated(req: any, res: any): Promise<boolean> {
@@ -34,6 +28,11 @@ export class NextauthAuthManager implements AuthManager {
 
   async isAuthorized(req: any, res: any): Promise<boolean> {
     const session = await getServerSession(req, res, this.nextauthOptions)
-    return (session?.user as any).role === 'user'
+    if (session?.user) {
+      const result = await this.databaseClient.queries.users({ relativePath: 'index.json' })
+      const users = result?.data?.users?.users
+      return !!users.find((user) => user.email === session?.user.email )
+    }
+    return false
   }
 }

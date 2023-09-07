@@ -9,8 +9,12 @@ import { NextAuthProvider } from "tinacms-next-auth/dist/tinacms";
 import { getSession } from 'next-auth/react'
 
 class MyNextAuthProvider extends NextAuthProvider {
+  constructor(props: { name: string, callbackUrl: string }) {
+    super(props);
+  }
+
   async authorize(context?: any): Promise<any> {
-    const session = await getSession(context)
+    const session = await getSession(context);
     return (session?.user as any).role === 'user'
   }
 }
@@ -315,6 +319,44 @@ const config = defineConfig({
             ],
           },
         ],
+      },
+      {
+        label: "Users",
+        name: "users",
+        path: "content/users",
+        format: "json",
+        ui: {
+          global: true,
+          allowedActions: {
+            create: false,
+            delete: false,
+          }
+        },
+        fields: [
+          {
+            type: "object",
+            label: "Users",
+            name: "users",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                label: "Name",
+                name: "name"
+              },
+              {
+                type: "string",
+                label: "Email",
+                name: "email"
+              }
+            ],
+            ui: {
+              itemProps: (item) => {
+                return { label: item?.name };
+              },
+            }
+          }
+        ]
       },
       {
         label: "Authors",

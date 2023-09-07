@@ -1,7 +1,8 @@
 import DiscordProvider from 'next-auth/providers/discord'
 import { AuthOptions } from "next-auth";
 import { RedisUserStore } from "tinacms-next-auth";
-import { NextauthAuthManager, NextauthUserManager } from "./nextauth-auth";
+import { NextauthAuthManager } from "./nextauth-auth";
+import databaseClient from "./__generated__/databaseClient";
 
 const {
   NEXTAUTH_CREDENTIALS_KEY: authCollectionName = "tinacms_users",
@@ -17,19 +18,12 @@ const authOptions : AuthOptions = {
     jwt: async ({ token: jwt, account}) => {
       if (account) { // first time logging in
         try {
-          const email = jwt.email
-          // if user store is empty then we add the user as an admin
-          const users = await userStore.getUsers()
-          if (!users || Object.keys(users).length === 0) {
-            await userStore.addUser(email, '')
+          const result = await databaseClient.queries.users({ relativePath: 'index.json' })
+          const users = result?.data?.users?.users
+          if (users.find((user) => user.email === jwt.email )) {
             jwt.role = 'user'
           } else {
-            const user = await userStore.getUser(email)
-            if (user) {
-              jwt.role = 'user'
-            } else {
-              jwt.role = 'guest'
-            }
+            jwt.role = 'guest'
           }
         } catch (error) {
           console.log(error)
@@ -61,50 +55,9 @@ const authOptions : AuthOptions = {
 
 export { authOptions }
 
-export type User = {
-  id: string
-  email: string
-}
-
-export type UserManager = {
-  listUsers: () => Promise<User[]>
-  createUser: (email: string) => Promise<void>
-  deleteUser: (email: string) => Promise<void>
-}
-
 export type AuthManager = {
   isAuthenticated: (req: any, res: any) => Promise<boolean>
   isAuthorized: (req: any, res: any) => Promise<boolean>
 }
 
-export const authManager = new NextauthAuthManager(authOptions)
-export const userManager = new NextauthUserManager(userStore, authOptions)
-
-export const makeUserManagementApi = (authManager: AuthManager, userManager: UserManager) => {
-  return async (req, res) => {
-    if (req.method !== "POST") {
-      return res.status(405).json({ message: "Method not allowed" })
-    }
-
-    const authenticated = await authManager.isAuthenticated(req, res)
-    if (!authenticated) {
-      return res.status(401).json({ message: "Unauthorized" })
-    }
-
-    const isAuthorized = await authManager.isAuthorized(req, res)
-    if (!isAuthorized) {
-      return res.status(403).json({ message: "Forbidden" })
-    }
-
-    const { user, op } = req.body
-    if (op === 'add') {
-      await userManager.createUser(user.email)
-    } else if (op === 'delete') {
-      await userManager.deleteUser(user.email)
-    } else {
-      return res.status(400).json({ message: "Bad request" })
-    }
-
-    return res.json({ message: "OK" })
-  }
-}
+export const authManager = new NextauthAuthManager(authOptions, databaseClient)
