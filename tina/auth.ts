@@ -1,17 +1,11 @@
 import DiscordProvider from 'next-auth/providers/discord'
 import { AuthOptions } from "next-auth";
-import { RedisUserStore } from "tinacms-next-auth";
 import { NextauthAuthManager } from "./nextauth-auth";
 import databaseClient from "./__generated__/databaseClient";
 
 const {
-  NEXTAUTH_CREDENTIALS_KEY: authCollectionName = "tinacms_users",
   NEXTAUTH_SECRET: secret,
-  KV_REST_API_URL: url,
-  KV_REST_API_TOKEN: token,
 } = process.env;
-
-export const userStore = new RedisUserStore(authCollectionName, { url, token })
 
 const authOptions : AuthOptions = {
   callbacks: {
