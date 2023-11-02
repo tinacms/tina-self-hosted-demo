@@ -3,7 +3,8 @@ import { InferGetStaticPropsType } from "next";
 import { Blocks } from "../components/blocks-renderer";
 import { useTina } from "tinacms/dist/react";
 import { Layout } from "../components/layout";
-import { dbConnection } from "../lib/databaseConnection";
+import databaseClient from '../tina/__generated__/databaseClient'
+import { Global } from "../tina/__generated__/types";
 
 export default function HomePage(
   props: InferGetStaticPropsType<typeof getStaticProps>
@@ -11,14 +12,14 @@ export default function HomePage(
   const { data } = useTina(props);
 
   return (
-    <Layout rawData={data} data={data.global as any}>
+    <Layout rawData={data} data={data.global as Omit<Global, "id" | "_sys" | "_values">}>
       <Blocks {...data.page} />
     </Layout>
   );
 }
 
 export const getStaticProps = async ({ params }) => {
-  const tinaProps = await dbConnection.queries.contentQuery({
+  const tinaProps = await databaseClient.queries.contentQuery({
     relativePath: `${params.filename}.md`,
   });
   const props = {
@@ -31,7 +32,7 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  const pagesListData = await dbConnection.queries.pageConnection();
+  const pagesListData = await databaseClient.queries.pageConnection();
   return {
     paths: pagesListData.data.pageConnection?.edges?.map((page) => ({
       params: { filename: page?.node?._sys.filename },
