@@ -1,4 +1,4 @@
-import { defineConfig } from "tinacms";
+import { defineConfig, LocalAuthProvider } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
 import { featureBlockSchema } from "../components/blocks/features";
 import { heroBlockSchema } from "../components/blocks/hero";
@@ -6,38 +6,17 @@ import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { ColorPickerInput } from "./fields/color";
 import { iconSchema } from "../components/util/icon";
 import { getSession, signIn, signOut } from "next-auth/react";
+import {
+  TinaUserCollection,
+  UsernamePasswordAuthJSProvider,
+} from 'tinacms-authjs/dist/tinacms';
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true"
 const config = defineConfig({
-  contentApiUrlOverride: "/api/gql",
-  admin: {
-    auth: {
-      useLocalAuth: isLocal,
-      customAuth: !isLocal,
-      authenticate: async () => {
-        if (isLocal) {
-          return true
-        }
-        return signIn('Credentials', { callbackUrl: '/admin/index.html' })
-      },
-      getToken: async () => {
-        return { id_token: '' };
-      },
-      getUser: async () => {
-        if (isLocal) {
-          return true
-        }
-        const session = await getSession()
-        return !!session;
-      },
-      logout: async () => {
-        if (isLocal) {
-          return
-        }
-        return signOut({ callbackUrl: '/admin/index.html' })
-      },
-    },
-  },
+  authProvider: isLocal
+    ? new LocalAuthProvider()
+    : new UsernamePasswordAuthJSProvider(),
+  contentApiUrlOverride: "/api/tina/gql",
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
   branch:
     process.env.NEXT_PUBLIC_TINA_BRANCH! || // custom branch env override
@@ -54,6 +33,7 @@ const config = defineConfig({
     tina: {
       publicFolder: "public",
       mediaRoot: "uploads",
+      static: true,
     },
   },
   build: {
@@ -397,6 +377,7 @@ const config = defineConfig({
           },
         ],
       },
+      TinaUserCollection,
     ],
   },
 });
