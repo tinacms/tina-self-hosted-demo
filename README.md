@@ -131,7 +131,7 @@ NEXT_PUBLIC_TINA_CLIENT_ID=***
 ```
 The value for `NEXT_PUBLIC_TINA_CLIENT_ID` can be found in the Tina Cloud dashboard on the "Overview" page for your project.
 
-In your tina configuration, first remove or comment out the `authProvider` property.
+In your Tina configuration, first remove or comment out the `authProvider` property.
 
 Then, confirm that the following property is set in the Tina config:
  
@@ -151,7 +151,7 @@ The GraphQL endpoint is configured to use NextAuth by default. To use Tina Cloud
 The updated 'pages/api/tina/[...routes].ts' file should look like this after the change:
 
 ```js
-import { TinaNodeBackend, LocalBackendAuthProvider } from '@tinacms/datalayer'
+import { TinaNodeBackend, LocalBackendAuthProvider } from '@cms/datalayer'
 import { TinaCloudBackendAuthProvider } from '@tinacms/auth'
 
 import databaseClient from '../../../tina/__generated__/databaseClient'
