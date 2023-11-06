@@ -146,9 +146,8 @@ Lastly, remove or comment out the TinaUserCollection from `schema.collections`.
 ## Updating the Backend
 
 The backend is configured with the `AuthJsBackendAuthProvider` by default. To use Tina Cloud, you will need to update the backend to use the `TinaCloudBackendAuthProvider`.
-The GraphQL endpoint is configured to use NextAuth by default. To use Tina Cloud, you will need to update the endpoint in `pages/api/gql.ts` to use Tina Cloud's auth. 
-
-The updated 'pages/api/tina/[...routes].ts' file should look like this after the change:
+The GraphQL endpoint is configured to use Auth.js by default. To use Tina Cloud, you will need to update the endpoint in `pages/api/tina/[...routes].ts` to use Tina Cloud's auth.
+The updated file should look like this after the change:
 
 ```js
 import { TinaNodeBackend, LocalBackendAuthProvider } from '@cms/datalayer'
