@@ -31,7 +31,7 @@ export const getStaticProps = async ({ params }) => {
   const tinaProps = await databaseClient.queries.blogPostQuery({
     relativePath: `${params.filename}.mdx`,
   });
-  console.log(JSON.stringify({params, tinaProps}))
+
   return {
     props: {
       ...tinaProps,
