@@ -36,7 +36,6 @@
     "@tailwindcss/typography": "^0.5.8",
     "@tinacms/auth": "0.0.0-20231114165841",
     "@tinacms/datalayer": "0.0.0-20231114165841",
-    "@upstash/redis": "^1.21.0",
     "bcryptjs": "^2.4.3",
     "date-fns": "^2.23.0",
     "js-base64": "^3.7.4",
@@ -53,7 +52,7 @@
     "tinacms-authjs": "0.0.0-20231114165841",
     "tinacms-gitprovider-github": "0.0.0-20231114165841",
     "typescript": "^4.5.2",
-    "upstash-redis-level": "1.0.0"
+    "upstash-redis-level": "1.1.1"
   },
   "resolutions": {
     "final-form": "4.20.1"

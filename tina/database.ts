@@ -1,5 +1,4 @@
 import { createDatabase, createLocalDatabase } from '@tinacms/datalayer'
-import { Redis } from '@upstash/redis'
 import { RedisLevel } from 'upstash-redis-level'
 import { GitHubProvider } from 'tinacms-gitprovider-github'
 
@@ -28,10 +27,10 @@ export default isLocal
       token,
     }),
     databaseAdapter: new RedisLevel<string, Record<string, any>>({
-      redis: new Redis({
+      redis: {
         url: process.env.KV_REST_API_URL as string || 'http://localhost:8079',
         token: process.env.KV_REST_API_TOKEN as string || 'example_token',
-      }),
+      },
       debug: process.env.DEBUG === 'true' || false,
     }),
     namespace: branch,
