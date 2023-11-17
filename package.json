@@ -20,15 +20,15 @@
     "postcss": "^8.4.31"
   },
   "dependencies": {
-    "@tinacms/cli": "0.0.0-20231116133956",
-    "@tinacms/datalayer": "0.0.0-20231116133956",
+    "@tinacms/cli": "^1.5.33",
+    "@tinacms/datalayer": "^1.2.29",
     "next": "^14.0.3",
     "next-auth": "^4.24.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "tinacms": "0.0.0-20231116133956",
-    "tinacms-authjs": "0.0.0-20231116133956",
-    "tinacms-gitprovider-github": "0.0.0-20231116133956",
+    "tinacms": "^1.5.24",
+    "tinacms-authjs": "^1.0.1",
+    "tinacms-gitprovider-github": "^1.0.0",
     "typescript": "5.0.4",
     "upstash-redis-level": "^1.1.1"
   }
