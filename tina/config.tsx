@@ -13,6 +13,13 @@ export default defineConfig({
     publicFolder: "public",
     outputFolder: "admin",
   },
+  media: {
+    tina: {
+      mediaRoot: "",
+      publicFolder: "public",
+      static: true,
+    },
+  },
   schema: {
     collections: [
       TinaUserCollection,
