@@ -1,4 +1,4 @@
-import { defineConfig, LocalAuthProvider } from "tinacms";
+import { Collection, defineConfig, LocalAuthProvider } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
 import { featureBlockSchema } from "../components/blocks/features";
 import { heroBlockSchema } from "../components/blocks/hero";
@@ -7,15 +7,15 @@ import { ColorPickerInput } from "./fields/color";
 import { iconSchema } from "../components/util/icon";
 
 import {
+  DefaultAuthJSProvider,
   TinaUserCollection,
-  UsernamePasswordAuthJSProvider,
 } from 'tinacms-authjs/dist/tinacms';
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true"
 const config = defineConfig({
   authProvider: isLocal
     ? new LocalAuthProvider()
-    : new UsernamePasswordAuthJSProvider(),
+    : new DefaultAuthJSProvider(),
   contentApiUrlOverride: "/api/tina/gql",
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
   branch:
@@ -377,7 +377,34 @@ const config = defineConfig({
           },
         ],
       },
-      TinaUserCollection,
+      {
+        ...TinaUserCollection,
+        fields: [
+          {
+            ...TinaUserCollection.fields[0],
+            fields: [
+              {
+                type: 'string',
+                label: 'Username',
+                name: 'username',
+                uid: true,
+                required: true,
+              },
+              {
+                type: 'string',
+                label: 'Name',
+                name: 'name',
+              },
+              {
+                type: 'string',
+                label: 'Email',
+                name: 'email',
+
+              },
+            ]
+          }
+        ]
+      } as Collection,
     ],
   },
 });

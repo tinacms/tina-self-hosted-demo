@@ -1,13 +1,9 @@
 {
   "users": [
     {
-      "name": "Tina Admin",
-      "email": "",
-      "username": "admin",
-      "password": {
-        "value": "admin",
-        "passwordChangeRequired": true
-      }
+      "name": "Kelly Davis",
+      "email": "kldavis4@gmail.com",
+      "username": "kldavis4"
     }
   ]
 }
