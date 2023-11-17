@@ -17,7 +17,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
   "exclude": [
     "node_modules"
@@ -27,6 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".forestry/types.ts",
-    ".forestry/config.ts"
+    ".forestry/config.ts",
+    ".next/types/**/*.ts"
   ]
 }

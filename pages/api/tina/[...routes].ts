@@ -9,12 +9,12 @@ const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 export const NextAuthOptions = TinaAuthJSOptions({
   databaseClient: databaseClient,
   debug: process.env.DEBUG === 'true',
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET!,
   uidProp: 'name',
   providers: [
     DiscordProvider({
-      clientId: process.env.DISCORD_CLIENT_ID,
-      clientSecret: process.env.DISCORD_CLIENT_SECRET,
+      clientId: process.env.DISCORD_CLIENT_ID!,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET!,
     })
   ]
 })
