@@ -1,6 +1,6 @@
 "use client";
 
-import { PageQuery } from "@/tina/__generated__/types";
+import { PageQuery } from "../tina/__generated__/types";
 import Image from "next/image";
 import { tinaField, useTina } from "tinacms/dist/react";
 
