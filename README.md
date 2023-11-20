@@ -1,16 +1,16 @@
 # Tina Self Hosted Demo 🦙
+This is a A Next.js + TinaCMS starter site designed to be hosted on entirely on Vercel (with Markdown in GitHub). Please check out [the docs](https://tina.io/docs/self-hosted/overview/) for more information on self-hosting TinaCMS.
 
-Please check out [this](https://github.com/tinacms/tinacms/discussions/3589) GitHub discussion for more information on self-hosting TinaCMS.
+Watch a 1-min demo [https://www.youtube.com/watch?v=h6LoJS3FFOA](https://www.youtube.com/watch?v=h6LoJS3FFOA)
+
+[![Youtube video](https://github.com/tinacms/tina-self-hosted-demo/assets/776019/de4eac8f-b5da-4e6f-bc96-bbeaee7492e5)]([http://google.com.au/](https://www.youtube.com/watch?v=h6LoJS3FFOA))
 
 # Vercel Quick Start
-
-## Deploy this repository to Vercel
 
 Use the following link to directly deploy this demo to Vercel. You will need a Vercel account and a GitHub personal access token (PAT) with access to the repository (once it has been created).
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo&env=GITHUB_PERSONAL_ACCESS_TOKEN,NEXTAUTH_SECRET,NEXTAUTH_CREDENTIALS_KEY&envDescription=Create%20a%20new%20GitHub%20PAT%20at%20https%3A%2F%2Fgithub.com%2Fsettings%2Fpersonal-access-tokens%2Fnew%20with%20content-access.%20See%20the%20self-hosted%20demo%20README%20for%20more%20information&envLink=https%3A%2F%2Fgithub.com%2Ftinacms%2Ftina-self-hosted-demo%2Fblob%2Fmain%2FREADME.md&project-name=tina-self-hosted-demo&repository-name=tina-self-hosted-demo&stores=%5B%7B%22type%22%3A%22kv%22%7D%5D&)
 
-<!-- [TODO insert youtube video here] -->
 
 ### Environment Variable Setup
 After the repository is created, you will need to do the following steps to get the environment variables setup:
