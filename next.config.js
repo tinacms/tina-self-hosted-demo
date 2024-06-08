@@ -20,4 +20,7 @@ module.exports = {
       },
     ];
   },
+  images: {
+    domains: ['industry.nikon.com'],
+  },
 };

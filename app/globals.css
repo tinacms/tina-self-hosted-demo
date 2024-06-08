@@ -16,12 +16,13 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.section_Divider {
+  margin-bottom: 60px;
+}
+
+.title{
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+  margin-bottom: 40px;
 }
