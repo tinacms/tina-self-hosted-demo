@@ -4,7 +4,7 @@ import {
 } from "tinacms-authjs/dist/tinacms";
 import { defineConfig, LocalAuthProvider } from "tinacms";
 
-import { PageCollection } from "./collections/page";
+import { HomePageCollection } from "./collections/page";
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 
@@ -25,6 +25,6 @@ export default defineConfig({
     },
   },
   schema: {
-    collections: [TinaUserCollection, PageCollection],
+    collections: [TinaUserCollection, HomePageCollection],
   },
 });
