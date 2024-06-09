@@ -2,7 +2,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import cn from "classnames";
+import { cn } from '../../../../utils/cn';
+// import cn from "classnames";
 
 interface IActiveNavLink {
   link: string;

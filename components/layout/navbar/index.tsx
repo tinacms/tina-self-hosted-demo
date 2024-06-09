@@ -5,7 +5,7 @@ import Link from "next/link";
 import ActiveNavLink from "./components/active-link";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState } from "react";
-import cn from "classnames";
+import { cn } from "../../../utils/cn";
 
 export interface IMenu {
     label: string;
@@ -32,8 +32,8 @@ export default function Navbar({ logo, menus }: INavbar) {
                                 menus.map((menu) => <ActiveNavLink
                                     key={menu.label}
                                     link={menu.link}
-                                    className='inline-flex items-center  px-1 pt-1 text-sm font-medium text-gray-900  hover:border-b-2 '
-                                    activeClassName='border-b-2 border-indigo-500'
+                                    className='inline-flex items-center  px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-white hover:border-b-2 hover:border-brandSecondary'
+                                    activeClassName='border-b-2 border-brandSecondary'
                                 >
                                     {menu.label}
                                 </ActiveNavLink>)
@@ -41,7 +41,7 @@ export default function Navbar({ logo, menus }: INavbar) {
                         </div>
                     </div>
                     <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                        <button type="button" className="rounded-full text-md bg-brandSecondary text-white p-2 capitalize hover:opacity-90">
+                        <button type="button" className="rounded-md text-md bg-brandSecondary text-white p-2 capitalize hover:opacity-90">
                             get a demo
                         </button>
                     </div>
@@ -71,7 +71,7 @@ export default function Navbar({ logo, menus }: INavbar) {
                 </div>
                 <div className="border-t border-gray-200 pb-3 pt-4">
                     <div className="flex items-center px-4">
-                        <button type="button" className="relative ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 capitalize">
+                        <button type="button" className="relative ml-auto flex-shrink-0  bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 capitalize">
                             get a demo
                         </button>
                     </div>

@@ -17,7 +17,7 @@ module.exports = {
         brandSecondary: '#3ABEF9'
       },
       animation: {
-        'infinite-scroll': 'infinite-scroll 25s linear infinite',
+        'infinite-scroll': 'infinite-scroll 10s linear infinite',
       },
       keyframes: {
         'infinite-scroll': {

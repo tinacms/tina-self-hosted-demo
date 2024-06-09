@@ -4,9 +4,7 @@ export default function VisionMission() {
     return (
         <div className='flex flex-col gap-8'>
             <div>
-                <h2 className='title'>We&apos;re changing the
-                    <br />
-                    way medical devices are made.</h2>
+                <h2 className='title'>Mission</h2>
                 <p>At RTECH, Our team of experts has a wealth of experience in the industry and is dedicated to delivering the best possible solutions to our clients.</p>
                 <p>With over 13 years of expertise in the medical device manufacturing sector. Founded in 2021 with a mission to provide the highest quality of automated equipment, our team is passionate about building reliable, safe, and efficient automated equipment. Our commitment to excellence is reflected in the quality of our products as well as in our customer service. We strive to continuously improve our products and services to ensure that our customers have the best experience possible.</p>
             </div>
