@@ -1,4 +1,4 @@
-// import { client } from "../tina/__generated__/databaseClient";
+import { client } from "../tina/__generated__/databaseClient";
 
 import Blog from "../components/features/blog";
 import ContactForm from "../components/features/contact-form";
@@ -62,7 +62,8 @@ const blogs: IBlog[] = [
 
 const brandImages = ['/brands/brand_1.webp', '/brands/brand_2.webp', '/brands/brand_3.webp']
 export default async function Home() {
-  // const res = await client.queries.page({ relativePath: "home.md" });
+  const res = await client.queries.home({ relativePath: "home.md" });
+  console.log(res.data.home.menu, 'res')
   return (
     <>
       {/* hero section */}

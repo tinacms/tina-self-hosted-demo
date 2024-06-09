@@ -1,43 +1,45 @@
 import { Collection } from "tinacms";
 
-export const PageCollection: Collection = {
-  name: "page",
-  label: "Page",
+export const HomePageCollection: Collection = {
+  name: "home",
+  label: "Home",
   path: "content/pages",
   format: "md",
+  defaultItem: () => {
+    return {
+      logo: 'logo',
+      menu: [
+        { label: 'Home', link: '/' },
+        { label: 'about', link: '/about' }
+      ]
+
+    }
+  },
   ui: {
     router: () => "/",
   },
   fields: [
     {
-      type: "string",
-      name: "header",
-      label: "Header",
+      type: "image",
+      name: "logo",
+      label: "Logo",
     },
     {
       type: "object",
-      name: "logo",
-      label: "Logo",
+      name: "menu",
+      label: "Menu",
+      list: true,
       fields: [
-        { type: "image", name: "url", label: "URL" },
-        { type: "string", name: "alt", label: "Alt Text" },
+        { type: "string", name: "label" },
+        { type: "string", name: "link" },
       ],
     },
     {
       type: "object",
-      list: true,
-      name: "links",
-      label: "Links",
-      ui: {
-        itemProps: (item) => {
-          return {
-            label: item?.header,
-          };
-        },
-      },
+      name: "demo_button",
+      label: "Demo Button Label",
       fields: [
-        { type: "string", name: "header" },
-        { type: "string", name: "description" },
+        { type: "string", name: "label" },
         { type: "string", name: "url" },
       ],
     },
