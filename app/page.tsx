@@ -1,6 +1,7 @@
 // import { client } from "../tina/__generated__/databaseClient";
 
 import Blog from "../components/features/blog";
+import ContactForm from "../components/features/contact-form";
 import Product from "../components/features/product";
 import { IBlog } from "../types/blog";
 import { IProduct } from "../types/product";
@@ -64,38 +65,53 @@ export default async function Home() {
   // const res = await client.queries.page({ relativePath: "home.md" });
   return (
     <>
+      {/* hero section */}
       <section className="w-full relative section_Divider">
         <video autoPlay loop muted playsInline preload="auto" className="w-full"><source type="video/mp4" src="https://industry.nikon.com/en-us/wp-content/uploads/sites/13/2023/03/1131_NI_APDIS-website-header_19_CBR-2MB.mp4" /></video>
         <HeroBannerText />
       </section>
+
+      {/* products section */}
       <section className="container mx-auto section_Divider">
         <h2 className="title">Products</h2>
         <div className="grid grid-cols-12 gap-4">
           {
-            products.map((product) => <div key={product.id} className="col-span-6">
+            products.map((product) => <div key={product.id} className="col-span-12 md:col-span-6">
               <Product  {...product} />
             </div>
             )
           }
         </div>
       </section>
+
+      {/* blog section */}
       <section className="container mx-auto section_Divider">
-        <h2 className="title">News</h2>
+        <h2 className="title">Blogs</h2>
         <div className="grid grid-cols-12 gap-4">
           {
-            blogs.map((blog) => <div key={blog.id} className="col-span-3 min-h-[300px]" >
+            blogs.map((blog) => <div key={blog.id} className="col-span-6 min-h-[300px] md:col-span-4 lg:col-span-3" >
               <Blog  {...blog} />
             </div>
             )
           }
         </div>
       </section>
+
+      {/* partner section */}
       <section className="container mx-auto section_Divider">
         <h2 className='title'>Trusted by the World most innovative teams</h2>
         <TrustedPartner brandImages={brandImages} />
       </section>
+
+      {/* vision-mission */}
       <section className="container mx-auto section_Divider">
         <VisionMission />
+      </section>
+
+      {/* contact section */}
+      <section className="container mx-auto section_Divider">
+        <h2 className='title'>Contact Us</h2>
+        <ContactForm />
       </section>
     </>
   );

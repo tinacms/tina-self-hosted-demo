@@ -5,3 +5,8 @@ export interface IBlog {
     date: Date;
     description: string;
 }
+export interface IFeatureBlog {
+    id: string;
+    imageUrl: string;
+    title: string
+}

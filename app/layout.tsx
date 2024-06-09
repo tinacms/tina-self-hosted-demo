@@ -1,7 +1,8 @@
-import cn from "classnames";
 import Navbar, { IMenu } from "../components/layout/navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import Footer from "../components/layout/footer";
+import { cn } from "../utils/cn";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,9 +36,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(inter.className ,'relative')}>
+      <body className={cn(inter.className, 'relative')}>
         <Navbar logo="/logo.webp" menus={menus} />
         {children}
+        <Footer />
       </body>
     </html>
   );
