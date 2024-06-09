@@ -1,3 +1,5 @@
+import cn from "classnames";
+import Navbar, { IMenu } from "../components/layout/navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -8,6 +10,24 @@ export const metadata = {
   description: "A Next.js app with TinaCMS",
 };
 
+const menus: IMenu[] = [
+  {
+    label: 'Home',
+    link: '/'
+  },
+  {
+    label: 'Products',
+    link: '/products'
+  },
+  {
+    label: 'Services',
+    link: '/services'
+  },
+  {
+    label: 'Contact Us',
+    link: '/contact-us'
+  },
+]
 export default function RootLayout({
   children,
 }: {
@@ -15,7 +35,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(inter.className ,'relative')}>
+        <Navbar logo="/logo.webp" menus={menus} />
+        {children}
+      </body>
     </html>
   );
 }
