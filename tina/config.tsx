@@ -5,6 +5,7 @@ import {
 import { defineConfig, LocalAuthProvider } from "tinacms";
 
 import { HomePageCollection } from "./collections/page";
+import { FooterCollection } from "./collections/footer";
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 
@@ -25,6 +26,6 @@ export default defineConfig({
     },
   },
   schema: {
-    collections: [TinaUserCollection, HomePageCollection],
+    collections: [TinaUserCollection, HomePageCollection, FooterCollection],
   },
 });

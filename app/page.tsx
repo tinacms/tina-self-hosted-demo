@@ -8,6 +8,7 @@ import { IProduct } from "../types/product";
 import HeroBannerText from "./_components/hero-banner-text";
 import TrustedPartner from "./_components/trusted-partner";
 import VisionMission from "./_components/vision-mission";
+import Image from "next/image";
 
 const products: IProduct[] = [
   {
@@ -67,8 +68,9 @@ export default async function Home() {
   return (
     <>
       {/* hero section */}
-      <section className="w-full relative section_Divider">
-        <video autoPlay loop muted playsInline preload="auto" className="w-full"><source type="video/mp4" src="https://industry.nikon.com/en-us/wp-content/uploads/sites/13/2023/03/1131_NI_APDIS-website-header_19_CBR-2MB.mp4" /></video>
+      <section className="w-full relative section_Divider md:min-h-[776px]">
+        <Image src='https://industry.nikon.com/en-us/wp-content/uploads/sites/13/2023/12/Nikon-Metrology-Innovative-measurement-solutions-for-your-shop-floor.jpg' alt="RTech-banner" width={1024} height={1636} className="md:hidden" />
+        <video autoPlay loop muted playsInline preload="auto" className="w-full hidden md:block min-h-[776px] object-cover"><source type="video/mp4" src="https://industry.nikon.com/en-us/wp-content/uploads/sites/13/2023/03/1131_NI_APDIS-website-header_19_CBR-2MB.mp4" /></video>
         <HeroBannerText />
       </section>
 
@@ -90,7 +92,7 @@ export default async function Home() {
         <h2 className="title">Blogs</h2>
         <div className="grid grid-cols-12 gap-4">
           {
-            blogs.map((blog) => <div key={blog.id} className="col-span-6 min-h-[300px] md:col-span-4 lg:col-span-3" >
+            blogs.map((blog) => <div key={blog.id} className="col-span-12 sm:col-span-6 min-h-[300px] md:col-span-4 lg:col-span-3" >
               <Blog  {...blog} />
             </div>
             )
