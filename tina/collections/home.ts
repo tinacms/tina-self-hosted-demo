@@ -33,5 +33,36 @@ export const HomePageCollection: Collection = {
                 { type: "string", name: "url" },
             ],
         },
+        {
+            type: 'object',
+            name: 'hero-banner',
+            label: 'Hero Banner',
+            fields: [
+                {
+                    type: 'string', name: 'bannerTitle',
+                },
+                {
+                    type: 'string', name: 'bannerDescription',
+                },
+                {
+                    type: 'image', name: 'bannerImage',
+                },
+            ]
+        },
+        {
+            type: 'rich-text',
+            name: 'mission',
+            label: 'Mission',
+        },
+        {
+            type: 'rich-text',
+            name: 'vision',
+            label: 'Vision',
+        },
+        {
+            type: 'rich-text',
+            name: 'technology',
+            label: 'Technology',
+        },
     ],
 };
