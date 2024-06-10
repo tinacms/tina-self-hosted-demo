@@ -1,6 +1,9 @@
 ---
 logo: /logo.webp
 menu:
+  - label: News
+    link: /news
+  - {}
   - label: Home
     link: /
   - label: About
