@@ -4,6 +4,8 @@ menu:
   - {}
   - label: Home
     link: /
+  - label: Products
+    link: /products
   - label: About
     link: /about-us
   - label: Contact Us

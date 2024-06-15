@@ -3,6 +3,7 @@ import Link from "next/link";
 import ActiveNavLink from "./components/active-link";
 import ToggleMenuIcon from "./components/toggle-menu-icon";
 import { HomeQuery } from "../../../tina/__generated__/types";
+import Button from "../../button";
 
 export default function Navbar(props: {
     data: HomeQuery;
@@ -18,6 +19,7 @@ export default function Navbar(props: {
                         <Link href='/' className="flex flex-shrink-0 items-center cursor-pointer">
                             <Image src={logo || ''} alt="RTech Company Logo" className="w-auto h-auto" width={100} height={100} />
                         </Link>
+                    </div>
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                             {
                                 menus?.map((menu) => menu && <ActiveNavLink
@@ -30,11 +32,10 @@ export default function Navbar(props: {
                                 </ActiveNavLink>)
                             }
                         </div>
-                    </div>
                     <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                        <button type="button" className="rounded-md text-md bg-brandSecondary text-white p-2 capitalize hover:opacity-90">
+                        <Button type="button" className="text-md  p-2 capitalize ">
                             get a demo
-                        </button>
+                        </Button>
                     </div>
                     <div className="-mr-2 flex items-center sm:hidden">
                         <ToggleMenuIcon />
@@ -57,9 +58,9 @@ export default function Navbar(props: {
                 </div>
                 <div className="border-t border-gray-200 pb-3 pt-4">
                     <div className="flex items-center px-3">
-                        <button type="button" className="rounded-md text-md bg-brandSecondary text-white p-2 capitalize hover:opacity-90">
+                        <Button type="button" className="text-md p-2 capitalize">
                             get a demo
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>

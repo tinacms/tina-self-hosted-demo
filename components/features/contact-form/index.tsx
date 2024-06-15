@@ -2,6 +2,7 @@
 import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 import Input from '../../form/input'
 import TextArea from '../../form/text-area'
+import Button from '../../button'
 
 export default function ContactForm() {
     return (
@@ -94,12 +95,11 @@ export default function ContactForm() {
                             </div>
                         </div>
                         <div className="mt-8 flex justify-end">
-                            <button
-                                type="submit"
-                                className="rounded-md bg-brandSecondary px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            <Button
+                                className="rounded-md  px-3.5 py-2.5 text-center text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
                                 Send message
-                            </button>
+                            </Button>
                         </div>
                     </div>
                 </form>
