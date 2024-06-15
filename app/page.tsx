@@ -9,27 +9,6 @@ import HeroBannerText from "./_components/hero-banner-text";
 import TrustedPartner from "./_components/trusted-partner";
 import VisionMission from "./_components/vision-mission";
 import Image from "next/image";
-
-const products: IProduct[] = [
-  {
-    description: 'The NEXIV VMZ-S series offers speed and accuracy where high throughput is critical.',
-    id: '1',
-    imageUrl: 'https://industry.nikon.com/en-us/wp-content/uploads/sites/13/2022/01/VMZ-S_Rev1_500.png',
-    title: 'NEXIV VMZ-S Series'
-  },
-  {
-    description: 'The NEXIV VMZ-S series offers speed and accuracy where high throughput is critical.',
-    id: '2',
-    imageUrl: 'https://industry.nikon.com/en-us/wp-content/uploads/sites/13/2022/01/VMZ-S_Rev1_500.png',
-    title: 'NEXIV VMZ-S Series'
-  },
-  {
-    description: 'The NEXIV VMZ-S series offers speed and accuracy where high throughput is critical.',
-    id: '3',
-    imageUrl: 'https://industry.nikon.com/en-us/wp-content/uploads/sites/13/2022/01/VMZ-S_Rev1_500.png',
-    title: 'NEXIV VMZ-S Series'
-  }
-]
 const blogs: IBlog[] = [
   {
     description: 'The NEXIV VMZ-S series offers speed and accuracy where high throughput is critical.',
@@ -63,8 +42,8 @@ const blogs: IBlog[] = [
 
 const brandImages = ['/brands/brand_1.webp', '/brands/brand_2.webp', '/brands/brand_3.webp']
 export default async function Home() {
-  const res = await client.queries.home({ relativePath: "home.md" });
-  console.log(res.data.home.menu, 'res')
+  const productsConnection = await client.queries.productConnection()
+  const products = productsConnection.data.productConnection.edges;
   return (
     <>
       {/* hero section */}
@@ -74,13 +53,20 @@ export default async function Home() {
         <HeroBannerText />
       </section>
 
+
+      {/* partner section */}
+      <section className="container mx-auto section_Divider">
+        <h2 className='title'>Trusted by the World most innovative teams</h2>
+        <TrustedPartner brandImages={brandImages} />
+      </section>
+
       {/* products section */}
       <section className="container mx-auto section_Divider">
         <h2 className="title">Products</h2>
         <div className="grid grid-cols-12 gap-4">
           {
-            products.map((product) => <div key={product.id} className="col-span-12 md:col-span-6">
-              <Product  {...product} />
+            products?.map((product) =>product?.node &&  <div key={product.node?.uniqueId} className="col-span-12 md:col-span-6">
+              <Product  {...product.node} />
             </div>
             )
           }
@@ -92,18 +78,12 @@ export default async function Home() {
         <h2 className="title">Blogs</h2>
         <div className="grid grid-cols-12 gap-4">
           {
-            blogs.map((blog) => <div key={blog.id} className="col-span-12 sm:col-span-6 min-h-[300px] md:col-span-4 lg:col-span-3" >
+            blogs.map((blog) => <div key={blog.id} className="col-span-12 sm:col-span-6 min-h-[300px] lg:col-span-4" >
               <Blog  {...blog} />
             </div>
             )
           }
         </div>
-      </section>
-
-      {/* partner section */}
-      <section className="container mx-auto section_Divider">
-        <h2 className='title'>Trusted by the World most innovative teams</h2>
-        <TrustedPartner brandImages={brandImages} />
       </section>
 
       {/* vision-mission */}

@@ -1,11 +1,11 @@
 import {
-  UsernamePasswordAuthJSProvider,
-  TinaUserCollection,
+  UsernamePasswordAuthJSProvider
 } from "tinacms-authjs/dist/tinacms";
 import { defineConfig, LocalAuthProvider } from "tinacms";
 
-import { HomePageCollection } from "./collections/page";
+import { HomePageCollection } from "./collections/home";
 import { FooterCollection } from "./collections/footer";
+import { ProductCollection } from "./collections/product";
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 
@@ -26,6 +26,6 @@ export default defineConfig({
     },
   },
   schema: {
-    collections: [TinaUserCollection, HomePageCollection, FooterCollection],
+    collections: [HomePageCollection, FooterCollection, ProductCollection],
   },
 });
