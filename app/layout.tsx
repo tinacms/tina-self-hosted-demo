@@ -1,15 +1,15 @@
 import Navbar from "../components/layout/navbar";
-import "./globals.css";
 import { Inter } from "next/font/google";
 import Footer from "../components/layout/footer";
 import { cn } from "../utils/cn";
 import { client } from "../tina/__generated__/databaseClient";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Self Hosted Tina App",
-  description: "A Next.js app with TinaCMS",
+  title: "RTecg- New Generation Automation Company",
+  description: "RTech is well known for there services in automation sector and had great history of successful projects",
 };
 
 export default async function RootLayout({
@@ -17,8 +17,9 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const navbarResponse = await client.queries.home({ relativePath: "home.md" })
+  const navbarResponse = await client.queries.navbar({ relativePath: "navbar.md" })
   const footerResponse = await client.queries.footer({ relativePath: 'footer.md' })
+
   return (
     <html lang="en">
       <body className={cn(inter.className, 'relative')}>

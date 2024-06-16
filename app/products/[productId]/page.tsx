@@ -20,8 +20,8 @@ export default async function ProductDetails(props: { params: { productId: strin
 
 
     return (
-        <div className="bg-white container mx-auto min-h-screen">
-            <div className="max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <div className="bg-white container mx-auto min-h-screen pt-32">
+            <div className="max-w-2xl px-4  sm:px-6  lg:max-w-7xl lg:px-8">
                 <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
                     {/* Image gallery */}
                     <ProductImageSlider images={productImages} />

@@ -1,17 +1,8 @@
 'use client'
 import Image from 'next/image';
-import React, { useState } from 'react'
-import Slider, { Settings } from "react-slick";
+import React from 'react'
 import { cn } from '../../../../utils/cn';
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
-
-const settings: Settings = {
-    dots: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: false,
-    centerPadding: '50px'
-};
 
 interface IProductImageSlider {
     images: string[]
@@ -20,7 +11,7 @@ export default function ProductImageSlider({ images }: IProductImageSlider) {
     return (
         <TabGroup className="flex flex-col-reverse">
             {/* Image selector */}
-            <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
+            <div className="mx-auto mt-6  w-full max-w-2xl sm:block lg:max-w-none">
                 <TabList className="grid grid-cols-4 gap-6">
                     {images.map((image, index) => (
                         <Tab
@@ -30,7 +21,7 @@ export default function ProductImageSlider({ images }: IProductImageSlider) {
                             {({ selected }) => (
                                 <>
                                     <span className="absolute inset-0 overflow-hidden rounded-md">
-                                        <Image src={image} alt="" className="h-full w-full object-cover object-center" height={100} width={100}/>
+                                        <Image src={image} alt="" className="h-full w-full object-cover object-center" height={100} width={100} />
                                     </span>
                                     <span
                                         className={cn(
@@ -54,7 +45,7 @@ export default function ProductImageSlider({ images }: IProductImageSlider) {
                             alt={image}
                             className="h-full w-full object-cover object-center sm:rounded-lg"
                             width={400}
-                            height={100} 
+                            height={100}
                         />
                     </TabPanel>
                 ))}

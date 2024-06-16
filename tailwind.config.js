@@ -14,7 +14,7 @@ module.exports = {
       },
       colors: {
         brandPrimary: '#050C9C',
-        brandSecondary: '#3ABEF9'
+        brandSecondary: 'rgb(37 177 239)'
       },
       animation: {
         'infinite-scroll': 'infinite-scroll 10s linear infinite',

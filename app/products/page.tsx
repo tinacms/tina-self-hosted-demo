@@ -6,8 +6,14 @@ export default async function Products() {
     const productsConnection = await client.queries.productConnection()
     const products = productsConnection.data.productConnection.edges;
 
+    if (!products || products.length === 0) {
+        return <div className='container mx-auto pt-32  min-h-screen '>
+            No Product Founds
+        </div>
+    }
     return (
         <div className='container mx-auto pt-32  min-h-screen '>
+            <h1 className='title'>Products</h1>
             <div className="grid grid-cols-12 gap-4">
                 {
                     products?.map((product) => product?.node && <div key={product.node?.uniqueId} className="col-span-12  md:col-span-6 lg:col-span-4">

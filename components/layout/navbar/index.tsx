@@ -2,15 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import ActiveNavLink from "./components/active-link";
 import ToggleMenuIcon from "./components/toggle-menu-icon";
-import { HomeQuery } from "../../../tina/__generated__/types";
+import { NavbarQuery } from "../../../tina/__generated__/types";
 import Button from "../../button";
 
 export default function Navbar(props: {
-    data: HomeQuery;
+    data: NavbarQuery;
     variables: object;
     query: string;
 }) {
-    const { logo, menu: menus } = props.data.home
+    const { logo, menu: menus } = props.data.navbar
     return (
         <nav className="bg-white shadow fixed top-0 w-full z-10">
             <div className="mx-auto container pl-0  pr-2 sm:px-0">
@@ -20,23 +20,23 @@ export default function Navbar(props: {
                             <Image src={logo || ''} alt="RTech Company Logo" className="w-auto h-auto" width={100} height={100} />
                         </Link>
                     </div>
-                        <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                            {
-                                menus?.map((menu) => menu && <ActiveNavLink
-                                    key={menu.label}
-                                    link={menu.link || ''}
-                                    className='inline-flex items-center  px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-white hover:border-b-2 hover:border-brandSecondary'
-                                    activeClassName='border-b-2 border-brandSecondary'
-                                >
-                                    {menu.label}
-                                </ActiveNavLink>)
-                            }
-                        </div>
-                    <div className="hidden sm:ml-6 sm:flex sm:items-center">
+                    <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        {
+                            menus?.map((menu) => menu && <ActiveNavLink
+                                key={menu.label}
+                                link={menu.link || ''}
+                                className='inline-flex items-center  px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-white hover:border-b-2 hover:border-brandSecondary'
+                                activeClassName='border-b-2 border-brandSecondary'
+                            >
+                                {menu.label}
+                            </ActiveNavLink>)
+                        }
+                    </div>
+                    <Link href='/contact-us' className="hidden sm:ml-6 sm:flex sm:items-center">
                         <Button type="button" className="text-md  p-2 capitalize ">
                             get a demo
                         </Button>
-                    </div>
+                    </Link>
                     <div className="-mr-2 flex items-center sm:hidden">
                         <ToggleMenuIcon />
                     </div>
