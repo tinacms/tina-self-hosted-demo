@@ -3,9 +3,12 @@ import {
 } from "tinacms-authjs/dist/tinacms";
 import { defineConfig, LocalAuthProvider } from "tinacms";
 
-import { HomePageCollection } from "./collections/home";
+import { HomePageCollection } from "./collections/page-collections/home";
 import { FooterCollection } from "./collections/footer";
 import { ProductCollection } from "./collections/product";
+import { BlogCollection } from "./collections/blog";
+import { ServiceCollection } from "./collections/page-collections/service";
+import { NavbarCollection } from "./collections/navbar";
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 
@@ -26,6 +29,6 @@ export default defineConfig({
     },
   },
   schema: {
-    collections: [HomePageCollection, FooterCollection, ProductCollection],
+    collections: [HomePageCollection, FooterCollection, ProductCollection, BlogCollection, ServiceCollection, NavbarCollection],
   },
 });

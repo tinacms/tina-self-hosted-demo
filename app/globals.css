@@ -20,16 +20,21 @@
   margin-bottom: 60px;
 }
 
-.title{
+.title {
   text-align: center;
   font-weight: bold;
-  font-size: 36px;
-  margin-bottom: 20px;
+  font-size: 2.25rem;
+  margin-bottom: 1.25rem;
+}
+.sub_Title {
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.show_Mobile_Menu{
+.show_Mobile_Menu {
   display: block !important;
 }
-.close_Mobile_Menu{
+.close_Mobile_Menu {
   display: none !important;
 }

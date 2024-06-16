@@ -1,8 +1,8 @@
 export interface IBlog {
-    id: string
+    uniqueId: string
     imageUrl: string;
     title: string;
-    date: Date;
+    date: string | null;
     description: string;
 }
 export interface IFeatureBlog {

@@ -1,16 +1,18 @@
 ---
 footerLinks:
-  - label: Blog
-    link: /blog
-  - label: Contact
-    link: /contact
   - label: About
-    link: /about
+    link: /about-us
+  - label: Contact
+    link: /contact-us
+  - label: Blog
+    link: /blogs
+  - label: Service
+    link: /service
 socialMediaIcons:
-  - icon: facebook
-    link: 'https://www.facebook.com/'
   - icon: instagram
     link: 'https://www.instagram.com/'
+  - icon: facebook
+    link: 'https://www.facebook.com/'
 rights: '© 2024 Your Company, Inc. All rights reserved.'
 ---
 

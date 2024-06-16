@@ -50,7 +50,6 @@ export default function Footer(props: {
     query: string;
 }) {
     const { footerLinks, socialMediaIcons, rights } = props.data.footer
-    console.log(rights, 'socials')
     return (
         <footer className="bg-white">
             <div className="mx-auto max-w-7xl overflow-hidden px-6 py-10 sm:pb-6 lg:px-8">
