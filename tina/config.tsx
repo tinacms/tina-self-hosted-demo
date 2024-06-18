@@ -1,4 +1,5 @@
 import {
+  TinaUserCollection,
   UsernamePasswordAuthJSProvider
 } from "tinacms-authjs/dist/tinacms";
 import { defineConfig, LocalAuthProvider } from "tinacms";
@@ -29,6 +30,6 @@ export default defineConfig({
     },
   },
   schema: {
-    collections: [HomePageCollection, FooterCollection, ProductCollection, BlogCollection, ServiceCollection, NavbarCollection],
+    collections: [TinaUserCollection,HomePageCollection, FooterCollection, ProductCollection, BlogCollection, ServiceCollection, NavbarCollection],
   },
 });
