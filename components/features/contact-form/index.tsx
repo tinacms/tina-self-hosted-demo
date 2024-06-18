@@ -1,10 +1,49 @@
-
+"use client"
 import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 import Input from '../../form/input'
 import TextArea from '../../form/text-area'
 import Button from '../../button'
+import { useEffect, useState } from "react";
+import emailjs from 'emailjs-com';
 
 export default function ContactForm() {
+
+    const [formData, setFormData] = useState({
+        first_name: '',
+        last_name: '',
+        email_name: '',
+        company_name: '',
+        msg_name: ''
+    });
+
+    useEffect(() => {
+        emailjs.init("k6rhO5aU6BL4-N8S6");
+    }, []);
+
+    const handleChange = (e: any) => {
+        const { name, value } = e.target;
+        setFormData(prevData => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
+    const validateAndSendEmail = () => {
+        const { first_name, last_name, email_name, company_name, msg_name } = formData;
+        sendEmail();
+    };
+
+    const sendEmail = () => {
+        emailjs.send("service_4c2a44j", "template_aug7m5a", formData)
+        setFormData({
+            first_name: '',
+            last_name: '',
+            email_name: '',
+            company_name: '',
+            msg_name: ''
+        });
+    };
+
     return (
         <div className="relative isolate bg-gray-50">
             <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
@@ -75,34 +114,34 @@ export default function ContactForm() {
                         </dl>
                     </div>
                 </div>
-                <form action="#" method="POST" className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-24">
+                <div className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-24">
                     <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
                         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                             <div className='col-span-2 sm:col-span-1'>
-                                <Input label='First Name' type='text' required />
+                                <Input label='First Name' type='text' required name="first_name" value={formData.first_name} onChange={handleChange} />
                             </div>
                             <div className='col-span-2 sm:col-span-1'>
-                                <Input label='Last Name' type='text' required />
+                                <Input label='Last Name' type='text' required name="last_name" value={formData.last_name} onChange={handleChange} />
                             </div>
                             <div className='col-span-2'>
-                                <Input label='Email' required type='email' />
+                                <Input label='Email' required type='email' name="email_name" value={formData.email_name} onChange={handleChange} />
                             </div>
                             <div className='col-span-2'>
-                                <Input label='Company' type='text' />
+                                <Input label='Company' type='text' name="company_name" value={formData.company_name} onChange={handleChange} />
                             </div>
                             <div className='col-span-2'>
-                                <TextArea label='Write a message' />
+                                <TextArea label='Write a message' name="msg_name" value={formData.msg_name} onChange={handleChange} />
                             </div>
                         </div>
                         <div className="mt-8 flex justify-end">
-                            <Button
-                                className="rounded-md  px-3.5 py-2.5 text-center text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >
+                            <button
+                                className="rounded-md  px-3.5 py-2.5 text-center text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600      bg-brandSecondary text-white border-2 border-transparent hover:border-black hover:bg-transparent hover:text-black rounded-md"
+                                onClick={() => validateAndSendEmail()}>
                                 Send message
-                            </Button>
+                            </button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     )
