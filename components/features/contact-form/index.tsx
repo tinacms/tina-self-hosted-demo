@@ -4,7 +4,8 @@ import Input from '../../form/input'
 import TextArea from '../../form/text-area'
 import Button from '../../button'
 import { useEffect, useState } from "react";
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
+
 
 export default function ContactForm() {
 
@@ -29,11 +30,11 @@ export default function ContactForm() {
     };
 
     const validateAndSendEmail = () => {
-        const { first_name, last_name, email_name, company_name, msg_name } = formData;
         sendEmail();
     };
 
     const sendEmail = () => {
+        // console.log('formData', formData);
         emailjs.send("service_4c2a44j", "template_aug7m5a", formData)
         setFormData({
             first_name: '',
@@ -118,10 +119,10 @@ export default function ContactForm() {
                     <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
                         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                             <div className='col-span-2 sm:col-span-1'>
-                                <Input label='First Name' type='text' required name="first_name" value={formData.first_name} onChange={handleChange} />
+                                <Input label='First Name' required type='text' name="first_name" value={formData.first_name} onChange={handleChange}/>
                             </div>
                             <div className='col-span-2 sm:col-span-1'>
-                                <Input label='Last Name' type='text' required name="last_name" value={formData.last_name} onChange={handleChange} />
+                                <Input label='Last Name' required type='text' name="last_name" value={formData.last_name} onChange={handleChange} />
                             </div>
                             <div className='col-span-2'>
                                 <Input label='Email' required type='email' name="email_name" value={formData.email_name} onChange={handleChange} />
@@ -135,7 +136,7 @@ export default function ContactForm() {
                         </div>
                         <div className="mt-8 flex justify-end">
                             <button
-                                className="rounded-md  px-3.5 py-2.5 text-center text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600      bg-brandSecondary text-white border-2 border-transparent hover:border-black hover:bg-transparent hover:text-black rounded-md"
+                                className="rounded-md  px-3.5 py-2.5 text-center text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600   bg-brandSecondary text-white border-2 border-transparent hover:border-black hover:bg-transparent hover:text-black rounded-md"
                                 onClick={() => validateAndSendEmail()}>
                                 Send message
                             </button>
