@@ -2,46 +2,46 @@
 import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 import Input from '../../form/input'
 import TextArea from '../../form/text-area'
-import Button from '../../button'
+// import Button from '../../button'
 import { useEffect, useState } from "react";
-import emailjs from '@emailjs/browser';
+// import emailjs from '@emailjs/browser';
 
 
 export default function ContactForm() {
 
     const [formData, setFormData] = useState({
-        first_name: '',
-        last_name: '',
-        email_name: '',
-        company_name: '',
-        msg_name: ''
+        firstName: '',
+        lastName: '',
+        email: '',
+        message: ''
     });
-
-    useEffect(() => {
-        emailjs.init("k6rhO5aU6BL4-N8S6");
-    }, []);
-
     const handleChange = (e: any) => {
         const { name, value } = e.target;
-        setFormData(prevData => ({
-            ...prevData,
+        setFormData(prevState => ({
+            ...prevState,
             [name]: value
         }));
     };
 
-    const validateAndSendEmail = () => {
-        sendEmail();
-    };
-
-    const sendEmail = () => {
-        // console.log('formData', formData);
-        emailjs.send("service_4c2a44j", "template_aug7m5a", formData)
-        setFormData({
-            first_name: '',
-            last_name: '',
-            email_name: '',
-            company_name: '',
-            msg_name: ''
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formAction = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfiamMpqLegm2wfFR9bWOfl9ZIBg7sgHS9nIvco1rEOGHc4og/formResponse";
+        const formData = new FormData();
+        formData.append('entry.1697093371', e.target.firstName.value); // Replace 'entry.123456' with actual entry ID for firstName
+        formData.append('entry.489534788', e.target.lastName.value); // Replace 'entry.654321' with actual entry ID for lastName
+        formData.append('entry.2055868742', e.target.email.value); // Replace 'entry.111222' with actual entry ID for email
+        formData.append('entry.780790658', e.target.message.value); // Replace 'entry.333444' with actual entry ID for message
+        // Add any additional fields here
+    
+        fetch(formAction, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors' // Important to avoid CORS issues
+        }).then(response => {
+            console.log('Form submitted', response);
+            // Handle response and reset form or show success message
+        }).catch(error => {
+            console.error('Error submitting form', error);
         });
     };
 
@@ -117,33 +117,36 @@ export default function ContactForm() {
                 </div>
                 <div className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-24">
                     <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
-                        <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-                            <div className='col-span-2 sm:col-span-1'>
-                                <Input label='First Name' required type='text' name="first_name" value={formData.first_name} onChange={handleChange}/>
+                        <form onSubmit={handleSubmit}>
+                            <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                                <div className='col-span-2 sm:col-span-1'>
+                                    <Input label='First Name' required type='text' name="firstName" value={formData.firstName} onChange={handleChange} />
+                                </div>
+                                <div className='col-span-2 sm:col-span-1'>
+                                    <Input label='Last Name' required type='text' name="lastName" value={formData.lastName} onChange={handleChange} />
+                                </div>
+                                <div className='col-span-2'>
+                                    <Input label='Email' required type='email' name="email" value={formData.email} onChange={handleChange} />
+                                </div>
+                                <div className='col-span-2'>
+                                    {/* <Input label='Company' type='text' name="company_name" value={formData.company_name} onChange={handleChange} /> */}
+                                </div>
+                                <div className='col-span-2'>
+                                    <TextArea label='Write a message' name="message" value={formData.message} onChange={handleChange} />
+                                </div>
                             </div>
-                            <div className='col-span-2 sm:col-span-1'>
-                                <Input label='Last Name' required type='text' name="last_name" value={formData.last_name} onChange={handleChange} />
+                            <div className="mt-8 flex justify-end">
+                                <button
+                                    className="rounded-md  px-3.5 py-2.5 text-center text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600   bg-brandSecondary text-white border-2 border-transparent hover:border-black hover:bg-transparent hover:text-black rounded-md"
+                                    type="submit">
+                                    Send message
+                                </button>
                             </div>
-                            <div className='col-span-2'>
-                                <Input label='Email' required type='email' name="email_name" value={formData.email_name} onChange={handleChange} />
-                            </div>
-                            <div className='col-span-2'>
-                                <Input label='Company' type='text' name="company_name" value={formData.company_name} onChange={handleChange} />
-                            </div>
-                            <div className='col-span-2'>
-                                <TextArea label='Write a message' name="msg_name" value={formData.msg_name} onChange={handleChange} />
-                            </div>
-                        </div>
-                        <div className="mt-8 flex justify-end">
-                            <button
-                                className="rounded-md  px-3.5 py-2.5 text-center text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600   bg-brandSecondary text-white border-2 border-transparent hover:border-black hover:bg-transparent hover:text-black rounded-md"
-                                onClick={() => validateAndSendEmail()}>
-                                Send message
-                            </button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     )
 }
+
