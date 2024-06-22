@@ -3,9 +3,7 @@ import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/2
 import Input from '../../form/input'
 import TextArea from '../../form/text-area'
 // import Button from '../../button'
-import { useEffect, useState } from "react";
-// import emailjs from '@emailjs/browser';
-
+import { useState } from "react";
 
 export default function ContactForm() {
 
@@ -13,6 +11,7 @@ export default function ContactForm() {
         firstName: '',
         lastName: '',
         email: '',
+        company: '',
         message: ''
     });
     const handleChange = (e: any) => {
@@ -23,23 +22,26 @@ export default function ContactForm() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
         const formAction = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfiamMpqLegm2wfFR9bWOfl9ZIBg7sgHS9nIvco1rEOGHc4og/formResponse";
+        const formElements = e.target.elements;
         const formData = new FormData();
-        formData.append('entry.1697093371', e.target.firstName.value); // Replace 'entry.123456' with actual entry ID for firstName
-        formData.append('entry.489534788', e.target.lastName.value); // Replace 'entry.654321' with actual entry ID for lastName
-        formData.append('entry.2055868742', e.target.email.value); // Replace 'entry.111222' with actual entry ID for email
-        formData.append('entry.780790658', e.target.message.value); // Replace 'entry.333444' with actual entry ID for message
-        // Add any additional fields here
-    
+        
+        formData.append('entry.1697093371', formElements.firstName.value); 
+        formData.append('entry.489534788', formElements.lastName.value); 
+        formData.append('entry.2055868742', formElements.email.value); 
+        formData.append('entry.1050874073', formElements.company.value);
+        formData.append('entry.780790658', formElements.message.value);
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
+        }
         fetch(formAction, {
             method: 'POST',
             body: formData,
-            mode: 'no-cors' // Important to avoid CORS issues
+            mode: 'no-cors'
         }).then(response => {
             console.log('Form submitted', response);
-            // Handle response and reset form or show success message
         }).catch(error => {
             console.error('Error submitting form', error);
         });
@@ -129,7 +131,7 @@ export default function ContactForm() {
                                     <Input label='Email' required type='email' name="email" value={formData.email} onChange={handleChange} />
                                 </div>
                                 <div className='col-span-2'>
-                                    {/* <Input label='Company' type='text' name="company_name" value={formData.company_name} onChange={handleChange} /> */}
+                                    <Input label='Company' type='text' name="company" value={formData.company} onChange={handleChange} />
                                 </div>
                                 <div className='col-span-2'>
                                     <TextArea label='Write a message' name="message" value={formData.message} onChange={handleChange} />
