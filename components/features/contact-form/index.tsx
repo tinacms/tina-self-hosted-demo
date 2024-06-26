@@ -4,6 +4,7 @@ import Input from '../../form/input'
 import TextArea from '../../form/text-area'
 // import Button from '../../button'
 import { useState } from "react";
+import Spinner from '../../loaders/spinner';
 
 export default function ContactForm() {
 
@@ -14,6 +15,9 @@ export default function ContactForm() {
         company: '',
         message: ''
     });
+    const [isFormSubmitting, setIsFormSubmitting] = useState(false);
+    const [submissionMessage, setSubmissionMessage] = useState('');
+
     const handleChange = (e: any) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -22,29 +26,32 @@ export default function ContactForm() {
         }));
     };
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const formAction = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfiamMpqLegm2wfFR9bWOfl9ZIBg7sgHS9nIvco1rEOGHc4og/formResponse";
-        const formElements = e.target.elements;
-        const formData = new FormData();
-        
-        formData.append('entry.1697093371', formElements.firstName.value); 
-        formData.append('entry.489534788', formElements.lastName.value); 
-        formData.append('entry.2055868742', formElements.email.value); 
-        formData.append('entry.1050874073', formElements.company.value);
-        formData.append('entry.780790658', formElements.message.value);
-        for (var pair of formData.entries()) {
-            console.log(pair[0] + ', ' + pair[1]);
-        }
-        fetch(formAction, {
-            method: 'POST',
-            body: formData,
-            mode: 'no-cors'
-        }).then(response => {
+        setIsFormSubmitting(true);
+        const formAction = "https://docs.google.com/forms/d/e/1FAIpQLSe9PvH-X4uiBDU8RAQ7Tz2Yx_fa4GMxanxp2B4zHA_aM0AMIw/formResponse";
+        const formFields = {
+            'entry.36841487': formData.firstName,
+            'entry.244118586': formData.lastName,
+            'entry.1459667133': formData.email,
+            'entry.623705129': formData.company,
+            'entry.1891614370': formData.message
+        };
+
+        try {
+            const response = await fetch(formAction, {
+                method: 'POST',
+                body: new URLSearchParams(formFields),
+                mode: 'no-cors' // Note: 'no-cors' mode means the response is an opaque object
+            });
             console.log('Form submitted', response);
-        }).catch(error => {
+            setSubmissionMessage('Thank you for your message. We will get back to you soon!');
+        } catch (error) {
             console.error('Error submitting form', error);
-        });
+            setSubmissionMessage('Failed to send message. Please try again later.');
+        } finally {
+            setIsFormSubmitting(false);
+        }
     };
 
     return (
@@ -117,9 +124,9 @@ export default function ContactForm() {
                         </dl>
                     </div>
                 </div>
-                <div className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-24">
-                    <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
-                        <form onSubmit={handleSubmit}>
+                <div className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-24 m-auto">
+                    <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg ">
+                        {!submissionMessage && <form onSubmit={handleSubmit}>
                             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                                 <div className='col-span-2 sm:col-span-1'>
                                     <Input label='First Name' required type='text' name="firstName" value={formData.firstName} onChange={handleChange} />
@@ -139,16 +146,22 @@ export default function ContactForm() {
                             </div>
                             <div className="mt-8 flex justify-end">
                                 <button
-                                    className="rounded-md  px-3.5 py-2.5 text-center text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600   bg-brandSecondary text-white border-2 border-transparent hover:border-black hover:bg-transparent hover:text-black rounded-md"
-                                    type="submit">
-                                    Send message
+                                    className="rounded-md  px-3.5 py-2.5 text-center text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600   bg-brandSecondary text-white border-2 border-transparent hover:border-black hover:bg-transparent hover:text-black"
+                                    type="submit"
+                                    disabled={isFormSubmitting}
+                                >
+                                    {isFormSubmitting ? <Spinner /> : 'Send message'}
                                 </button>
                             </div>
-                        </form>
+                        </form>}
+                        {
+                            <p className='flex justify-center items-center h-full'>
+                                {!!submissionMessage && submissionMessage}
+                            </p>
+                        }
                     </div>
                 </div>
             </div>
         </div>
     )
 }
-
