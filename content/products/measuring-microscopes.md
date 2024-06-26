@@ -1,5 +1,5 @@
 ---
-uniqueId: '1'
+uniqueId: measuring-microscopes
 productImages:
   - /products\1.png
 title: Measuring Microscopes

@@ -4,7 +4,6 @@ import Footer from "../components/layout/footer";
 import { cn } from "../utils/cn";
 import { client } from "../tina/__generated__/databaseClient";
 import "./globals.css";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {

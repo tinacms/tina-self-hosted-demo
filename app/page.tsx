@@ -19,11 +19,11 @@ export default async function Home() {
     partnerImage: partner?.partnerImage || ''
   })) || []
   //products
-  const productsConnection = await client.queries.productConnection({ first: 5 })
+  const productsConnection = await client.queries.productConnection({ first: 8 })
   const products = productsConnection.data.productConnection.edges;
 
   //blogs
-  const blogsConnection = await client.queries.blogConnection({ first: 5 })
+  const blogsConnection = await client.queries.blogConnection({ first: 3 })
   const blogs = blogsConnection.data.blogConnection.edges || []
   return (
     <>
@@ -37,14 +37,14 @@ export default async function Home() {
 
       {/* partner section */}
       <section className="container mx-auto section_Divider">
-        <h2 className='title'>{partners?.title}</h2>
+        <h2 className='text-center font-extrabold mb-1'>{partners?.title}</h2>
         <TrustedPartner partners={partnersList} />
       </section>
 
       {/* products section */}
       <section className="container mx-auto section_Divider">
         <h2 className="title">Products</h2>
-        <div className="grid grid-cols-12 gap-4">
+        <div className="grid grid-cols-12 gap-5">
           {
             products?.map((product) => product?.node && <div key={product.node?.uniqueId} className="col-span-12 md:col-span-6">
               <Product  {...product.node} />
@@ -78,7 +78,7 @@ export default async function Home() {
 
       {/* vision-mission-technology */}
       <section className="container mx-auto section_Divider">
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 ">
           <Mission description={mission?.missionDescription} title={mission?.missionTitle || ''} />
           <Vision description={vision?.visionDescription} title={vision?.visionTitle || ''} />
           <Technology description={technology?.technologyDescription} title={technology?.technologyTitle || ''} />

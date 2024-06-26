@@ -7,7 +7,7 @@ interface IFeatureBlogs {
 }
 export default function FeatureBlogs({ featureBlogs }: IFeatureBlogs) {
     return (
-        <div className='flex flex-col gap-4'>
+        <div className='flex lg:flex-col gap-4'>
             {featureBlogs.map((featureBlog) => <FeatureBlog key={featureBlog.id} {...featureBlog} />)}
         </div>
     )

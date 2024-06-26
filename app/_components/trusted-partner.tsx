@@ -15,7 +15,7 @@ export default function TrustedPartner({ partners }: ITrustedPartner) {
                 {
                     partners.map(({ partnerImage, partnerName }, index) =>
                         <li key={index}>
-                            <Image src={partnerImage} alt={partnerName} width={100} height={100} />
+                            <Image src={partnerImage} alt={partnerName} width={150} height={100} />
                         </li>)
                 }
             </ul>
@@ -23,7 +23,7 @@ export default function TrustedPartner({ partners }: ITrustedPartner) {
                 {
                     partners.map(({ partnerImage, partnerName }, index) =>
                         <li key={index}>
-                            <Image src={partnerImage} alt={partnerName} width={100} height={100} />
+                            <Image src={partnerImage} alt={partnerName} width={150} height={100} />
                         </li>)
                 }
             </ul>
@@ -31,7 +31,7 @@ export default function TrustedPartner({ partners }: ITrustedPartner) {
                 {
                     partners.map(({ partnerImage, partnerName }, index) =>
                         <li key={index}>
-                            <Image src={partnerImage} alt={partnerName} width={100} height={100} />
+                            <Image src={partnerImage} alt={partnerName} width={150} height={100} />
                         </li>)
                 }
             </ul>
@@ -39,7 +39,7 @@ export default function TrustedPartner({ partners }: ITrustedPartner) {
                 {
                     partners.map(({ partnerImage, partnerName }, index) =>
                         <li key={index}>
-                            <Image src={partnerImage} alt={partnerName} width={100} height={100} />
+                            <Image src={partnerImage} alt={partnerName} width={150} height={100} />
                         </li>)
                 }
             </ul>
