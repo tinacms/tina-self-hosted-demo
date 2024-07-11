@@ -16,8 +16,8 @@ export default function Navbar(props: {
             <div className="pl-0  pr-2 sm:px-0">
                 <div className="container mx-auto flex h-20 justify-between">
                     <div className="flex">
-                        <Link href='/' className="flex  flex-shrink-0 items-center cursor-pointer">
-                            <Image src={logo || ''} alt="RTech Company Logo" className="w-auto lg:h-full h-auto" width={100} height={100} />
+                        <Link href='/' className="flex flex-shrink-0 items-center cursor-pointer">
+                            <Image src={logo || ''} alt="RTech Company Logo" className="h-16 w-auto" width={100} height={100} />
                         </Link>
                     </div>
                     <div className="hidden sm:ml-6 sm:flex sm:space-x-8">

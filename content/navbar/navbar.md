@@ -1,5 +1,5 @@
 ---
-logo: /logo.webp
+logo: /logo.png
 menu:
   - label: Home
     link: /
@@ -12,4 +12,3 @@ menu:
   - label: Contact Us
     link: /contact-us
 ---
-
