@@ -51,7 +51,7 @@ export default function Footer(props: {
 }) {
     const { footerLinks, socialMediaIcons, rights } = props.data.footer
     return (
-        <footer className="bg-white">
+        <footer className="bg-gray-50 border-t">
             <div className="mx-auto max-w-7xl overflow-hidden px-6 py-10 sm:pb-6 lg:px-8">
                 <nav className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
                     {footerLinks?.map((footerLink) => (

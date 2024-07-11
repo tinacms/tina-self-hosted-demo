@@ -41,11 +41,11 @@ export default function ProductDisclosures({ disclosures }: IProductDisclosures)
                                     </span>
                                 </DisclosureButton>
                             </h3>
-                            <DisclosurePanel as="div" className="prose prose-sm pb-6">
-                            {/* <TinaMarkdown content={disclosure.features} /> */}
+                            <DisclosurePanel as="div" className="prose prose-sm pl-6 pb-6 text-sm text-gray-600">
+                                {/* <TinaMarkdown content={disclosure.features} /> */}
                                 <ul role="link">
                                     {disclosure.features?.map((feature) => (
-                                        <li key={feature} style={{listStyle:'disc'}}>{feature}</li>
+                                        <li key={feature} style={{ listStyle: 'disc' }}>{feature}</li>
                                     ))}
                                 </ul>
                             </DisclosurePanel>

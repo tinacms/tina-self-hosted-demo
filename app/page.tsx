@@ -50,7 +50,7 @@ export default async function Home() {
         <p className="mx-auto mt-2 max-w-3xl text-center text-lg leading-8 text-gray-600">
           Precision, Speed, and Reliability: The RTECH Advantage in Medical Device Production
         </p>
-        <div className="mt-20 grid grid-cols-12 gap-5">
+        <div className="mt-20 grid grid-cols-12 gap-6">
           {
             products?.map((product) => product?.node && <div key={product.node?.uniqueId} className="col-span-12 md:col-span-6">
               <Product  {...product.node} />

@@ -11,7 +11,7 @@ export default function ProductImageSlider({ images }: IProductImageSlider) {
     return (
         <TabGroup className="flex flex-col-reverse">
             {/* Image selector */}
-            <div className="mx-auto mt-6  w-full max-w-2xl sm:block lg:max-w-none">
+            <div className="mx-auto mt-10  w-full max-w-2xl sm:block lg:max-w-none">
                 <TabList className="grid grid-cols-4 gap-6">
                     {images.map((image, index) => (
                         <Tab
@@ -25,7 +25,7 @@ export default function ProductImageSlider({ images }: IProductImageSlider) {
                                     </span>
                                     <span
                                         className={cn(
-                                            selected ? 'ring-brandSecondary-500' : 'ring-transparent',
+                                            selected ? 'ring-brandSecondary-600' : 'ring-transparent',
                                             'pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2'
                                         )}
                                         aria-hidden="true"

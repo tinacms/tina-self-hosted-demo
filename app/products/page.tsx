@@ -14,7 +14,7 @@ export default async function Products() {
     return (
         <div className='container mx-auto pt-32  min-h-screen '>
             <h1 className='title'>Products</h1>
-            <div className="grid grid-cols-12 gap-4">
+            <div className="grid grid-cols-12 gap-6">
                 {
                     products?.map((product) => product?.node && <div key={product.node?.uniqueId} className="col-span-12 md:col-span-6">
                         <Product  {...product.node} />

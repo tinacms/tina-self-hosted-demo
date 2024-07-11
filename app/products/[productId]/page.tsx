@@ -20,14 +20,14 @@ export default async function ProductDetails(props: { params: { productId: strin
     const productImages = product.productImages?.map((image) => image || '') || []
     return (
         <div className="bg-white container mx-auto min-h-screen pt-32">
-            <div className="max-w-2xl px-4  sm:px-6  lg:max-w-7xl lg:px-8">
-                <div className="mb-16 flex justify-center">
+            <div className="px-4  sm:px-6 lg:px-8">
+                <div className="mb-16 flex">
                     <Breadcrumb list={[
                         { name: 'Products', link: '/products' },
                         { name: product.title || '' }
                     ]} />
                 </div>
-                <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
+                <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-14">
                     {/* Image gallery */}
                     <ProductImageSlider images={productImages} />
 
@@ -37,7 +37,7 @@ export default async function ProductDetails(props: { params: { productId: strin
                         <div className="mt-3">
                             <h2 className="sr-only">Product information</h2>
                         </div>
-                        <div className="mt-6">
+                        <div className="mt-6 text-gray-600">
                             <h3 className="sr-only">Description</h3>
                             <TinaMarkdown content={product.description} />
                         </div>
