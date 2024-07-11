@@ -28,7 +28,7 @@ export default async function Home() {
   return (
     <>
       {/* hero section */}
-      <section className="w-full relative section_Divider md:min-h-[776px]">
+      <section className="w-full relative  md:min-h-[776px]">
         <Image src='https://industry.nikon.com/en-us/wp-content/uploads/sites/13/2023/12/Nikon-Metrology-Innovative-measurement-solutions-for-your-shop-floor.jpg' alt="RTech-banner" width={1024} height={1636} className="md:hidden" />
         <video autoPlay loop muted playsInline preload="auto" className="w-full hidden md:block min-h-[776px] object-cover"><source type="video/mp4" src="https://industry.nikon.com/en-us/wp-content/uploads/sites/13/2023/03/1131_NI_APDIS-website-header_19_CBR-2MB.mp4" /></video>
         <HeroBannerText description={heroBanner?.heroBannerDescription || ''} title={heroBanner?.heroBannerTitle || ''} />
@@ -36,7 +36,7 @@ export default async function Home() {
 
 
       {/* partner section */}
-      <section className="container mx-auto section_Divider">
+      <section className="container mx-auto bg-slate-50 py-20 ">
         <h2 className="text-center text-lg font-semibold leading-8 text-gray-900">
           {partners?.title}
         </h2>
@@ -44,9 +44,13 @@ export default async function Home() {
       </section>
 
       {/* products section */}
-      <section className="container mx-auto section_Divider">
-        <h2 className="title">Products</h2>
-        <div className="grid grid-cols-12 gap-5">
+      <section className="container mx-auto mt-20 section_Divider">
+        <h2 className="text-lg font-semibold leading-7 text-brandSecondary text-center">Our Products</h2>
+        <h2 className="title">Equipments that set you up for success</h2>
+        <p className="mx-auto mt-2 max-w-3xl text-center text-lg leading-8 text-gray-600">
+          Precision, Speed, and Reliability: The RTECH Advantage in Medical Device Production
+        </p>
+        <div className="mt-20 grid grid-cols-12 gap-5">
           {
             products?.map((product) => product?.node && <div key={product.node?.uniqueId} className="col-span-12 md:col-span-6">
               <Product  {...product.node} />

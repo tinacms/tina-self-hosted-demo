@@ -10,7 +10,7 @@ export default function Product(props: ProductQuery['product']) {
             <Image src={productImages?.[0] || ''} height={600} width={400} alt={title || ''} className='m-auto transition scale-1 hover:scale-105 duration-200 ease-in-out flex-1' />
             <div className=' flex-1 flex flex-col gap-8 justify-between ' >
                 <h2 className='text-4xl font-semibold tracking-wide'>{title}</h2>
-                <div className='text-gray-600'>
+                <div className='text-gray-500'>
                     <TinaMarkdown content={overviewDescription} />
                 </div>
 
