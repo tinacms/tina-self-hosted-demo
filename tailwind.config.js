@@ -5,16 +5,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {
-    container: {
-      padding: {
-        DEFAULT: '1.25rem',
-        sm: '2rem',
-        lg: '4rem',
-        xl: '5rem',
-      },
-    },
-   
+  theme: {   
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
