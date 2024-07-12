@@ -44,12 +44,12 @@ export default async function Home() {
       </section>
 
       {/* products section */}
-      <section className="container mx-auto section_Divider bg-slate-50 py-20">
+      <section className="container mx-auto border-t py-20">
         <div className="flex flex-col text-center items-center">
           <h2 className="text-lg font-semibold leading-7 text-brandSecondary">Our Products</h2>
-          <h2 className="title max-w-3xl tracking-tight leading-tight">Experience the future of Medical Device Manufacturing</h2>
+          <h2 className="title max-w-3xl tracking-tight leading-tight">Cutting-edge, Reliable, Affordable.</h2>
           <p className="max-w-3xl text-lg text-gray-600">
-            Precision, Speed, and Reliability: The RTECH Advantage in Medical Device Production
+            Experience the future of Medical Device Manufacturing
           </p>
         </div>
 
@@ -64,14 +64,17 @@ export default async function Home() {
       </section>
 
       {/* blog section */}
-      <section className="container mx-auto section_Divider">
-        <h2 className="title">Blogs</h2>
-        <div className="grid grid-cols-12 gap-4">
+      <section className="bg-[#f6efdf] py-14">
+        {/* <h2 className="title">Blogs</h2> */}
+        <div>
+          <h2 className="underline underline-offset-8 decoration-[#f7a81b] text-[#17458f] title">Latest News</h2>
+        </div>
+        <div className="grid grid-cols-12 gap-6  max-w-7xl  mx-auto lg:px-0 sm:px-8">
           {
             blogs.map((blog) => {
               const blogNode = blog?.node
               if (!blogNode || !blogNode.uniqueId) return null;
-              return <div key={blogNode.uniqueId} className="col-span-12 sm:col-span-6 min-h-[300px] lg:col-span-4" >
+              return <div key={blogNode.uniqueId} className="col-span-12 md:col-span-6 lg:col-span-4" >
                 <Blog
                   date={blogNode.date || blogNode.createdAt || null}
                   uniqueId={blogNode.uniqueId}
