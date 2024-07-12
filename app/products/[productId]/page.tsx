@@ -20,7 +20,7 @@ export default async function ProductDetails(props: { params: { productId: strin
     const productImages = product.productImages?.map((image) => image || '') || []
     return (
         <div className="bg-white container mx-auto min-h-screen pt-32">
-            <div className="px-4  sm:px-6 lg:px-8">
+            <div className="">
                 <div className="mb-16 flex">
                     <Breadcrumb list={[
                         { name: 'Products', link: '/products' },

@@ -6,9 +6,9 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 export default function Product(props: ProductQuery['product']) {
     const { uniqueId, productImages, title, overviewDescription } = props
     return (
-        <div className='p-12 h-full flex flex-col gap-8 bg-gray-100 rounded-md transition duration-300 ease-in-out hover:scale-[1.03]'>
-            <Image src={productImages?.[0] || ''} height={600} width={400} alt={title || ''} className='m-auto flex-1' />
-            <div className=' flex-1 flex flex-col gap-8 justify-between ' >
+        <div className='h-full flex flex-col gap-8 bg-slate-100 rounded-md transition duration-300 ease-in-out hover:scale-[1.03]'>
+            <Image src={productImages?.[0] || ''} height={600} width={500} alt={title || ''} className='mt-10 mx-auto flex-1' />
+            <div className='p-12 flex-1 flex flex-col gap-6 justify-between ' >
                 <h2 className='text-4xl font-semibold tracking-wide'>{title}</h2>
                 <div className='text-gray-500'>
                     <TinaMarkdown content={overviewDescription} />

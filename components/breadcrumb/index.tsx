@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react'
 import { cn } from '../../utils/cn';
-import { ChevronRightIcon, HomeIcon } from '@heroicons/react/20/solid';
+import { ChevronRightIcon, HomeIcon } from '@heroicons/react/24/outline';
 
 export interface IBreadcrumbListItem {
   name: string;
@@ -22,7 +22,7 @@ export default function Breadcrumb({ list }: IBreadcrumb) {
       {
         list.map((breadcrumbItem, index) =>
 
-          <div key={breadcrumbItem.name} className="flex gap-2 justify-between items-center">
+          <div key={breadcrumbItem.name} className="flex text-sm gap-2 justify-between items-center">
             <ChevronRightIcon aria-hidden="true" className="h-5 w-5 flex-shrink-0 text-gray-400" />
             {
               breadcrumbItem.link ? <Link href={breadcrumbItem.link} className='hover:underline text-gray-500 hover:text-gray-700'> {breadcrumbItem.name}</Link> : breadcrumbItem.name
