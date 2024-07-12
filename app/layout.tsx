@@ -21,7 +21,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={cn(inter.className, 'relative')}>
+      <body className={cn(inter.className, 'relative text-[#0a2540]')}>
         <Navbar data={navbarResponse.data} query={navbarResponse.query} variables={navbarResponse.variables} />
         {children}
         <Footer data={footerResponse.data} query={footerResponse.query} variables={footerResponse.variables} />
