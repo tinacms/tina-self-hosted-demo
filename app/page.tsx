@@ -98,7 +98,7 @@ export default async function Home() {
       </section>
 
       {/* contact section */}
-      <section className="container mx-auto section_Divider">
+      <section className="section_Divider">
         <ContactForm />
       </section>
     </>
