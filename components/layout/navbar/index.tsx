@@ -43,22 +43,22 @@ export default function Navbar(props: {
                 </div>
             </div>
 
-            <div className='hidden' id="mobile-menu">
-                <div className="space-y-1 pb-3 pt-2">
+            <div className='hidden min-h-screen border-t' id="mobile-menu">
+                <div className="mt-12 divide-y-2 divide-gray-100">
                     {
                         menus?.map((menu) => menu && <ActiveNavLink
                             key={menu.label}
                             link={menu.link || ''}
-                            className="block py-2 pl-3 pr-4 text-base font-medium"
-                            activeClassName='border-indigo-500 text-indigo-700 border-l-4'
+                            className="block px-5 py-6 text-2xl font-medium"
+                            activeClassName='border-brandSecondary border-l-4'
                         >
                             {menu.label}
                         </ActiveNavLink>)
                     }
                 </div>
-                <div className="border-t border-gray-200 pb-3 pt-4">
+                <div className="border-t border-gray-200 py-6">
                     <div className="flex items-center px-3">
-                        <Button type="button" className="text-md p-2 capitalize">
+                        <Button type="button" className="w-full text-md p-2 capitalize">
                             get a demo
                         </Button>
                     </div>
