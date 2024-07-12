@@ -36,7 +36,7 @@ export default async function Home() {
 
 
       {/* partner section */}
-      <section className="container mx-auto bg-slate-50 py-20 ">
+      <section className="container mx-auto  py-12 ">
         <h2 className="text-center text-lg font-semibold leading-8 text-gray-900">
           {partners?.title}
         </h2>
@@ -44,12 +44,15 @@ export default async function Home() {
       </section>
 
       {/* products section */}
-      <section className="container mx-auto mt-20 section_Divider">
-        <h2 className="text-lg font-semibold leading-7 text-brandSecondary text-center">Our Products</h2>
-        <h2 className="title">Equipments that set you up for success</h2>
-        <p className="mx-auto mt-2 max-w-3xl text-center text-lg leading-8 text-gray-600">
-          Precision, Speed, and Reliability: The RTECH Advantage in Medical Device Production
-        </p>
+      <section className="container mx-auto section_Divider bg-slate-50 py-20">
+        <div className="flex flex-col text-center items-center">
+          <h2 className="text-lg font-semibold leading-7 text-brandSecondary">Our Products</h2>
+          <h2 className="title max-w-3xl tracking-tight leading-tight">Experience the future of Medical Device Manufacturing</h2>
+          <p className="max-w-3xl text-lg text-gray-600">
+            Precision, Speed, and Reliability: The RTECH Advantage in Medical Device Production
+          </p>
+        </div>
+
         <div className="mt-20 grid grid-cols-12 gap-5">
           {
             products?.map((product) => product?.node && <div key={product.node?.uniqueId} className="col-span-12 md:col-span-6">
@@ -93,7 +96,6 @@ export default async function Home() {
 
       {/* contact section */}
       <section className="container mx-auto section_Divider">
-        <h2 className='title'>Contact Us</h2>
         <ContactForm />
       </section>
     </>

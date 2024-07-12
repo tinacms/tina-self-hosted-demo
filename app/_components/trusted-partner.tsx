@@ -14,9 +14,9 @@ export default function TrustedPartner({ partners }: ITrustedPartner) {
             {partners.map(({ partnerImage, partnerName }, index) =>
 
                 <img src={partnerImage} alt={partnerName}
-                    width={158}
-                    height={48}
-                    className="max-h-24  object-contain" />
+                    width={180}
+                    height={44}
+                    className="max-h-36  object-contain" />
             )
             }
 
