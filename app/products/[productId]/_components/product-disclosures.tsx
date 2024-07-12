@@ -3,6 +3,7 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { cn } from '../../../../utils/cn';
+import { FadeIn, FadeInStagger } from '../../../../components/FadeIn';
 // import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
 export interface IProductDisclosure {
@@ -14,11 +15,11 @@ interface IProductDisclosures {
 }
 export default function ProductDisclosures({ disclosures }: IProductDisclosures) {
     return (
-        <div className="divide-y divide-gray-200 border-t">
+        <FadeInStagger className="divide-y divide-gray-200 border-t">
             {disclosures?.map((disclosure) => (disclosure &&
                 <Disclosure as="div" key={disclosure.title}>
                     {({ open }) => (
-                        <>
+                        <FadeIn >
                             <h3>
                                 <DisclosureButton className="group relative flex w-full items-center justify-between py-6 text-left">
                                     <span
@@ -49,10 +50,10 @@ export default function ProductDisclosures({ disclosures }: IProductDisclosures)
                                     ))}
                                 </ul>
                             </DisclosurePanel>
-                        </>
+                        </FadeIn>
                     )}
                 </Disclosure>
             ))}
-        </div>
+        </FadeInStagger>
     );
 }

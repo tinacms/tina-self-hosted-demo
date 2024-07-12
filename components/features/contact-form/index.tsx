@@ -5,6 +5,7 @@ import TextArea from '../../form/text-area'
 // import Button from '../../button'
 import { useState } from "react";
 import Spinner from '../../loaders/spinner';
+import { FadeIn } from '../../FadeIn';
 
 export default function ContactForm() {
 
@@ -56,7 +57,7 @@ export default function ContactForm() {
 
     return (
         <div className="relative isolate">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
+            <FadeIn className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="relative px-6 pb-20 pt-24 sm:pt-32 lg:static lg:px-8 lg:py-24">
                     <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
                         <div className="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden bg-gray-100 ring-1 ring-gray-900/10 lg:w-1/2">
@@ -161,7 +162,7 @@ export default function ContactForm() {
                         }
                     </div>
                 </div>
-            </div>
+            </FadeIn>
         </div>
     )
 }

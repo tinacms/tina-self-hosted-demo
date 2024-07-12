@@ -4,6 +4,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import ProductImageSlider from './_components/product-image-slider'
 import Breadcrumb from '../../../components/breadcrumb'
 import AddToCartButton from './_components/add-to-cart-button'
+import { FadeIn } from '../../../components/FadeIn'
 
 export default async function ProductDetails(props: { params: { productId: string } }) {
 
@@ -27,7 +28,7 @@ export default async function ProductDetails(props: { params: { productId: strin
                         { name: product.title || '' }
                     ]} />
                 </div>
-                <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-14">
+                <FadeIn className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-14">
                     {/* Image gallery */}
                     <ProductImageSlider images={productImages} />
 
@@ -51,7 +52,7 @@ export default async function ProductDetails(props: { params: { productId: strin
                             <AddToCartButton product={JSON.parse(JSON.stringify(product))} />
                         </div>
                     </div>
-                </div>
+                </FadeIn>
             </div>
         </div>
     )

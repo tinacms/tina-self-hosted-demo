@@ -8,6 +8,7 @@ import Image from "next/image";
 import Mission from "./_components/mission";
 import Vision from "./_components/vision";
 import Technology from "./_components/technology";
+import { FadeIn, FadeInStagger } from "../components/FadeIn";
 
 export default async function Home() {
 
@@ -40,7 +41,9 @@ export default async function Home() {
         <h2 className="text-center text-lg font-semibold leading-8 text-gray-900">
           {partners?.title}
         </h2>
-        <TrustedPartner partners={partnersList} />
+        <FadeInStagger faster={true}>
+          <TrustedPartner partners={partnersList} />
+        </FadeInStagger>
 
       </section>
 
@@ -55,65 +58,73 @@ export default async function Home() {
             className="aspect-[1404/400] w-[80.75rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20"
           />
         </div>
-        <div className="flex flex-col text-center items-center">
+        <FadeIn className="flex flex-col text-center items-center">
           <h2 className="text-lg font-semibold leading-7 text-brandSecondary">Our Products</h2>
           <h2 className="title max-w-3xl tracking-tight leading-tight">Cutting-edge, Reliable, Affordable.</h2>
           <p className="max-w-3xl text-lg text-gray-600">
             Experience the future of Medical Device Manufacturing
           </p>
-        </div>
+        </FadeIn>
 
-        <div className="mt-20 grid grid-cols-12 gap-5">
+        <FadeInStagger faster className="mt-20 grid grid-cols-12 gap-5">
           {
-            products?.map((product) => product?.node && <div key={product.node?.uniqueId} className="col-span-12 md:col-span-6">
+            products?.map((product) => product?.node && <FadeIn key={product.node?.uniqueId} className="col-span-12 md:col-span-6">
               <Product  {...product.node} />
-            </div>
+            </FadeIn>
             )
           }
-        </div>
+        </FadeInStagger>
       </section>
 
       {/* blog section */}
       <div className="bg-[#FEF8EA] ">
         <section className="container mx-auto py-20">
-          <h2 className="underline underline-offset-8 decoration-[#f7a81b] title">Latest News</h2>
+          <FadeIn>
+            <h2 className="underline underline-offset-8 decoration-[#f7a81b] title">Latest News</h2>
+          </FadeIn>
 
-          <div className="grid grid-cols-12 gap-6">
+          <FadeInStagger faster className="grid grid-cols-12 gap-6">
             {
               blogs.map((blog) => {
                 const blogNode = blog?.node
                 if (!blogNode || !blogNode.uniqueId) return null;
-                return <div key={blogNode.uniqueId} className="col-span-12 md:col-span-6 lg:col-span-4" >
+                return <FadeIn key={blogNode.uniqueId} className="col-span-12 md:col-span-6 lg:col-span-4" >
                   <Blog
                     date={blogNode.date || blogNode.createdAt || null}
                     uniqueId={blogNode.uniqueId}
                     imageUrl={blogNode.overviewImage || ''}
                     title={blogNode.title || ''}
                   />
-                </div>
+                </FadeIn>
               }
               )
             }
-          </div>
+          </FadeInStagger>
         </section>
       </div>
 
       {/* vision-mission-technology */}
       <div className="bg-gray-50">
         <section className="container mx-auto py-20">
-          <div className="max-w-2xl lg:mx-0">
+          <FadeIn className="max-w-2xl lg:mx-0">
             <h2 className="title underline underline-offset-8 decoration-brandSecondary">Our values</h2>
             <p className="mt-6 text-lg ml-4leading-8 text-gray-600">
               At RTECH, Our team of experts has a wealth of experience in the industry and is dedicated to delivering the best possible solutions to our clients.
 
               With over 13 years of expertise in the medical device manufacturing sector. Founded in 2021 with a mission to provide the highest quality of automated equipment, our team is passionate about building reliable, safe, and efficient automated equipment.
             </p>
-          </div>
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base leading-7 text-gray-600 md:grid-cols-2 lg:grid-cols-3 lg:mx-0 lg:max-w-none lg:gap-x-16">
-            <Mission description={mission?.missionDescription} title={mission?.missionTitle || ''} />
-            <Vision description={vision?.visionDescription} title={vision?.visionTitle || ''} />
-            <Technology description={technology?.technologyDescription} title={technology?.technologyTitle || ''} />
-          </div>
+          </FadeIn>
+          <FadeInStagger className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base leading-7 text-gray-600 md:grid-cols-2 lg:grid-cols-3 lg:mx-0 lg:max-w-none lg:gap-x-16">
+            <FadeIn>
+              <Mission description={mission?.missionDescription} title={mission?.missionTitle || ''} />
+            </FadeIn>
+            <FadeIn>
+              <Vision description={vision?.visionDescription} title={vision?.visionTitle || ''} />
+            </FadeIn>
+            <FadeIn>
+              <Technology description={technology?.technologyDescription} title={technology?.technologyTitle || ''} />
+            </FadeIn>
+          </FadeInStagger>
         </section>
       </div>
 
