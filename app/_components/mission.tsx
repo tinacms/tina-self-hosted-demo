@@ -9,7 +9,7 @@ interface IMission {
 export default function Mission({ description, title }: IMission) {
     return (
         <div>
-            <h2 className='title'>{title}</h2>
+            <h2 className='sub_Title'>{title}</h2>
             <TinaMarkdown content={description} />
         </div>
     )

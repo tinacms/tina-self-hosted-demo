@@ -22,7 +22,7 @@ module.exports = {
       },
       colors: {
         brandPrimary: "#050C9C",
-        brandSecondary: "rgb(37 177 239)",
+        brandSecondary: "rgb(34 150 210)",
       },
       animation: {
         "infinite-scroll": "infinite-scroll 10s linear infinite",

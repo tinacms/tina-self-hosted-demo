@@ -55,8 +55,8 @@ export default function ContactForm() {
     };
 
     return (
-        <div className="relative isolate bg-slate-50">
-            <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2">
+        <div className="relative isolate">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="relative px-6 pb-20 pt-24 sm:pt-32 lg:static lg:px-8 lg:py-24">
                     <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
                         <div className="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden bg-gray-100 ring-1 ring-gray-900/10 lg:w-1/2">
@@ -83,7 +83,7 @@ export default function ContactForm() {
                                 <rect width="100%" height="100%" strokeWidth={0} fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)" />
                             </svg>
                         </div>
-                        <h2 className="text-4xl font-semibold tracking-tight text-gray-900">Contact Us</h2>
+                        <h2 className="tracking-tight title underline underline-offset-8 decoration-brandSecondary">Contact Us</h2>
                         <p className="mt-6 text-lg leading-8 text-gray-600">
                             Schedule a demo with one of our product consultants to learn more about our automated equipment for medical device manufacturing.
                         </p>

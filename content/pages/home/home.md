@@ -20,15 +20,9 @@ partners:
 mission:
   missionTitle: Mission
   missionDescription: >
-    At RTECH, Our team of experts has a wealth of experience in the industry and
-    is dedicated to delivering the best possible solutions to our clients.
-
-
-    With over 13 years of expertise in the medical device manufacturing sector.
-    Founded in 2021 with a mission to provide the highest quality of automated
-    equipment, our team is passionate about building reliable, safe, and
-    efficient automated equipment. Our commitment to excellence is reflected in
-    the quality of our products as well as in our customer service. We strive to
+    Our mission is build reliable, safe, efficient and  highest quality
+    automated equipment. Our commitment to excellence is reflected in the
+    quality of our products as well as in our customer service. We strive to
     continuously improve our products and services to ensure that our customers
     have the best experience possible.
 vision:

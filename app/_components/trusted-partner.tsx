@@ -16,7 +16,7 @@ export default function TrustedPartner({ partners }: ITrustedPartner) {
                 <img src={partnerImage} alt={partnerName}
                     width={180}
                     height={44}
-                    className="max-h-36  object-contain" />
+                    className="max-h-32  object-contain" />
             )
             }
 

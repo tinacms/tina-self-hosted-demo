@@ -13,6 +13,6 @@ socialMediaIcons:
     link: 'https://www.instagram.com/'
   - icon: facebook
     link: 'https://www.facebook.com/'
-rights: '© 2024 Your Company, Inc. All rights reserved.'
+rights: '© 2024 RTECH, Inc. All rights reserved.'
 ---
 

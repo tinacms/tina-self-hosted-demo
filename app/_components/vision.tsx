@@ -9,7 +9,7 @@ interface IVision {
 export default function Vision({ description, title }: IVision) {
     return (
         <div>
-            <h2 className='title'>{title}</h2>
+            <h2 className='sub_Title'>{title}</h2>
             <TinaMarkdown content={description} />
         </div>
     )
