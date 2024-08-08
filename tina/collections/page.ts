@@ -1,4 +1,4 @@
-import { Collection } from "tinacms";
+import type { Collection } from "tinacms";
 
 export const PageCollection: Collection = {
   name: "page",
