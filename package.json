@@ -20,13 +20,13 @@
     "tailwindcss": "^3.4.7"
   },
   "dependencies": {
-    "@tinacms/cli": "^1.5.52",
-    "@tinacms/datalayer": "^1.2.39",
+    "@tinacms/cli": "0.0.0-20240817160126",
+    "@tinacms/datalayer": "0.0.0-20240817160126",
     "next": "14.2.1",
     "next-auth": "^4.24.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tinacms": "^2.1.0",
+    "tinacms": "0.0.0-20240817160126",
     "tinacms-authjs": "^4.0.0",
     "tinacms-gitprovider-github": "^1.0.10",
     "typescript": "^5.5.4",
