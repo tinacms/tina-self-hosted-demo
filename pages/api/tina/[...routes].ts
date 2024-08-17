@@ -1,15 +1,10 @@
-import { TinaNodeBackend, LocalBackendAuthProvider } from "@tinacms/datalayer";
-
 import { TinaAuthJSOptions, AuthJsBackendAuthProvider } from "tinacms-authjs";
+import { TinaEdgeBackend } from "@tinacms/datalayer";
 
 import databaseClient from "../../../tina/__generated__/databaseClient";
 
-const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
-
-const handler = TinaNodeBackend({
-  authProvider: isLocal
-    ? LocalBackendAuthProvider()
-    : AuthJsBackendAuthProvider({
+const handler = TinaEdgeBackend({
+  authProvider: AuthJsBackendAuthProvider({
         authOptions: TinaAuthJSOptions({
           databaseClient: databaseClient,
           secret: process.env.NEXTAUTH_SECRET!,
@@ -19,10 +14,9 @@ const handler = TinaNodeBackend({
 });
 
 export const config = {
-  runtime: 'edge', // or 'nodejs'
+  runtime: 'edge'
 };
 
-export default (req, res) => {
-  // Modify the request here if you need to
-  return handler(req, res);
+export default async (req: Request): Promise<Response> => {
+  return handler(req);
 };
