@@ -18,6 +18,10 @@ const handler = TinaNodeBackend({
   databaseClient,
 });
 
+export const config = {
+  runtime: 'edge', // or 'nodejs'
+};
+
 export default (req, res) => {
   // Modify the request here if you need to
   return handler(req, res);
