@@ -17,7 +17,8 @@
     "eslint": "^9.8.0",
     "eslint-config-next": "^14.2.5",
     "postcss": "^8.4.41",
-    "tailwindcss": "^3.4.7"
+    "tailwindcss": "^3.4.7",
+    "@next/bundle-analyzer": "14.2.6"
   },
   "dependencies": {
     "@tinacms/cli": "0.0.0-20240817171706",
