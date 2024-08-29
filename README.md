@@ -23,7 +23,7 @@ After the repository is created, you will need to do the following steps to get 
 
 ## Requirements
 
-- Git, [Node.js Active LTS](https://nodejs.org/en/about/releases/), Yarn installed for local development.
+- Git, [Node.js Active LTS](https://nodejs.org/en/about/releases/), and pnpm installed for local development.
 
 Set up the .env file:
 
@@ -46,8 +46,12 @@ NEXTAUTH_SECRET=***
 
 Install the project's dependencies:
 
+> [!NOTE]  
+> [Do you know the best package manager for Node.js?](https://www.ssw.com.au/rules/best-package-manager-for-node/) Using the right package manager can greatly enhance your development workflow. We recommend using pnpm for its speed and efficient handling of dependencies. Learn more about why pnpm might be the best choice for your projects by checking out this rule from SSW.
+
+
 ```
-yarn install
+pnpm install
 ```
 
 Run the project locally:
@@ -55,7 +59,7 @@ Run the project locally:
 > This will start TinaCMS in "Local Mode", meaning all changes will be made to the local file system and no auth is required.
 
 ```
-yarn dev
+pnpm dev
 ```
 
 Run the project locally with Vercel KV:
@@ -65,7 +69,7 @@ Run the project locally with Vercel KV:
 First add the following environment variables to your `.env` file:
 
 ```env
-# Get these from vercel if you want to run yarn dev:prod
+# Get these from vercel if you want to run pnpm dev:prod
 KV_REST_API_URL=***
 KV_REST_API_TOKEN=***
 ```
@@ -73,7 +77,7 @@ KV_REST_API_TOKEN=***
 Then run the following command:
 
 ```
-yarn dev:prod
+pnpm dev:prod
 ```
 
 ## Environment Variables
