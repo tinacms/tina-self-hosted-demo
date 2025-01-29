@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  sqlite-level: 0.0.0-20250129021458
+
 importers:
 
   .:
@@ -5512,8 +5515,8 @@ packages:
   sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
 
-  sqlite-level@1.2.0:
-    resolution: {integrity: sha512-GezNPqfdtslT+osISwgi5pSSKa7ckTEqk8Kg+UcApABq7N/sCn72QnRfHjt0QGKgZkxZE1Dnwbxwd3TEwB157Q==}
+  sqlite-level@0.0.0-20250129021458:
+    resolution: {integrity: sha512-ltMVDl2AWehPPbK4IRcJZ0XoQBgBl0WaahLAQKxZxogqaiJpM2pOkokzAdT++moVuyl9CjmaIJ6jneTNDnHuvQ==}
     peerDependencies:
       sucrase: ^3.35.0
 
@@ -8128,7 +8131,7 @@ snapshots:
       '@tinacms/schema-tools': 1.7.0(react@18.3.1)(yup@1.6.1)
       memory-level: 1.0.0
       search-index: 4.0.0(abstract-level@1.0.4)
-      sqlite-level: 1.2.0(sucrase@3.35.0)
+      sqlite-level: 0.0.0-20250129021458(sucrase@3.35.0)
       stopword: 3.1.4
     transitivePeerDependencies:
       - abstract-level
@@ -12773,7 +12776,7 @@ snapshots:
 
   sprintf-js@1.0.3: {}
 
-  sqlite-level@1.2.0(sucrase@3.35.0):
+  sqlite-level@0.0.0-20250129021458(sucrase@3.35.0):
     dependencies:
       abstract-level: 1.0.4
       better-sqlite3: 11.8.1
