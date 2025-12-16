@@ -1,0 +1,124 @@
+[0;34m[INFO][0m Creating branch: fix/nextjs-cve-20251216
+Switched to a new branch 'fix/nextjs-cve-20251216'
+[0;32m✅ [SUCCESS][0m Created branch: fix/nextjs-cve-20251216
+[0;34m[INFO][0m Running npx fix-react2shell-next --fix...
+
+[1mfix-react2shell-next[0m[2m - Next.js vulnerability scanner
+[0m
+[2mChecking for 4 known vulnerabilities:
+[0m
+[2m  - [0m[31mCVE-2025-66478[0m[2m (critical): Remote code execution via crafted RSC payload[0m
+[2m  - [0m[33mCVE-2025-55184[0m[2m (high): DoS via malicious HTTP request causing server to hang and consume CPU[0m
+[2m  - [0m[36mCVE-2025-55183[0m[2m (medium): Compiled Server Action source code can be exposed via malicious request[0m
+[2m  - [0m[33mCVE-2025-67779[0m[2m (high): Incomplete fix for CVE-2025-55184 DoS via malicious RSC payload causing infinite loop[0m
+
+[2mFound 1 package.json file(s)
+[0m
+[31mFound 1 vulnerable file(s):
+[0m
+[33m  package.json[0m
+[2m     next: [0m[31m14.2.1[0m[2m -> [0m[32m14.2.35[0m[35m [CVE-2025-55184, CVE-2025-67779][0m
+
+[36m
+Applying fixes...
+[0m
+[32m   Updated package.json[0m
+[36m
+Installing dependencies...
+[0m
+[2m. (pnpm)[0m
+[2m
+$ pnpm install
+[0m
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Progress: resolved 16, reused 4, downloaded 12, added 0
+Progress: resolved 226, reused 192, downloaded 26, added 0
+Progress: resolved 423, reused 364, downloaded 51, added 0
+Progress: resolved 488, reused 405, downloaded 75, added 0
+Progress: resolved 707, reused 586, downloaded 92, added 0
+Progress: resolved 752, reused 625, downloaded 98, added 0
+Progress: resolved 1176, reused 1012, downloaded 135, added 0
+Progress: resolved 1213, reused 1023, downloaded 161, added 0
+Progress: resolved 1216, reused 1024, downloaded 163, added 0
+ WARN  4 deprecated subdependencies found: @babel/plugin-proposal-class-properties@7.18.6, @babel/plugin-proposal-object-rest-spread@7.20.7, glob@7.2.3, inflight@1.0.6
+Packages: +1212
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 1237, reused 1043, downloaded 165, added 51
+Progress: resolved 1237, reused 1043, downloaded 165, added 600
+Progress: resolved 1237, reused 1043, downloaded 165, added 977
+Progress: resolved 1237, reused 1043, downloaded 165, added 1066
+Progress: resolved 1237, reused 1043, downloaded 165, added 1212, done
+ WARN  Issues with peer dependencies found
+.
+├─┬ tinacms 2.2.1
+│ └─┬ @tinacms/search 1.0.27
+│   └─┬ @tinacms/schema-tools 1.6.1
+│     └── ✕ unmet peer yup@^0.32.0: found 1.4.0
+├─┬ eslint-plugin-import 2.29.1
+│ └── ✕ unmet peer eslint@"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8": found 9.9.1
+└─┬ eslint-config-next 14.2.7
+  ├── ✕ unmet peer eslint@"^7.23.0 || ^8.0.0": found 9.9.1
+  ├─┬ @typescript-eslint/parser 7.2.0
+  │ └── ✕ unmet peer eslint@^8.56.0: found 9.9.1
+  ├─┬ eslint-plugin-import 2.29.1
+  │ └── ✕ unmet peer eslint@"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8": found 9.9.1
+  ├─┬ eslint-plugin-jsx-a11y 6.9.0
+  │ └── ✕ unmet peer eslint@"^3 || ^4 || ^5 || ^6 || ^7 || ^8": found 9.9.1
+  └─┬ eslint-plugin-react-hooks 4.6.2
+    └── ✕ unmet peer eslint@"^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0": found 9.9.1
+
+dependencies:
++ @tinacms/cli 1.6.1
++ @tinacms/datalayer 1.3.1
++ next 14.2.35 (16.0.10 is available)
++ next-auth 4.24.7
++ react 18.3.1
++ react-dom 18.3.1
++ tinacms 2.2.1
++ tinacms-authjs 5.0.1
++ tinacms-gitprovider-github 2.0.1
++ typescript 5.5.4
++ upstash-redis-level 1.1.1
+
+devDependencies:
++ @types/node 22.5.1
++ @types/react 18.3.4
++ @types/react-dom 18.3.0
++ autoprefixer 10.4.20
++ eslint 9.9.1
++ eslint-config-next 14.2.7
++ postcss 8.4.41
++ tailwindcss 3.4.10
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: better-sqlite3, esbuild.                            │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Done in 14.3s using pnpm v10.20.0
+[32m
+Patches applied![0m
+[2m   Remember to test your app and commit the changes.
+[0m
+[0;32m✅ [SUCCESS][0m Fix command completed - vulnerabilities found and fixed
+[0;34m[INFO][0m Updating lockfiles for modified packages...
+[0;34m[INFO][0m   Found modified package.json in: .
+[0;34m[INFO][0m Processing directory: .
+[0;34m[INFO][0m   Detected pnpm-lock.yaml in ., running pnpm install...
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: better-sqlite3, esbuild.                            │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Done in 276ms using pnpm v10.20.0
+[0;32m✅ [SUCCESS][0m Lockfiles updated
+[0;34m[INFO][0m Changes detected, proceeding with commit...
