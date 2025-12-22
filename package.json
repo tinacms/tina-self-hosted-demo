@@ -25,6 +25,8 @@
     "next": "14.2.35",
     "next-auth": "^4.24.13",
     "react": "^18.3.1",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.3.1",
     "tinacms": "^2.10.1",
     "tinacms-authjs": "^5.0.9",
