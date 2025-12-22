@@ -1,5 +1,4 @@
 module.exports = {
-  staticPageGenerationTimeout: 1000,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
