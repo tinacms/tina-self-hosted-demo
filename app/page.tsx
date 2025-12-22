@@ -1,8 +1,6 @@
 import { Page } from "../components/page";
 import { client } from "../tina/__generated__/databaseClient";
 
-export const dynamic = "force-dynamic";
-
 export default async function Home() {
   const res = await client.queries.page({ relativePath: "home.md" });
   return (
