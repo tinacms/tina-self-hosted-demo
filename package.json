@@ -28,7 +28,7 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.3.1",
-    "tinacms": "^2.10.1",
+    "tinacms": "^3.7.6",
     "tinacms-authjs": "^5.0.9",
     "tinacms-gitprovider-github": "^2.0.19",
     "typescript": "^5.9.3",
