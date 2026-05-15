@@ -2,6 +2,7 @@
   "name": "tina-self-hosted-demo",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@9.15.2",
   "scripts": {
     "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
     "dev:prod": "TINA_PUBLIC_IS_LOCAL=false tinacms dev -c \"next dev\"",
