@@ -1,0 +1,11 @@
+onlyBuiltDependencies:
+  - "@tailwindcss/oxide"
+  - better-sqlite3
+  - core-js
+  - esbuild
+  - protobufjs
+  - sharp
+  - unrs-resolver
+
+patchedDependencies:
+  "@heroicons/react@1.0.6": patches/@heroicons__react@1.0.6.patch
