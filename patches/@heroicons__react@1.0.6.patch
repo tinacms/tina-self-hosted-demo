@@ -1,0 +1,18 @@
+diff --git a/package.json b/package.json
+index ea90ea90dd3e85751c935dfcfea610c3ff1cb462..aa2bb118a109506c41595aa8eb54a071ad9640e7 100644
+--- a/package.json
++++ b/package.json
+@@ -13,6 +13,13 @@
+     "outline",
+     "solid"
+   ],
++  "exports": {
++    "./package.json": "./package.json",
++    "./solid": "./solid/index.js",
++    "./solid/*": "./solid/*",
++    "./outline": "./outline/index.js",
++    "./outline/*": "./outline/*"
++  },
+   "publishConfig": {
+     "access": "public"
+   },
