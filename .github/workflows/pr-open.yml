@@ -30,18 +30,22 @@ jobs:
       - name: install git
         run: apt-get update && apt-get install -y git
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: Checkout
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+          cache: pnpm
 
-      - run: npm install -g yarn && yarn install
+      - run: pnpm install --frozen-lockfile
         name: install
 
-      - run: yarn build
+      - run: pnpm build
         name: build
         env:
           GITHUB_BRANCH: ${{ github.head_ref }}
