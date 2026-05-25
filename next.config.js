@@ -4,7 +4,6 @@ module.exports = {
     "tinacms-authjs",
     "@tinacms/datalayer",
     "tinacms-gitprovider-github",
-    "@heroicons/react",
   ],
   async rewrites() {
     return [
