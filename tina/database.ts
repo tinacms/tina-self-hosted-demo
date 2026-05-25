@@ -29,7 +29,7 @@ export default isLocal
         repo,
         token,
       }),
-      databaseAdapter: new RedisLevel<string, Record<string, any>>({
+      databaseAdapter: new RedisLevel<string, Record<string, unknown>>({
         redis: {
           url:
             (process.env.KV_REST_API_URL as string) || "http://localhost:8079",
