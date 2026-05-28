@@ -21,7 +21,7 @@
     "tailwindcss": "^4.3.0"
   },
   "dependencies": {
-    "@tinacms/cli": "^2.3.1",
+    "@tinacms/cli": "^2.4.1",
     "@tinacms/datalayer": "^2.0.21",
     "next": "^16.2.6",
     "next-auth": "^4.24.14",
