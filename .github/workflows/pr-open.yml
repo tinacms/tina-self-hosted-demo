@@ -27,8 +27,10 @@ jobs:
           SRH_CONNECTION_STRING: redis://redis:6379
 
     steps:
-      - name: install git
-        run: apt-get update && apt-get install -y git
+      - name: install git and native build tools
+        # python3, make and g++ are needed by node-gyp to compile better-sqlite3
+        # from source when no prebuilt binary exists for the Node ABI (e.g. Node 20)
+        run: apt-get update && apt-get install -y git python3 make g++
 
       - uses: actions/checkout@v4
         name: Checkout
