@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: ["20", "22"]
+        node: ["22", "24"]
     name: Node ${{ matrix.node }} sample
     container: denoland/deno
     services:
@@ -29,7 +29,7 @@ jobs:
     steps:
       - name: install git and native build tools
         # python3, make and g++ are needed by node-gyp to compile better-sqlite3
-        # from source when no prebuilt binary exists for the Node ABI (e.g. Node 20)
+        # from source when no prebuilt binary exists for the Node ABI
         run: apt-get update && apt-get install -y git python3 make g++
 
       - uses: actions/checkout@v4
