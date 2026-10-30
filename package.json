@@ -21,17 +21,17 @@
     "tailwindcss": "^4.3.0"
   },
   "dependencies": {
-    "@tinacms/cli": "^3.0.0",
-    "@tinacms/datalayer": "^2.0.30",
+    "@tinacms/cli": "^4.0.4",
+    "@tinacms/datalayer": "^3.0.0",
     "next": "^16.2.6",
     "next-auth": "^4.24.14",
     "react": "^19.2.6",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^19.2.6",
-    "tinacms": "^3.14.0",
-    "tinacms-authjs": "^24.0.4",
-    "tinacms-gitprovider-github": "^4.1.17",
+    "tinacms": "^3.15.0",
+    "tinacms-authjs": "^24.0.5",
+    "tinacms-gitprovider-github": "^5.0.0",
     "typescript": "^6.0.3",
     "upstash-redis-level": "^1.1.1"
   }
