@@ -38,4 +38,6 @@ export default isLocal
         debug: process.env.DEBUG === "true" || false,
       }),
       namespace: branch,
+      // Datalayer 3 only lets these usernames (the user collection's uid) edit users
+      authCollection: { admins: ["tinauser"] },
     });
